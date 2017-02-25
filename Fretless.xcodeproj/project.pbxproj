@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0324721E60E27C00062B8D /* BaseViewController.swift */; };
+		8C03247B1E61188500062B8D /* NotesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03247A1E61188500062B8D /* NotesEnum.swift */; };
 		8CC121521E5E1A2300D22345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121511E5E1A2300D22345 /* AppDelegate.swift */; };
-		8CC121541E5E1A2300D22345 /* PadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121531E5E1A2300D22345 /* PadViewController.swift */; };
+		8CC121541E5E1A2300D22345 /* KeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */; };
 		8CC121571E5E1A2300D22345 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC121551E5E1A2300D22345 /* Main.storyboard */; };
 		8CC121591E5E1A2300D22345 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC121581E5E1A2300D22345 /* Assets.xcassets */; };
 		8CC1215C1E5E1A2300D22345 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1215A1E5E1A2300D22345 /* LaunchScreen.storyboard */; };
@@ -35,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8C0324721E60E27C00062B8D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8C03247A1E61188500062B8D /* NotesEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesEnum.swift; sourceTree = "<group>"; };
 		8CC1214E1E5E1A2300D22345 /* Fretless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fretless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC121511E5E1A2300D22345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CC121531E5E1A2300D22345 /* PadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadViewController.swift; sourceTree = "<group>"; };
+		8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardViewController.swift; sourceTree = "<group>"; };
 		8CC121561E5E1A2300D22345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8CC121581E5E1A2300D22345 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CC1215B1E5E1A2300D22345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -100,8 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				8CC121511E5E1A2300D22345 /* AppDelegate.swift */,
-				8CC121531E5E1A2300D22345 /* PadViewController.swift */,
+				8C0324721E60E27C00062B8D /* BaseViewController.swift */,
+				8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */,
 				8CC121811E5E1B1F00D22345 /* KeyControl.swift */,
+				8C03247A1E61188500062B8D /* NotesEnum.swift */,
 				8CC121551E5E1A2300D22345 /* Main.storyboard */,
 				8CC121581E5E1A2300D22345 /* Assets.xcassets */,
 				8CC1215A1E5E1A2300D22345 /* LaunchScreen.storyboard */,
@@ -265,7 +271,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CC121541E5E1A2300D22345 /* PadViewController.swift in Sources */,
+				8CC121541E5E1A2300D22345 /* KeyBoardViewController.swift in Sources */,
+				8C03247B1E61188500062B8D /* NotesEnum.swift in Sources */,
+				8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */,
 				8CC121821E5E1B1F00D22345 /* KeyControl.swift in Sources */,
 				8CC121521E5E1A2300D22345 /* AppDelegate.swift in Sources */,
 			);
@@ -518,6 +526,7 @@
 				8CC121781E5E1A2400D22345 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8CC121791E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "FretlessTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +535,7 @@
 				8CC1217B1E5E1A2400D22345 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8CC1217C1E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "FretlessUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +544,7 @@
 				8CC1217E1E5E1A2400D22345 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

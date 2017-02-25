@@ -10,22 +10,16 @@ import UIKit
 
 class KeyControl: UIControl {
     
-    let frequency: Int = Int()
+    var frequency: Int = Int()
+    var keyIndex: Int = Int()
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("TOUCHING KEY")
     }
     
     func setupView() {
         
-        let gradient = CAGradientLayer()
-        let leftColor = UIColor.white
-        let rightColor = UIColor.lightGray
         
-        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
-        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
-        gradient.frame = self.frame
-        self.layer.insertSublayer(gradient, at: 0)
     }
     
     override init(frame: CGRect) {
@@ -35,7 +29,6 @@ class KeyControl: UIControl {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupView()
     }
 
     /*
