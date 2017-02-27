@@ -1,552 +1,1510 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0324721E60E27C00062B8D /* BaseViewController.swift */; };
-		8C03247B1E61188500062B8D /* NotesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C03247A1E61188500062B8D /* NotesEnum.swift */; };
-		8CC121521E5E1A2300D22345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121511E5E1A2300D22345 /* AppDelegate.swift */; };
-		8CC121541E5E1A2300D22345 /* KeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */; };
-		8CC121571E5E1A2300D22345 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC121551E5E1A2300D22345 /* Main.storyboard */; };
-		8CC121591E5E1A2300D22345 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CC121581E5E1A2300D22345 /* Assets.xcassets */; };
-		8CC1215C1E5E1A2300D22345 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC1215A1E5E1A2300D22345 /* LaunchScreen.storyboard */; };
-		8CC121671E5E1A2300D22345 /* FretlessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121661E5E1A2300D22345 /* FretlessTests.swift */; };
-		8CC121721E5E1A2400D22345 /* FretlessUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121711E5E1A2400D22345 /* FretlessUITests.swift */; };
-		8CC121821E5E1B1F00D22345 /* KeyControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121811E5E1B1F00D22345 /* KeyControl.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		8CC121631E5E1A2300D22345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8CC121461E5E1A2300D22345 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CC1214D1E5E1A2300D22345;
-			remoteInfo = Fretless;
-		};
-		8CC1216E1E5E1A2400D22345 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8CC121461E5E1A2300D22345 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8CC1214D1E5E1A2300D22345;
-			remoteInfo = Fretless;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		8C0324721E60E27C00062B8D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		8C03247A1E61188500062B8D /* NotesEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesEnum.swift; sourceTree = "<group>"; };
-		8CC1214E1E5E1A2300D22345 /* Fretless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fretless.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CC121511E5E1A2300D22345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardViewController.swift; sourceTree = "<group>"; };
-		8CC121561E5E1A2300D22345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8CC121581E5E1A2300D22345 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8CC1215B1E5E1A2300D22345 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8CC1215D1E5E1A2300D22345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CC121621E5E1A2300D22345 /* FretlessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FretlessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CC121661E5E1A2300D22345 /* FretlessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FretlessTests.swift; sourceTree = "<group>"; };
-		8CC121681E5E1A2300D22345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CC1216D1E5E1A2400D22345 /* FretlessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FretlessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8CC121711E5E1A2400D22345 /* FretlessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FretlessUITests.swift; sourceTree = "<group>"; };
-		8CC121731E5E1A2400D22345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CC121811E5E1B1F00D22345 /* KeyControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyControl.swift; path = ../KeyControl.swift; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		8CC1214B1E5E1A2300D22345 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CC1215F1E5E1A2300D22345 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CC1216A1E5E1A2400D22345 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		8CC121451E5E1A2300D22345 = {
-			isa = PBXGroup;
-			children = (
-				8CC121501E5E1A2300D22345 /* Fretless */,
-				8CC121651E5E1A2300D22345 /* FretlessTests */,
-				8CC121701E5E1A2400D22345 /* FretlessUITests */,
-				8CC1214F1E5E1A2300D22345 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		8CC1214F1E5E1A2300D22345 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8CC1214E1E5E1A2300D22345 /* Fretless.app */,
-				8CC121621E5E1A2300D22345 /* FretlessTests.xctest */,
-				8CC1216D1E5E1A2400D22345 /* FretlessUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		8CC121501E5E1A2300D22345 /* Fretless */ = {
-			isa = PBXGroup;
-			children = (
-				8CC121511E5E1A2300D22345 /* AppDelegate.swift */,
-				8C0324721E60E27C00062B8D /* BaseViewController.swift */,
-				8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */,
-				8CC121811E5E1B1F00D22345 /* KeyControl.swift */,
-				8C03247A1E61188500062B8D /* NotesEnum.swift */,
-				8CC121551E5E1A2300D22345 /* Main.storyboard */,
-				8CC121581E5E1A2300D22345 /* Assets.xcassets */,
-				8CC1215A1E5E1A2300D22345 /* LaunchScreen.storyboard */,
-				8CC1215D1E5E1A2300D22345 /* Info.plist */,
-			);
-			path = Fretless;
-			sourceTree = "<group>";
-		};
-		8CC121651E5E1A2300D22345 /* FretlessTests */ = {
-			isa = PBXGroup;
-			children = (
-				8CC121661E5E1A2300D22345 /* FretlessTests.swift */,
-				8CC121681E5E1A2300D22345 /* Info.plist */,
-			);
-			path = FretlessTests;
-			sourceTree = "<group>";
-		};
-		8CC121701E5E1A2400D22345 /* FretlessUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8CC121711E5E1A2400D22345 /* FretlessUITests.swift */,
-				8CC121731E5E1A2400D22345 /* Info.plist */,
-			);
-			path = FretlessUITests;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		8CC1214D1E5E1A2300D22345 /* Fretless */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8CC121761E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "Fretless" */;
-			buildPhases = (
-				8CC1214A1E5E1A2300D22345 /* Sources */,
-				8CC1214B1E5E1A2300D22345 /* Frameworks */,
-				8CC1214C1E5E1A2300D22345 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Fretless;
-			productName = Fretless;
-			productReference = 8CC1214E1E5E1A2300D22345 /* Fretless.app */;
-			productType = "com.apple.product-type.application";
-		};
-		8CC121611E5E1A2300D22345 /* FretlessTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8CC121791E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "FretlessTests" */;
-			buildPhases = (
-				8CC1215E1E5E1A2300D22345 /* Sources */,
-				8CC1215F1E5E1A2300D22345 /* Frameworks */,
-				8CC121601E5E1A2300D22345 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8CC121641E5E1A2300D22345 /* PBXTargetDependency */,
-			);
-			name = FretlessTests;
-			productName = FretlessTests;
-			productReference = 8CC121621E5E1A2300D22345 /* FretlessTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8CC1216C1E5E1A2400D22345 /* FretlessUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8CC1217C1E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "FretlessUITests" */;
-			buildPhases = (
-				8CC121691E5E1A2400D22345 /* Sources */,
-				8CC1216A1E5E1A2400D22345 /* Frameworks */,
-				8CC1216B1E5E1A2400D22345 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8CC1216F1E5E1A2400D22345 /* PBXTargetDependency */,
-			);
-			name = FretlessUITests;
-			productName = FretlessUITests;
-			productReference = 8CC1216D1E5E1A2400D22345 /* FretlessUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		8CC121461E5E1A2300D22345 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Ricardo Nazario";
-				TargetAttributes = {
-					8CC1214D1E5E1A2300D22345 = {
-						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = SGRW3864BW;
-						ProvisioningStyle = Automatic;
-					};
-					8CC121611E5E1A2300D22345 = {
-						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = SGRW3864BW;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 8CC1214D1E5E1A2300D22345;
-					};
-					8CC1216C1E5E1A2400D22345 = {
-						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = SGRW3864BW;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 8CC1214D1E5E1A2300D22345;
-					};
-				};
-			};
-			buildConfigurationList = 8CC121491E5E1A2300D22345 /* Build configuration list for PBXProject "Fretless" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 8CC121451E5E1A2300D22345;
-			productRefGroup = 8CC1214F1E5E1A2300D22345 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				8CC1214D1E5E1A2300D22345 /* Fretless */,
-				8CC121611E5E1A2300D22345 /* FretlessTests */,
-				8CC1216C1E5E1A2400D22345 /* FretlessUITests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		8CC1214C1E5E1A2300D22345 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CC1215C1E5E1A2300D22345 /* LaunchScreen.storyboard in Resources */,
-				8CC121591E5E1A2300D22345 /* Assets.xcassets in Resources */,
-				8CC121571E5E1A2300D22345 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CC121601E5E1A2300D22345 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CC1216B1E5E1A2400D22345 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		8CC1214A1E5E1A2300D22345 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CC121541E5E1A2300D22345 /* KeyBoardViewController.swift in Sources */,
-				8C03247B1E61188500062B8D /* NotesEnum.swift in Sources */,
-				8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */,
-				8CC121821E5E1B1F00D22345 /* KeyControl.swift in Sources */,
-				8CC121521E5E1A2300D22345 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CC1215E1E5E1A2300D22345 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CC121671E5E1A2300D22345 /* FretlessTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8CC121691E5E1A2400D22345 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8CC121721E5E1A2400D22345 /* FretlessUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8CC121641E5E1A2300D22345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CC1214D1E5E1A2300D22345 /* Fretless */;
-			targetProxy = 8CC121631E5E1A2300D22345 /* PBXContainerItemProxy */;
-		};
-		8CC1216F1E5E1A2400D22345 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8CC1214D1E5E1A2300D22345 /* Fretless */;
-			targetProxy = 8CC1216E1E5E1A2400D22345 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		8CC121551E5E1A2300D22345 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CC121561E5E1A2300D22345 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8CC1215A1E5E1A2300D22345 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CC1215B1E5E1A2300D22345 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		8CC121741E5E1A2400D22345 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		8CC121751E5E1A2400D22345 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		8CC121771E5E1A2400D22345 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SGRW3864BW;
-				INFOPLIST_FILE = Fretless/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.Fretless;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		8CC121781E5E1A2400D22345 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SGRW3864BW;
-				INFOPLIST_FILE = Fretless/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.Fretless;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		8CC1217A1E5E1A2400D22345 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = SGRW3864BW;
-				INFOPLIST_FILE = FretlessTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.FretlessTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fretless.app/Fretless";
-			};
-			name = Debug;
-		};
-		8CC1217B1E5E1A2400D22345 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = SGRW3864BW;
-				INFOPLIST_FILE = FretlessTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.FretlessTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fretless.app/Fretless";
-			};
-			name = Release;
-		};
-		8CC1217D1E5E1A2400D22345 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = SGRW3864BW;
-				INFOPLIST_FILE = FretlessUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.FretlessUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = Fretless;
-			};
-			name = Debug;
-		};
-		8CC1217E1E5E1A2400D22345 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = SGRW3864BW;
-				INFOPLIST_FILE = FretlessUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.FretlessUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = Fretless;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		8CC121491E5E1A2300D22345 /* Build configuration list for PBXProject "Fretless" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8CC121741E5E1A2400D22345 /* Debug */,
-				8CC121751E5E1A2400D22345 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8CC121761E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "Fretless" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8CC121771E5E1A2400D22345 /* Debug */,
-				8CC121781E5E1A2400D22345 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8CC121791E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "FretlessTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8CC1217A1E5E1A2400D22345 /* Debug */,
-				8CC1217B1E5E1A2400D22345 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8CC1217C1E5E1A2400D22345 /* Build configuration list for PBXNativeTarget "FretlessUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8CC1217D1E5E1A2400D22345 /* Debug */,
-				8CC1217E1E5E1A2400D22345 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 8CC121461E5E1A2300D22345 /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>03BFEF4F1E307A14282DA91A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-Fretless.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-Fretless/Pods-Fretless.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2E488801ED6AD37CE6328400</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>2E9E94CBAF305CB663F9FA19</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Embed Pods Frameworks</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-Fretless/Pods-Fretless-frameworks.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>30288B778DD2D01F1C542DD0</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>3090B94D2C95FC3326E574A4</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-FretlessUITests/Pods-FretlessUITests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>3C05017566450E4427BEB919</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-FretlessTests.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>49AAB26043DCC85E3FE00FFF</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-Fretless/Pods-Fretless-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>5A0CCD1DAB15744385109D2F</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>5E18EA2623477CF53516A986</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-Fretless.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-Fretless/Pods-Fretless.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>661572ACBC484F8A2FD91338</key>
+		<dict>
+			<key>fileRef</key>
+			<string>ED8FC42AC4C15F8271ED75A5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>802303ED60A92F4EBFA34C96</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_FretlessUITests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8C0324721E60E27C00062B8D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>BaseViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8C0324731E60E27C00062B8D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8C0324721E60E27C00062B8D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8C03247A1E61188500062B8D</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>NotesEnum.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8C03247B1E61188500062B8D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8C03247A1E61188500062B8D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC121451E5E1A2300D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC121501E5E1A2300D22345</string>
+				<string>8CC121651E5E1A2300D22345</string>
+				<string>8CC121701E5E1A2400D22345</string>
+				<string>8CC1214F1E5E1A2300D22345</string>
+				<string>ABCE851928EA0DFC54D611DD</string>
+				<string>EC4EEB69B76299C0CC354919</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121461E5E1A2300D22345</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastSwiftUpdateCheck</key>
+				<string>0820</string>
+				<key>LastUpgradeCheck</key>
+				<string>0820</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Ricardo Nazario</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>8CC1214D1E5E1A2300D22345</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.2</string>
+						<key>DevelopmentTeam</key>
+						<string>SGRW3864BW</string>
+						<key>ProvisioningStyle</key>
+						<string>Automatic</string>
+					</dict>
+					<key>8CC121611E5E1A2300D22345</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.2</string>
+						<key>DevelopmentTeam</key>
+						<string>SGRW3864BW</string>
+						<key>ProvisioningStyle</key>
+						<string>Automatic</string>
+						<key>TestTargetID</key>
+						<string>8CC1214D1E5E1A2300D22345</string>
+					</dict>
+					<key>8CC1216C1E5E1A2400D22345</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>8.2</string>
+						<key>DevelopmentTeam</key>
+						<string>SGRW3864BW</string>
+						<key>ProvisioningStyle</key>
+						<string>Automatic</string>
+						<key>TestTargetID</key>
+						<string>8CC1214D1E5E1A2300D22345</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>8CC121491E5E1A2300D22345</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>8CC121451E5E1A2300D22345</string>
+			<key>productRefGroup</key>
+			<string>8CC1214F1E5E1A2300D22345</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>8CC1214D1E5E1A2300D22345</string>
+				<string>8CC121611E5E1A2300D22345</string>
+				<string>8CC1216C1E5E1A2400D22345</string>
+			</array>
+		</dict>
+		<key>8CC121491E5E1A2300D22345</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>8CC121741E5E1A2400D22345</string>
+				<string>8CC121751E5E1A2400D22345</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>8CC1214A1E5E1A2300D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>8CC121541E5E1A2300D22345</string>
+				<string>8C03247B1E61188500062B8D</string>
+				<string>8C0324731E60E27C00062B8D</string>
+				<string>8CC121821E5E1B1F00D22345</string>
+				<string>8CC121521E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1214B1E5E1A2300D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>661572ACBC484F8A2FD91338</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1214C1E5E1A2300D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>8CC1215C1E5E1A2300D22345</string>
+				<string>8CC121591E5E1A2300D22345</string>
+				<string>8CC121571E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1214D1E5E1A2300D22345</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>8CC121761E5E1A2400D22345</string>
+			<key>buildPhases</key>
+			<array>
+				<string>30288B778DD2D01F1C542DD0</string>
+				<string>8CC1214A1E5E1A2300D22345</string>
+				<string>8CC1214B1E5E1A2300D22345</string>
+				<string>8CC1214C1E5E1A2300D22345</string>
+				<string>2E9E94CBAF305CB663F9FA19</string>
+				<string>49AAB26043DCC85E3FE00FFF</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Fretless</string>
+			<key>productName</key>
+			<string>Fretless</string>
+			<key>productReference</key>
+			<string>8CC1214E1E5E1A2300D22345</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>8CC1214E1E5E1A2300D22345</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Fretless.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8CC1214F1E5E1A2300D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC1214E1E5E1A2300D22345</string>
+				<string>8CC121621E5E1A2300D22345</string>
+				<string>8CC1216D1E5E1A2400D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121501E5E1A2300D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC121511E5E1A2300D22345</string>
+				<string>8C0324721E60E27C00062B8D</string>
+				<string>8CC121531E5E1A2300D22345</string>
+				<string>8CC121811E5E1B1F00D22345</string>
+				<string>8C03247A1E61188500062B8D</string>
+				<string>8CC121551E5E1A2300D22345</string>
+				<string>8CC121581E5E1A2300D22345</string>
+				<string>8CC1215A1E5E1A2300D22345</string>
+				<string>8CC1215D1E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>Fretless</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121511E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>AppDelegate.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121521E5E1A2300D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121511E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC121531E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>KeyBoardViewController.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121541E5E1A2300D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121531E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC121551E5E1A2300D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC121561E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121561E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121571E5E1A2300D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121551E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC121581E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>path</key>
+			<string>Assets.xcassets</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121591E5E1A2300D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121581E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC1215A1E5E1A2300D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC1215B1E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC1215B1E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>Base.lproj/LaunchScreen.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC1215C1E5E1A2300D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC1215A1E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC1215D1E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC1215E1E5E1A2300D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>8CC121671E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1215F1E5E1A2300D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>D4F4926713FD9D46938B9BD4</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC121601E5E1A2300D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC121611E5E1A2300D22345</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>8CC121791E5E1A2400D22345</string>
+			<key>buildPhases</key>
+			<array>
+				<string>BC98F0F83FBBCFD516A4BEFD</string>
+				<string>8CC1215E1E5E1A2300D22345</string>
+				<string>8CC1215F1E5E1A2300D22345</string>
+				<string>8CC121601E5E1A2300D22345</string>
+				<string>2E488801ED6AD37CE6328400</string>
+				<string>5A0CCD1DAB15744385109D2F</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>8CC121641E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>FretlessTests</string>
+			<key>productName</key>
+			<string>FretlessTests</string>
+			<key>productReference</key>
+			<string>8CC121621E5E1A2300D22345</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>8CC121621E5E1A2300D22345</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>FretlessTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8CC121631E5E1A2300D22345</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>8CC121461E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>8CC1214D1E5E1A2300D22345</string>
+			<key>remoteInfo</key>
+			<string>Fretless</string>
+		</dict>
+		<key>8CC121641E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>8CC1214D1E5E1A2300D22345</string>
+			<key>targetProxy</key>
+			<string>8CC121631E5E1A2300D22345</string>
+		</dict>
+		<key>8CC121651E5E1A2300D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC121661E5E1A2300D22345</string>
+				<string>8CC121681E5E1A2300D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>FretlessTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121661E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FretlessTests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121671E5E1A2300D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121661E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC121681E5E1A2300D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121691E5E1A2400D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>8CC121721E5E1A2400D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1216A1E5E1A2400D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>FF6966A8FC63531E582DBDE8</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1216B1E5E1A2400D22345</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>8CC1216C1E5E1A2400D22345</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>8CC1217C1E5E1A2400D22345</string>
+			<key>buildPhases</key>
+			<array>
+				<string>A05CFF7464FA25C0E5862E89</string>
+				<string>8CC121691E5E1A2400D22345</string>
+				<string>8CC1216A1E5E1A2400D22345</string>
+				<string>8CC1216B1E5E1A2400D22345</string>
+				<string>3090B94D2C95FC3326E574A4</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>8CC1216F1E5E1A2400D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>FretlessUITests</string>
+			<key>productName</key>
+			<string>FretlessUITests</string>
+			<key>productReference</key>
+			<string>8CC1216D1E5E1A2400D22345</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.ui-testing</string>
+		</dict>
+		<key>8CC1216D1E5E1A2400D22345</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>FretlessUITests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8CC1216E1E5E1A2400D22345</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>8CC121461E5E1A2300D22345</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>8CC1214D1E5E1A2300D22345</string>
+			<key>remoteInfo</key>
+			<string>Fretless</string>
+		</dict>
+		<key>8CC1216F1E5E1A2400D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>8CC1214D1E5E1A2300D22345</string>
+			<key>targetProxy</key>
+			<string>8CC1216E1E5E1A2400D22345</string>
+		</dict>
+		<key>8CC121701E5E1A2400D22345</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>8CC121711E5E1A2400D22345</string>
+				<string>8CC121731E5E1A2400D22345</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>FretlessUITests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121711E5E1A2400D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>path</key>
+			<string>FretlessUITests.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121721E5E1A2400D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121711E5E1A2400D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>8CC121731E5E1A2400D22345</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121741E5E1A2400D22345</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>ENABLE_TESTABILITY</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.2</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_ACTIVE_COMPILATION_CONDITIONS</key>
+				<string>DEBUG</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Onone</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>8CC121751E5E1A2400D22345</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_ANALYZER_NONNULL</key>
+				<string>YES</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_DOCUMENTATION_COMMENTS</key>
+				<string>YES</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INFINITE_RECURSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_SUSPICIOUS_MOVE</key>
+				<string>YES</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>DEBUG_INFORMATION_FORMAT</key>
+				<string>dwarf-with-dsym</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_NO_COMMON_BLOCKS</key>
+				<string>YES</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>10.2</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SWIFT_OPTIMIZATION_LEVEL</key>
+				<string>-Owholemodule</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>8CC121761E5E1A2400D22345</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>8CC121771E5E1A2400D22345</string>
+				<string>8CC121781E5E1A2400D22345</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>8CC121771E5E1A2400D22345</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>03BFEF4F1E307A14282DA91A</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>SGRW3864BW</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Fretless/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.RicardoNazario.Fretless</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>8CC121781E5E1A2400D22345</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>5E18EA2623477CF53516A986</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>SGRW3864BW</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Fretless/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.RicardoNazario.Fretless</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>8CC121791E5E1A2400D22345</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>8CC1217A1E5E1A2400D22345</string>
+				<string>8CC1217B1E5E1A2400D22345</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>8CC1217A1E5E1A2400D22345</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>3C05017566450E4427BEB919</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>SGRW3864BW</string>
+				<key>INFOPLIST_FILE</key>
+				<string>FretlessTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.RicardoNazario.FretlessTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/Fretless.app/Fretless</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>8CC1217B1E5E1A2400D22345</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>EBAE970CF7ED1CFF1F417C7D</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>SGRW3864BW</string>
+				<key>INFOPLIST_FILE</key>
+				<string>FretlessTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.RicardoNazario.FretlessTests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/Fretless.app/Fretless</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>8CC1217C1E5E1A2400D22345</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>8CC1217D1E5E1A2400D22345</string>
+				<string>8CC1217E1E5E1A2400D22345</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>8CC1217D1E5E1A2400D22345</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F2D5B133E482DC98F2BF7352</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>SGRW3864BW</string>
+				<key>INFOPLIST_FILE</key>
+				<string>FretlessUITests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.RicardoNazario.FretlessUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>Fretless</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>8CC1217E1E5E1A2400D22345</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>F7FD954D9DE5EABEAFD9DC25</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES</key>
+				<string>YES</string>
+				<key>DEVELOPMENT_TEAM</key>
+				<string>SGRW3864BW</string>
+				<key>INFOPLIST_FILE</key>
+				<string>FretlessUITests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
+				<string>com.RicardoNazario.FretlessUITests</string>
+				<key>PRODUCT_NAME</key>
+				<string>$(TARGET_NAME)</string>
+				<key>SWIFT_VERSION</key>
+				<string>3.0</string>
+				<key>TEST_TARGET_NAME</key>
+				<string>Fretless</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>8CC121811E5E1B1F00D22345</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.swift</string>
+			<key>name</key>
+			<string>KeyControl.swift</string>
+			<key>path</key>
+			<string>../KeyControl.swift</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>8CC121821E5E1B1F00D22345</key>
+		<dict>
+			<key>fileRef</key>
+			<string>8CC121811E5E1B1F00D22345</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>A05CFF7464FA25C0E5862E89</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>ABCE851928EA0DFC54D611DD</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>03BFEF4F1E307A14282DA91A</string>
+				<string>5E18EA2623477CF53516A986</string>
+				<string>3C05017566450E4427BEB919</string>
+				<string>EBAE970CF7ED1CFF1F417C7D</string>
+				<string>F2D5B133E482DC98F2BF7352</string>
+				<string>F7FD954D9DE5EABEAFD9DC25</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>BC98F0F83FBBCFD516A4BEFD</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>&#128230; Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>D46D5EE74626BF5479F9153A</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_FretlessTests.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>D4F4926713FD9D46938B9BD4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D46D5EE74626BF5479F9153A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>EBAE970CF7ED1CFF1F417C7D</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-FretlessTests.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EC4EEB69B76299C0CC354919</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>ED8FC42AC4C15F8271ED75A5</string>
+				<string>D46D5EE74626BF5479F9153A</string>
+				<string>802303ED60A92F4EBFA34C96</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>ED8FC42AC4C15F8271ED75A5</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>Pods_Fretless.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>F2D5B133E482DC98F2BF7352</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-FretlessUITests.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-FretlessUITests/Pods-FretlessUITests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>F7FD954D9DE5EABEAFD9DC25</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-FretlessUITests.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-FretlessUITests/Pods-FretlessUITests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>FF6966A8FC63531E582DBDE8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>802303ED60A92F4EBFA34C96</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>8CC121461E5E1A2300D22345</string>
+</dict>
+</plist>

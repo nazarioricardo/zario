@@ -8,23 +8,61 @@
 
 import UIKit
 
+protocol KeyDelegate {
+    func playing(frequency: Double)
+    func stoppedPlaying()
+}
+
 class KeyControl: UIControl {
     
-    var frequency: Int = Int()
+    var keyDelegate: KeyDelegate?
+    
+    var frequency: Float = Float()
     var keyIndex: Int = Int()
     
+    var twelfthRooth = Float(pow(2, 1/Float(12)))
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("TOUCHING KEY")
+        print("Touching the key: \(frequency)")
     }
     
-    func setupView() {
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
+        keyDelegate?.playing(frequency: Double(frequency))
+        return true
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        var xLocation: CGPoint!
+        
+        for touch in touches {
+            xLocation = touch.location(in: self)
+        }
+        
+        let xMovement = xLocation.x/self.bounds.width
+        
+        keyDelegate?.playing(frequency: Double(Float(frequency) * pow(twelfthRooth, Float(xMovement))))
+        
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        
+        let location = touch.location(in: self)
+        
+        return false
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        keyDelegate?.stoppedPlaying()
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
     }
     
     required init?(coder aDecoder: NSCoder) {
