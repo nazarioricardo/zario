@@ -10,10 +10,12 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    
-    
-    
     let keyboardVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KeyBoardViewController") as! KeyBoardViewController
+        
+    @IBOutlet weak var waveformSelector: UISegmentedControl!
+    
+    @IBOutlet weak var minFreqTextField: UITextField!
+    @IBOutlet weak var maxFreqTextField: UITextField!    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,7 @@ class BaseViewController: UIViewController {
                                     
                                     self.keyboardVC.modalTransitionStyle = .crossDissolve
 //                                    self.keyboardVC.numberOfKeys *= 2
+                                    self.keyboardVC.selectedIndex = self.waveformSelector.selectedSegmentIndex
                                     self.present(self.keyboardVC, animated: true, completion: nil)
                                     print("Landscape")
                                 }

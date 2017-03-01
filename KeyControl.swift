@@ -10,6 +10,7 @@ import UIKit
 
 protocol KeyDelegate {
     func playing(frequency: Double)
+    func affect(yAxis: Double)
     func stoppedPlaying()
 }
 
@@ -23,7 +24,6 @@ class KeyControl: UIControl {
     var twelfthRooth = Float(pow(2, 1/Float(12)))
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("Touching the key: \(frequency)")
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -34,35 +34,43 @@ class KeyControl: UIControl {
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        var xLocation: CGPoint!
+        var xLocation: CGFloat!
+        var yLocation: CGFloat!
         
         for touch in touches {
-            xLocation = touch.location(in: self)
+            xLocation = touch.location(in: self).x
+            yLocation = touch.location(in: self).y
         }
         
-        let xMovement = xLocation.x/self.bounds.width
+        let xMovement = xLocation/self.bounds.width
         
-        keyDelegate?.playing(frequency: Double(Float(frequency) * pow(twelfthRooth, Float(xMovement))))
+        keyDelegate?.playing(frequency: Double(frequency * pow(twelfthRooth, Float(xMovement))))
+        keyDelegate?.affect(yAxis: Double(yLocation))
         
-    }
-    
-    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        
-        let location = touch.location(in: self)
-        
-        return false
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         keyDelegate?.stoppedPlaying()
     }
-    
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+
+    func setUpView() {
+        
+        let gradient = CAGradientLayer()
+        let leftColor = UIColor.white
+        let rightColor = UIColor.lightGray
+        
+        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0)
+        gradient.frame = self.bounds
+        
+        self.layer.insertSublayer(gradient, at: 0)
         
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setUpView()
     }
     
     required init?(coder aDecoder: NSCoder) {
