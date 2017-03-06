@@ -13,7 +13,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     var selectedIndex: Int!
     var numberOfKeys: Int = 12
-    var lowestFrequency = 440
+    var lowestFrequency = 220
     var maxCutoff: Double!
     var minCutoff: Double!
     var twelfthRooth = Float(pow(2, 1/Float(12)))
@@ -78,6 +78,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     }
     
     func setUpSound() {
+        
+        maxCutoff = 880
+        minCutoff = 0
         
         oscillator = AKOscillator(waveform: waveform, frequency: 440, amplitude: 1.0, detuningOffset: 0, detuningMultiplier: 0)
         oscillator.start()
@@ -144,9 +147,6 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -165,9 +165,6 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             break
         }
         
-        maxCutoff = 880
-        minCutoff = 0
-        
         setUpViews()
         setUpSound()
         
@@ -177,6 +174,11 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         endSound()
     }
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
