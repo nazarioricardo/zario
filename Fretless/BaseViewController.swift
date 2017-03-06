@@ -43,9 +43,14 @@ class BaseViewController: UIViewController {
                                 
                                 if UIDevice.current.orientation.isLandscape {
                                     
+                                    print(self.waveformSelector.selectedSegmentIndex)
+                                    
                                     self.keyboardVC.modalTransitionStyle = .crossDissolve
 //                                    self.keyboardVC.numberOfKeys *= 2
                                     self.keyboardVC.selectedIndex = self.waveformSelector.selectedSegmentIndex
+                                    self.keyboardVC.maxCutoff = Double(self.maxFreqTextField.text!)
+                                    self.keyboardVC.minCutoff = Double(self.minFreqTextField.text!)
+                                    
                                     self.present(self.keyboardVC, animated: true, completion: nil)
                                     print("Landscape")
                                 }

@@ -12,8 +12,8 @@ import AudioKit
 class KeyBoardViewController: UIViewController, KeyDelegate {
     
     var selectedIndex: Int!
-    var numberOfKeys: Int = 8
-    var lowestFrequency = 220
+    var numberOfKeys: Int = 12
+    var lowestFrequency = 440
     var maxCutoff: Double!
     var minCutoff: Double!
     var twelfthRooth = Float(pow(2, 1/Float(12)))
@@ -41,7 +41,43 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     var envelope: AKAmplitudeEnvelope!
     var lowPassFilter: AKLowPassFilter!
     
-    func setupSound() {
+    func setUpViews() {
+        
+        let screenSize = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        let screenHeight = screenSize.height
+        let screenXOrigin = screenSize.origin.x
+        
+        let keyWidth = screenWidth / CGFloat(numberOfKeys)
+        let keyHeight = screenHeight
+        var xOrigin: CGFloat = screenXOrigin
+        
+        for keyIndex in Int(xOrigin)..<numberOfKeys {
+            
+            let keyControl = KeyControl(frame: CGRect(x: xOrigin /*+ (keyWidth / 2)*/, y: 0, width: keyWidth, height: keyHeight))
+            
+            //            let gradient = CAGradientLayer()
+            //            let leftColor = UIColor.white
+            //            let rightColor = UIColor.lightGray
+            //
+            //            gradient.colors = [leftColor.cgColor, rightColor.cgColor]
+            //            gradient.startPoint = CGPoint(x: 0.0, y: 0)
+            //            gradient.endPoint = CGPoint(x: 1.0, y: 0)
+            //            gradient.frame = keyControl.bounds
+            //
+            //            keyControl.layer.insertSublayer(gradient, at: 0)
+            
+            keyControl.keyIndex = keyIndex
+            keyControl.frequency = Float(lowestFrequency) * pow(twelfthRooth, Float(keyIndex))
+            self.view.addSubview(keyControl)
+            
+            keyControl.keyDelegate = self
+            
+            xOrigin += keyWidth
+        }
+    }
+    
+    func setUpSound() {
         
         oscillator = AKOscillator(waveform: waveform, frequency: 440, amplitude: 1.0, detuningOffset: 0, detuningMultiplier: 0)
         oscillator.start()
@@ -50,7 +86,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         lowPassFilter.dryWetMix = 100
         
         envelope = AKAmplitudeEnvelope(lowPassFilter)
-        envelope.attackDuration = 0.001
+        envelope.attackDuration = 0.01
         envelope.decayDuration = 0.1
         envelope.sustainLevel = 1.0
         envelope.releaseDuration = 0.2
@@ -93,7 +129,8 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         if yAxis > Double(midZoneHeight) {
             lowPassFilter.cutoffFrequency = maxCutoff
         } else {
-            lowPassFilter.cutoffFrequency = (yAxis * (maxCutoff - minCutoff) / Double(keyBoardHeight)) + minCutoff
+            
+            lowPassFilter.cutoffFrequency = ((yAxis * (maxCutoff - minCutoff) / Double(midZoneHeight)) + minCutoff)
         }
         
         print("Cutoff: \(lowPassFilter.cutoffFrequency)")
@@ -107,41 +144,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        maxCutoff = 500
-        minCutoff = 0
         
-        let screenSize = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        let screenHeight = screenSize.height
-        let screenXOrigin = screenSize.origin.x
         
-        let keyWidth = screenWidth / CGFloat(numberOfKeys)
-        let keyHeight = screenHeight
-        var xOrigin: CGFloat = screenXOrigin
         
-        for keyIndex in Int(xOrigin)..<numberOfKeys {
-            
-            let keyControl = KeyControl(frame: CGRect(x: xOrigin /*+ (keyWidth / 2)*/, y: 0, width: keyWidth, height: keyHeight))
-            
-//            let gradient = CAGradientLayer()
-//            let leftColor = UIColor.white
-//            let rightColor = UIColor.lightGray
-//            
-//            gradient.colors = [leftColor.cgColor, rightColor.cgColor]
-//            gradient.startPoint = CGPoint(x: 0.0, y: 0)
-//            gradient.endPoint = CGPoint(x: 1.0, y: 0)
-//            gradient.frame = keyControl.bounds
-//            
-//            keyControl.layer.insertSublayer(gradient, at: 0)
-//            
-            keyControl.keyIndex = keyIndex
-            keyControl.frequency = Float(lowestFrequency) * pow(twelfthRooth, Float(keyIndex))
-            self.view.addSubview(keyControl)
-            
-            keyControl.keyDelegate = self
-            
-            xOrigin += keyWidth
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,7 +165,12 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             break
         }
         
-        setupSound()
+        maxCutoff = 880
+        minCutoff = 0
+        
+        setUpViews()
+        setUpSound()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

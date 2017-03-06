@@ -16,6 +16,10 @@ protocol KeyDelegate {
 
 class KeyControl: UIControl {
     
+    let gradient = CAGradientLayer()
+    let leftColor = UIColor.white
+    var rightColor = UIColor.lightGray
+    
     var keyDelegate: KeyDelegate?
     
     var frequency: Float = Float()
@@ -24,6 +28,8 @@ class KeyControl: UIControl {
     var twelfthRooth = Float(pow(2, 1/Float(12)))
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        gradient.colors = [leftColor.cgColor, UIColor.white.cgColor]
     }
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -51,13 +57,12 @@ class KeyControl: UIControl {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         keyDelegate?.stoppedPlaying()
+        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
     }
 
     func setUpView() {
         
-        let gradient = CAGradientLayer()
-        let leftColor = UIColor.white
-        let rightColor = UIColor.lightGray
+        
         
         gradient.colors = [leftColor.cgColor, rightColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0)

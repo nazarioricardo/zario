@@ -12,8 +12,8 @@ import UIKit
 struct notes {
     
     let notes: [String:Double] = [
-        "C":16.351,
-        "C#":17.324,
+        "C":16.35,
+        "C#":17.32,
         "D":18.35,
         "D#":19.45,
         "E":20.60,
