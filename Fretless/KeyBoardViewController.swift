@@ -11,12 +11,35 @@ import AudioKit
 
 class KeyBoardViewController: UIViewController, KeyDelegate {
     
+    let notes: [UIColor] = [
+        UIColor.white,
+        UIColor.black,
+        UIColor.white,
+        UIColor.white,
+        UIColor.black,
+        UIColor.white,
+        UIColor.black,
+        UIColor.white,
+        UIColor.white,
+        UIColor.black,
+        UIColor.white,
+        UIColor.black
+    ]
+    
+    var noteIndex: Int = 0
+    
+    let a0 = 27.5
+    
+    var chosenOctave: Int!
+    var chosenNoteInterval: Int!
+    
     var selectedIndex: Int!
-    var numberOfKeys: Int = 12
-    var lowestFrequency = 220
+    var numberOfKeys: Int!
     var maxCutoff: Double!
     var minCutoff: Double!
-    var twelfthRooth = Float(pow(2, 1/Float(12)))
+    var twelfthRoot = Float(pow(2, 1/Float(12)))
+    
+    var lowestFrequency: Float!
     
     var keyBoardHeight: CGFloat {
         get {
@@ -43,6 +66,8 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     func setUpViews() {
         
+        lowestFrequency = (Float(a0) * Float(chosenOctave)) * pow(twelfthRoot, Float(chosenNoteInterval))
+        
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
@@ -53,6 +78,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         var xOrigin: CGFloat = screenXOrigin
         
         for keyIndex in Int(xOrigin)..<numberOfKeys {
+            
+            let color = notes[abs((keyIndex + chosenNoteInterval) % notes.count)]
+            print(color)
             
             let keyControl = KeyControl(frame: CGRect(x: xOrigin /*+ (keyWidth / 2)*/, y: 0, width: keyWidth, height: keyHeight))
             
@@ -68,11 +96,14 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             //            keyControl.layer.insertSublayer(gradient, at: 0)
             
             keyControl.keyIndex = keyIndex
-            keyControl.frequency = Float(lowestFrequency) * pow(twelfthRooth, Float(keyIndex))
+            keyControl.frequency = lowestFrequency * pow(twelfthRoot, Float(keyIndex))
+            keyControl.backgroundColor = color
+            
             self.view.addSubview(keyControl)
             
             keyControl.keyDelegate = self
             
+            noteIndex += 1
             xOrigin += keyWidth
         }
     }
@@ -163,6 +194,27 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         default:
             self.waveform = AKTable(.sawtooth)
             break
+        }
+        
+        switch chosenNoteInterval {
+        case -5:
+            noteIndex = 3
+        case -4:
+            noteIndex = 4
+        case -3:
+            noteIndex = 5
+        case -2:
+            noteIndex = 6
+        case -1:
+            noteIndex = 7
+        case 0:
+            noteIndex = 0
+        case 1:
+            noteIndex = 1
+        case 2:
+            noteIndex = 2
+        default:
+            noteIndex = 0
         }
         
         setUpViews()

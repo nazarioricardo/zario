@@ -52,20 +52,89 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="n2Z-Ck-UaU">
+                                <rect key="frame" x="16" y="102" width="343" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="Aeb-h9-Zzz"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="C"/>
+                                    <segment title="D"/>
+                                    <segment title="E"/>
+                                    <segment title="F"/>
+                                    <segment title="G"/>
+                                    <segment title="A"/>
+                                    <segment title="B"/>
+                                </segments>
+                            </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-BR-XB5">
+                                <rect key="frame" x="14" y="138" width="347" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="CWi-dL-jse"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="octaveSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="x4E-5k-SZk"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mn1-FA-cLp">
+                                <rect key="frame" x="182" y="176" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="xcE-VN-amJ">
+                                <rect key="frame" x="14" y="205" width="347" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="00a-vQ-q3E"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="rangeSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="cpq-M3-I0i"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Octave" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGN-BN-oiE">
+                                <rect key="frame" x="119" y="176" width="55" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OY4-Tl-2jl">
+                                <rect key="frame" x="178" y="243" width="18" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xcE-VN-amJ" firstAttribute="top" secondItem="Mn1-FA-cLp" secondAttribute="bottom" constant="8" id="2aM-6V-aoM"/>
+                            <constraint firstItem="n2Z-Ck-UaU" firstAttribute="top" secondItem="GcS-f8-0h3" secondAttribute="bottom" constant="8" id="2bv-T1-2C4"/>
+                            <constraint firstItem="Mn1-FA-cLp" firstAttribute="top" secondItem="F1u-BR-XB5" secondAttribute="bottom" constant="8" id="3gb-tK-EUT"/>
+                            <constraint firstItem="xcE-VN-amJ" firstAttribute="centerX" secondItem="F1u-BR-XB5" secondAttribute="centerX" id="3w0-b1-Xkq"/>
+                            <constraint firstItem="OY4-Tl-2jl" firstAttribute="top" secondItem="xcE-VN-amJ" secondAttribute="bottom" constant="8" id="6Ms-EW-Seu"/>
+                            <constraint firstItem="NGN-BN-oiE" firstAttribute="top" secondItem="F1u-BR-XB5" secondAttribute="bottom" constant="8" id="JKM-Jq-XiW"/>
+                            <constraint firstItem="OY4-Tl-2jl" firstAttribute="centerX" secondItem="qF8-nc-0Wf" secondAttribute="centerX" id="Lfw-Fj-5x5"/>
                             <constraint firstItem="xBC-Wl-95b" firstAttribute="leading" secondItem="GcS-f8-0h3" secondAttribute="trailing" constant="8" id="TeU-cz-FmA"/>
+                            <constraint firstItem="F1u-BR-XB5" firstAttribute="top" secondItem="n2Z-Ck-UaU" secondAttribute="bottom" constant="8" id="Uvs-ZJ-ZUj"/>
                             <constraint firstAttribute="leadingMargin" secondItem="GcS-f8-0h3" secondAttribute="leading" id="VFy-lf-HXH"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="F1u-BR-XB5" secondAttribute="leading" id="ade-sj-qzw"/>
                             <constraint firstItem="vLn-gd-ogm" firstAttribute="top" secondItem="BzK-Le-fDe" secondAttribute="bottom" constant="8" id="bwR-yI-ojw"/>
                             <constraint firstItem="vLn-gd-ogm" firstAttribute="centerX" secondItem="qF8-nc-0Wf" secondAttribute="centerX" id="ds6-FV-2yU"/>
+                            <constraint firstItem="NGN-BN-oiE" firstAttribute="centerY" secondItem="Mn1-FA-cLp" secondAttribute="centerY" id="kAF-YJ-JEX"/>
                             <constraint firstItem="GcS-f8-0h3" firstAttribute="top" secondItem="vLn-gd-ogm" secondAttribute="bottom" constant="8" id="kzH-iW-tlx"/>
+                            <constraint firstItem="Mn1-FA-cLp" firstAttribute="leading" secondItem="NGN-BN-oiE" secondAttribute="trailing" constant="8" id="l4k-gI-7Fd"/>
+                            <constraint firstItem="Mn1-FA-cLp" firstAttribute="centerX" secondItem="F1u-BR-XB5" secondAttribute="centerX" id="w12-f2-gxy"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="n2Z-Ck-UaU" secondAttribute="leading" id="yia-Op-09V"/>
                             <constraint firstItem="xBC-Wl-95b" firstAttribute="centerY" secondItem="GcS-f8-0h3" secondAttribute="centerY" id="yjn-5V-cPP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="maxFreqTextField" destination="GcS-f8-0h3" id="4ie-f8-WY3"/>
                         <outlet property="minFreqTextField" destination="xBC-Wl-95b" id="aX0-cu-fcg"/>
+                        <outlet property="noteSelector" destination="n2Z-Ck-UaU" id="n3O-8y-1IR"/>
+                        <outlet property="octaveLabel" destination="Mn1-FA-cLp" id="RJI-AL-S3T"/>
+                        <outlet property="octaveSlider" destination="F1u-BR-XB5" id="vd1-ka-KWf"/>
+                        <outlet property="rangeLabel" destination="OY4-Tl-2jl" id="v9I-ft-2BE"/>
+                        <outlet property="rangeSlider" destination="xcE-VN-amJ" id="VQU-V9-A5G"/>
                         <outlet property="waveformSelector" destination="vLn-gd-ogm" id="Nnr-mT-2a5"/>
                     </connections>
                 </viewController>

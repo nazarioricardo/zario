@@ -17,7 +17,7 @@ protocol KeyDelegate {
 class KeyControl: UIControl {
     
     let gradient = CAGradientLayer()
-    let leftColor = UIColor.white
+    var leftColor = UIColor.clear
     var rightColor = UIColor.lightGray
     
     var keyDelegate: KeyDelegate?
@@ -61,8 +61,8 @@ class KeyControl: UIControl {
     }
 
     func setUpView() {
-        
-        
+    
+        self.backgroundColor = UIColor.black
         
         gradient.colors = [leftColor.cgColor, rightColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0)
