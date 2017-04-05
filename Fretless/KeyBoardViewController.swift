@@ -66,6 +66,8 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     var envelope: AKAmplitudeEnvelope!
     var lowPassFilter: AKLowPassFilter!
     
+    // Private
+    
     func setUpViews() {
         
         lowestFrequency = (Float(a0) * Float(chosenOctave)) * pow(twelfthRoot, Float(chosenNoteInterval))
@@ -84,22 +86,12 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             let color = notes[abs((keyIndex + chosenNoteInterval) % notes.count)]
             print(color.description)
             
-            let keyControl = KeyControl(frame: CGRect(x: xOrigin /*+ (keyWidth / 2)*/, y: 0, width: keyWidth, height: keyHeight))
-            
-            //            let gradient = CAGradientLayer()
-            //            let leftColor = UIColor.white
-            //            let rightColor = UIColor.lightGray
-            //
-            //            gradient.colors = [leftColor.cgColor, rightColor.cgColor]
-            //            gradient.startPoint = CGPoint(x: 0.0, y: 0)
-            //            gradient.endPoint = CGPoint(x: 1.0, y: 0)
-            //            gradient.frame = keyControl.bounds
-            //
-            //            keyControl.layer.insertSublayer(gradient, at: 0)
+            let keyControl = KeyControl(frame: CGRect(x: xOrigin, y: 0, width: keyWidth, height: keyHeight))
             
             keyControl.keyIndex = keyIndex
             keyControl.frequency = lowestFrequency * pow(twelfthRoot, Float(keyIndex))
             keyControl.backgroundColor = color
+            keyControl.keyColor = color
             
             self.view.addSubview(keyControl)
             keys.append(keyControl)
@@ -139,14 +131,14 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         
     }
     
+    // Delegate
+    
     func playing(frequency: Double) {
         oscillator.frequency = frequency
         envelope.start()
     }
     
     func affect(yAxis: Double) {
-        print("Y coord: \(yAxis)")
-        
  
         /* WITH ENDZONES ON TOP AND BOTTOM (Would need to multiply getter of midZoneHeight by 2 and change the if condition)
          
@@ -168,18 +160,18 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             
             lowPassFilter.cutoffFrequency = ((yAxis * (maxCutoff - minCutoff) / Double(midZoneHeight)) + minCutoff)
         }
-        
-        print("Cutoff: \(lowPassFilter.cutoffFrequency)")
     }
     
     func stoppedPlaying() {
         envelope.stop()
     }
     
+    // Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor.lightGray
+        self.view.backgroundColor = UIColor.gray
         
     }
     
