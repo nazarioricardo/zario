@@ -24,13 +24,14 @@ class BaseViewController: UIViewController {
     var octaveMultiplier: Int!
     
     @IBAction func octaveSliderChanged(_ sender: Any) {
-        octaveMultiplier = Int(self.octaveSlider.value) + 1
+        octaveMultiplier = Int(self.octaveSlider.value)
         octaveLabel.text = String(Int(self.octaveSlider.value))
     }
     
     @IBAction func rangeSliderChanged(_ sender: Any) {
         rangeLabel.text = String(Int(rangeSlider.value))
     }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.viewWillTransition(to: size, with: coordinator)
@@ -38,34 +39,26 @@ class BaseViewController: UIViewController {
         coordinator.animate(alongsideTransition: { (context: UIViewControllerTransitionCoordinatorContext) in
             
             if UIDevice.current.orientation.isPortrait {
-                
                 self.keyboardVC.dismiss(animated: true, completion: nil)
-                print("Portrait")
-                
             }
-            
-            
-            
         },
                             completion: { (context: UIViewControllerTransitionCoordinatorContext) in
                                 
                                 if UIDevice.current.orientation.isLandscape {
                                     
-                                    print(self.waveformSelector.selectedSegmentIndex)
-                                    
                                     self.keyboardVC.chosenOctave = self.octaveMultiplier
                                     
                                     switch self.noteSelector.selectedSegmentIndex {
                                     case 0:
-                                        self.keyboardVC.chosenNoteInterval = 3
+                                        self.keyboardVC.chosenNoteInterval = -9
                                     case 1:
-                                        self.keyboardVC.chosenNoteInterval = 5
+                                        self.keyboardVC.chosenNoteInterval = -7
                                     case 2:
-                                        self.keyboardVC.chosenNoteInterval = 7
+                                        self.keyboardVC.chosenNoteInterval = -5
                                     case 3:
-                                        self.keyboardVC.chosenNoteInterval = 8
+                                        self.keyboardVC.chosenNoteInterval = -4
                                     case 4:
-                                        self.keyboardVC.chosenNoteInterval = 10
+                                        self.keyboardVC.chosenNoteInterval = -2
                                     case 5:
                                         self.keyboardVC.chosenNoteInterval = 0
                                     case 6:
@@ -75,14 +68,12 @@ class BaseViewController: UIViewController {
                                     }
                                     
                                     self.keyboardVC.modalTransitionStyle = .crossDissolve
-//                                    self.keyboardVC.numberOfKeys *= 2
                                     self.keyboardVC.selectedIndex = self.waveformSelector.selectedSegmentIndex
                                     self.keyboardVC.numberOfKeys = Int(self.rangeSlider.value)
                                     self.keyboardVC.maxCutoff = Double(self.maxFreqTextField.text!)
                                     self.keyboardVC.minCutoff = Double(self.minFreqTextField.text!)
                                     
                                     self.present(self.keyboardVC, animated: true, completion: nil)
-                                    print("Landscape")
                                 }
         
         })
@@ -92,7 +83,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        octaveMultiplier = Int(self.octaveSlider.value) * 8 + 1
+        octaveMultiplier = 0
         octaveLabel.text = String(Int(self.octaveSlider.value) * 8)
     }
 

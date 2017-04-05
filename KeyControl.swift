@@ -9,8 +9,8 @@
 import UIKit
 
 protocol KeyDelegate {
-    func playing(frequency: Double)
-    func affect(yAxis: Double)
+    func xAxis(keyFreq: Float, x: Float)
+    func yAxis(y: Float)
     func stoppedPlaying()
 }
 
@@ -31,7 +31,7 @@ class KeyControl: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
-        keyDelegate?.playing(frequency: Double(frequency))
+        keyDelegate?.xAxis(keyFreq: frequency, x: Float(touch.location(in: self).x))
         return true
     }
     
@@ -47,9 +47,8 @@ class KeyControl: UIControl {
         
         let xMovement = xLocation/self.bounds.width
         
-        keyDelegate?.playing(frequency: Double(frequency * pow(twelfthRooth, Float(xMovement))))
-        keyDelegate?.affect(yAxis: Double(yLocation))
-        
+        keyDelegate?.xAxis(keyFreq: frequency, x: Float(xMovement))
+        keyDelegate?.yAxis(y: Float(yLocation))
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

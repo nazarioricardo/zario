@@ -11,7 +11,7 @@ import AudioKit
 
 class KeyBoardViewController: UIViewController, KeyDelegate {
     
-    let notes: [UIColor] = [
+    let keyColors: [UIColor] = [
         UIColor.white,
         UIColor.black,
         UIColor.white,
@@ -28,7 +28,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     var keys: [KeyControl] = []
     
-    var noteIndex: Int = 0
+    var noteColorIndex: Int = 0
     
     let a0 = 27.5
     
@@ -41,7 +41,16 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     var minCutoff: Double!
     var twelfthRoot = Float(pow(2, 1/Float(12)))
     
-    var lowestFrequency: Float!
+    var waveform: AKTable!
+    var oscillator: AKOscillator!
+    var envelope: AKAmplitudeEnvelope!
+    var lowPassFilter: AKLowPassFilter!
+    
+    var lowestFrequency: Float {
+        get {
+            return calculateFreq(root: Float(a0) * calculateOctave(octave: chosenOctave), halfSteps: Float(chosenNoteInterval))
+        }
+    }
     
     var keyBoardHeight: CGFloat {
         get {
@@ -60,17 +69,10 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             return keyBoardHeight - endZoneHeight
         }
     }
-    
-    var waveform: AKTable!
-    var oscillator: AKOscillator!
-    var envelope: AKAmplitudeEnvelope!
-    var lowPassFilter: AKLowPassFilter!
-    
+
     // Private
     
     func setUpViews() {
-        
-        lowestFrequency = (Float(a0) * Float(chosenOctave)) * pow(twelfthRoot, Float(chosenNoteInterval))
         
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -83,13 +85,12 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         
         for keyIndex in Int(xOrigin)..<numberOfKeys {
             
-            let color = notes[abs((keyIndex + chosenNoteInterval) % notes.count)]
-            print(color.description)
+            let color = keyColors[noteColorIndex % keyColors.count]
             
             let keyControl = KeyControl(frame: CGRect(x: xOrigin, y: 0, width: keyWidth, height: keyHeight))
             
             keyControl.keyIndex = keyIndex
-            keyControl.frequency = lowestFrequency * pow(twelfthRoot, Float(keyIndex))
+            keyControl.frequency = calculateFreq(root: lowestFrequency, halfSteps: Float(keyIndex))
             keyControl.backgroundColor = color
             keyControl.keyColor = color
             
@@ -97,10 +98,22 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             keys.append(keyControl)
             keyControl.keyDelegate = self
             
-            noteIndex += 1
+            noteColorIndex += 1
             xOrigin += keyWidth
         }
     }
+    
+    func calculateFreq(root: Float, halfSteps: Float) -> Float {
+        
+        let twelfth = Float(pow(2, 1/Float(12)))
+        return root * pow(twelfth, halfSteps)
+    }
+    
+    func calculateOctave(octave: Int) -> Float {
+        return Float(pow(Double(2), Double(octave)))
+    }
+    
+    // AudioKit Setup
     
     func setUpSound() {
         
@@ -121,44 +134,28 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         
         AudioKit.output = envelope
         AudioKit.start()
-        
     }
     
     func endSound() {
         
         oscillator.stop()
         AudioKit.stop()
-        
     }
     
-    // Delegate
+    // Key Delegate
     
-    func playing(frequency: Double) {
-        oscillator.frequency = frequency
+    func xAxis(keyFreq: Float, x: Float) {
+        oscillator.frequency = Double(calculateFreq(root: keyFreq, halfSteps: x))
+        print("Frequency \(oscillator.frequency)")
         envelope.start()
     }
     
-    func affect(yAxis: Double) {
- 
-        /* WITH ENDZONES ON TOP AND BOTTOM (Would need to multiply getter of midZoneHeight by 2 and change the if condition)
-         
-         let midZoneY = yAxis - Double(endZoneHeight)
-        
-         if yAxis > Double(midZoneHeight) {
-            lowPassFilter.cutoffFrequency = maxCutoff
-        } else if (yAxis < Double(endZoneHeight)) {
-            lowPassFilter.cutoffFrequency = minCutoff
-        } else {
-            lowPassFilter.cutoffFrequency = (midZoneY * (maxCutoff - minCutoff) / Double(midZoneHeight)) + minCutoff
-            print("MidZone Y: \(midZoneY)")
-        }
-        */
-        
-        if yAxis > Double(midZoneHeight) {
+    func yAxis(y: Float) {
+        if y > Float(midZoneHeight) {
             lowPassFilter.cutoffFrequency = maxCutoff
         } else {
             
-            lowPassFilter.cutoffFrequency = ((yAxis * (maxCutoff - minCutoff) / Double(midZoneHeight)) + minCutoff)
+            lowPassFilter.cutoffFrequency = ((y * (maxCutoff - minCutoff) / Double(midZoneHeight)) + minCutoff)
         }
     }
     
@@ -192,29 +189,26 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         }
         
         switch chosenNoteInterval {
+        case -9:
+            noteColorIndex = 3
+        case -7:
+            noteColorIndex = 5
         case -5:
-            noteIndex = 3
+            noteColorIndex = 7
         case -4:
-            noteIndex = 4
-        case -3:
-            noteIndex = 5
+            noteColorIndex = 8
         case -2:
-            noteIndex = 6
-        case -1:
-            noteIndex = 7
+            noteColorIndex = 10
         case 0:
-            noteIndex = 0
-        case 1:
-            noteIndex = 1
+            noteColorIndex = 0
         case 2:
-            noteIndex = 2
+            noteColorIndex = 2
         default:
-            noteIndex = 0
+            noteColorIndex = 0
         }
         
         setUpViews()
         setUpSound()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
