@@ -26,6 +26,8 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         UIColor.black
     ]
     
+    var keys: [KeyControl] = []
+    
     var noteIndex: Int = 0
     
     let a0 = 27.5
@@ -80,7 +82,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         for keyIndex in Int(xOrigin)..<numberOfKeys {
             
             let color = notes[abs((keyIndex + chosenNoteInterval) % notes.count)]
-            print(color)
+            print(color.description)
             
             let keyControl = KeyControl(frame: CGRect(x: xOrigin /*+ (keyWidth / 2)*/, y: 0, width: keyWidth, height: keyHeight))
             
@@ -100,7 +102,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             keyControl.backgroundColor = color
             
             self.view.addSubview(keyControl)
-            
+            keys.append(keyControl)
             keyControl.keyDelegate = self
             
             noteIndex += 1
@@ -177,6 +179,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.view.backgroundColor = UIColor.lightGray
         
     }
     
@@ -223,6 +226,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        for key in keys {
+            key.removeFromSuperview()
+        }
         endSound()
     }
 

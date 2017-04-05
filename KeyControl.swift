@@ -62,15 +62,17 @@ class KeyControl: UIControl {
 
     func setUpView() {
     
-        self.backgroundColor = UIColor.black
+//        self.backgroundColor = UIColor.black
+        self.layer.cornerRadius = 10
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.clear.cgColor
         
         gradient.colors = [leftColor.cgColor, rightColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0)
         gradient.endPoint = CGPoint(x: 1.0, y: 0)
         gradient.frame = self.bounds
         
-        self.layer.insertSublayer(gradient, at: 0)
-        
+//        self.layer.insertSublayer(gradient, at: 0)
     }
     
     override init(frame: CGRect) {
