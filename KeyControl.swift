@@ -35,6 +35,7 @@ class KeyControl: UIControl {
         return true
     }
     
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         var xLocation: CGFloat!
