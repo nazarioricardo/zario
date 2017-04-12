@@ -42,7 +42,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     var twelfthRoot = Float(pow(2, 1/Float(12)))
     
     var waveform: AKTable!
-    var oscillator: AKOscillator!
+    var oscillator = AKOscillator()
     var envelope: AKAmplitudeEnvelope!
     var lowPassFilter: AKLowPassFilter!
     
@@ -104,7 +104,6 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     }
     
     func calculateFreq(root: Float, halfSteps: Float) -> Float {
-        
         let twelfth = Float(pow(2, 1/Float(12)))
         return root * pow(twelfth, halfSteps)
     }
@@ -120,7 +119,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         maxCutoff = 880
         minCutoff = 0
         
-        oscillator = AKOscillator(waveform: waveform, frequency: 440, amplitude: 1.0, detuningOffset: 0, detuningMultiplier: 0)
+        oscillator = AKOscillator(waveform: waveform)
+        oscillator.amplitude = 1.0
+        
         oscillator.start()
         
         lowPassFilter = AKLowPassFilter(oscillator)
@@ -154,7 +155,6 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         if y > Float(midZoneHeight) {
             lowPassFilter.cutoffFrequency = maxCutoff
         } else {
-            
             lowPassFilter.cutoffFrequency = ((y * (maxCutoff - minCutoff) / Double(midZoneHeight)) + minCutoff)
         }
     }
@@ -169,7 +169,6 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor.gray
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

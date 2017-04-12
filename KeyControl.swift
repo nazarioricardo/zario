@@ -31,25 +31,35 @@ class KeyControl: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
-        keyDelegate?.xAxis(keyFreq: frequency, x: Float(touch.location(in: self).x))
+        let xTouch = touch.location(in: self).x
+        let xMid = self.bounds.midX
+        
+        keyDelegate?.xAxis(keyFreq: frequency, x: Float(xTouch/xMid))
+        self.backgroundColor = UIColor.lightGray
+        
         return true
     }
     
-    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        var xLocation: CGFloat!
-        var yLocation: CGFloat!
+        // Relative to key pressed
+        var xTouch: CGFloat!
+        var yTouch: CGFloat!
+        
         
         for touch in touches {
-            xLocation = touch.location(in: self).x
-            yLocation = touch.location(in: self).y
+            xTouch = touch.location(in: self).x - (self.bounds.width / 2)
+            yTouch = touch.location(in: self).y
         }
         
-        let xMovement = xLocation/self.bounds.width
+        print(self.bounds.midX)
+        print(xTouch)
+        
+        // Variable that calculates halfsteps
+        let xMovement = xTouch/self.bounds.width
         
         keyDelegate?.xAxis(keyFreq: frequency, x: Float(xMovement))
-        keyDelegate?.yAxis(y: Float(yLocation))
+        keyDelegate?.yAxis(y: Float(yTouch))
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
