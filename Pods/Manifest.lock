@@ -1,12 +1,15 @@
 PODS:
+  - Audiobus (2.3.3)
   - AudioKit (3.6)
 
 DEPENDENCIES:
+  - Audiobus
   - AudioKit (~> 3.5)
 
 SPEC CHECKSUMS:
+  Audiobus: 850af0ab9da4dc53dd7222afe9aeba928379e5ad
   AudioKit: 7823de92f3c9570178d2347042867b6a93be1464
 
-PODFILE CHECKSUM: 631b4c3b6b450924b3ae16dc2b15ecb1dd28bb95
+PODFILE CHECKSUM: daa9dd8d9845a14e371a5a69cfbe949525c896d8
 
 COCOAPODS: 1.2.1
