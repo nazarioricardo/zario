@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
-    let keyboardVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KeyBoardViewController") as! KeyBoardViewController
+    var keyboardVC: KeyBoardViewController!
     
     @IBOutlet weak var waveformSelector: UISegmentedControl!
     @IBOutlet weak var noteSelector: UISegmentedControl!
@@ -42,6 +42,7 @@ class BaseViewController: UIViewController {
     @IBAction func releaseSliderChanged(_ sender: Any) {
         releaseLabel.text = String(releaseSlider.value)
     }
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.viewWillTransition(to: size, with: coordinator)
@@ -54,27 +55,29 @@ class BaseViewController: UIViewController {
         },
                             completion: { (context: UIViewControllerTransitionCoordinatorContext) in
                                 
+                                self.keyboardVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "KeyBoardViewController") as! KeyBoardViewController
+                                
                                 if UIDevice.current.orientation.isLandscape {
                                     
                                     self.keyboardVC.chosenOctave = self.octaveMultiplier
                                     
                                     switch self.noteSelector.selectedSegmentIndex {
-                                    case 0:
-                                        self.keyboardVC.chosenNoteInterval = -9
-                                    case 1:
-                                        self.keyboardVC.chosenNoteInterval = -7
-                                    case 2:
-                                        self.keyboardVC.chosenNoteInterval = -5
-                                    case 3:
-                                        self.keyboardVC.chosenNoteInterval = -4
-                                    case 4:
-                                        self.keyboardVC.chosenNoteInterval = -2
-                                    case 5:
-                                        self.keyboardVC.chosenNoteInterval = 0
-                                    case 6:
-                                        self.keyboardVC.chosenNoteInterval = 2
-                                    default:
-                                        self.keyboardVC.chosenNoteInterval = 0
+                                        case 0:
+                                            self.keyboardVC.chosenNoteInterval = -9
+                                        case 1:
+                                            self.keyboardVC.chosenNoteInterval = -7
+                                        case 2:
+                                            self.keyboardVC.chosenNoteInterval = -5
+                                        case 3:
+                                            self.keyboardVC.chosenNoteInterval = -4
+                                        case 4:
+                                            self.keyboardVC.chosenNoteInterval = -2
+                                        case 5:
+                                            self.keyboardVC.chosenNoteInterval = 0
+                                        case 6:
+                                            self.keyboardVC.chosenNoteInterval = 2
+                                        default:
+                                            self.keyboardVC.chosenNoteInterval = 0
                                     }
                                     
                                     self.keyboardVC.modalTransitionStyle = .crossDissolve

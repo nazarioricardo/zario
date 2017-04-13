@@ -41,10 +41,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     var numberOfKeys: Int!
     var maxCutoff: Double!
     var minCutoff: Double!
-    var twelfthRoot = Float(pow(2, 1/Float(12)))
     
     var waveform: AKTable!
-    var oscillator = AKOscillator()
+    var oscillator: AKOscillator!
     var envelope: AKAmplitudeEnvelope!
     var lowPassFilter: AKLowPassFilter!
     
@@ -103,6 +102,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             noteColorIndex += 1
             xOrigin += keyWidth
         }
+        print("Views set up")
     }
     
     func calculateFreq(root: Float, halfSteps: Float) -> Float {
@@ -123,11 +123,18 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         
         oscillator = AKOscillator(waveform: waveform)
         oscillator.amplitude = 1.0
+        oscillator.frequency = 440
         
         oscillator.start()
         
+        print("Osc set up")
+        
         lowPassFilter = AKLowPassFilter(oscillator)
+        lowPassFilter.cutoffFrequency = minCutoff
         lowPassFilter.dryWetMix = 100
+        lowPassFilter.start()
+        
+        print("LowPass set up")
         
         envelope = AKAmplitudeEnvelope(lowPassFilter)
         envelope.attackDuration = Double(attack)
@@ -135,14 +142,18 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         envelope.sustainLevel = 1.0
         envelope.releaseDuration = Double(release)
         
+        print("Env set up")
+        
         AudioKit.output = envelope
         AudioKit.start()
+        print("sound set up")
     }
     
     func endSound() {
-        
+        lowPassFilter.stop()
         oscillator.stop()
         AudioKit.stop()
+        AudioKit.output = nil
     }
     
     
@@ -177,36 +188,35 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         switch selectedIndex {
-        case 0:
-            self.waveform = AKTable(.sine)
-        case 1:
-            self.waveform = AKTable(.square)
-        case 2:
-            self.waveform = AKTable(.triangle)
-        case 3:
-            self.waveform = AKTable(.sawtooth)
-        default:
-            self.waveform = AKTable(.sawtooth)
-            break
+            case 0:
+                self.waveform = AKTable(.sine)
+            case 1:
+                self.waveform = AKTable(.square)
+            case 2:
+                self.waveform = AKTable(.triangle)
+            case 3:
+                self.waveform = AKTable(.sawtooth)
+            default:
+                self.waveform = AKTable(.sawtooth)
         }
         
         switch chosenNoteInterval {
-        case -9:
-            noteColorIndex = 3
-        case -7:
-            noteColorIndex = 5
-        case -5:
-            noteColorIndex = 7
-        case -4:
-            noteColorIndex = 8
-        case -2:
-            noteColorIndex = 10
-        case 0:
-            noteColorIndex = 0
-        case 2:
-            noteColorIndex = 2
-        default:
-            noteColorIndex = 0
+            case -9:
+                noteColorIndex = 3
+            case -7:
+                noteColorIndex = 5
+            case -5:
+                noteColorIndex = 7
+            case -4:
+                noteColorIndex = 8
+            case -2:
+                noteColorIndex = 10
+            case 0:
+                noteColorIndex = 0
+            case 2:
+                noteColorIndex = 2
+            default:
+                noteColorIndex = 0
         }
         
         setUpViews()
@@ -219,7 +229,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         }
         endSound()
     }
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
