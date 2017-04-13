@@ -47,7 +47,7 @@
 		8C0324721E60E27C00062B8D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		8C8494AE1EA01FDE00467D30 /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audiobus.swift; sourceTree = "<group>"; };
 		8C8494B01EA01FE500467D30 /* Audiobus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Audiobus.txt; sourceTree = "<group>"; };
-		8C8494B21EA01FEF00467D30 /* Fretless_BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Fretless_BridgingHeader.h; sourceTree = "<group>"; };
+		8C8494B31EA0216D00467D30 /* Fretless-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fretless-BridgingHeader.h"; sourceTree = "<group>"; };
 		8CC1214E1E5E1A2300D22345 /* Fretless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fretless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC121511E5E1A2300D22345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardViewController.swift; sourceTree = "<group>"; };
@@ -147,9 +147,9 @@
 			isa = PBXGroup;
 			children = (
 				8C8494B01EA01FE500467D30 /* Audiobus.txt */,
-				8C8494B21EA01FEF00467D30 /* Fretless_BridgingHeader.h */,
 				8C8494AE1EA01FDE00467D30 /* Audiobus.swift */,
 				8CC121511E5E1A2300D22345 /* AppDelegate.swift */,
+				8C8494B31EA0216D00467D30 /* Fretless-BridgingHeader.h */,
 				8C0324721E60E27C00062B8D /* BaseViewController.swift */,
 				8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */,
 				8CC121811E5E1B1F00D22345 /* KeyControl.swift */,
@@ -626,6 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.Fretless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SenderSynth/Fretless-BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -640,6 +641,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.RicardoNazario.Fretless;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/SenderSynth/Fretless-BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

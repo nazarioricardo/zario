@@ -1,8 +1,8 @@
 //
-//  Fretless_BridgingHeader.h
+//  Fretless-BridgingHeader.h
 //  Fretless
 //
-//  Created by Ricardo Nazario on 4/10/17.
+//  Created by Ricardo Nazario on 4/13/17.
 //  Copyright © 2017 Ricardo Nazario. All rights reserved.
 //
 
@@ -10,6 +10,5 @@
 #define Fretless_BridgingHeader_h
 
 #import "Audiobus.h"
-
 
 #endif /* Fretless_BridgingHeader_h */
