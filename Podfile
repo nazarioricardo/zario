@@ -7,13 +7,13 @@ target 'Fretless' do
 
   # Pods for Fretless
   
-     pod 'AudioKit', '~> 3.5'
+     pod 'AudioKit', '~> 3.6'
      pod 'Audiobus'
 
   target 'FretlessTests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'AudioKit', '~> 3.5'
+    pod 'AudioKit', '~> 3.6'
     pod 'Audiobus'
 
   end
@@ -21,7 +21,7 @@ target 'Fretless' do
   target 'FretlessUITests' do
     inherit! :search_paths
     # Pods for testing
-    pod 'AudioKit', '~> 3.5'
+    pod 'AudioKit', '~> 3.6'
     pod 'Audiobus'
 
   end
