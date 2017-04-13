@@ -26,11 +26,13 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         UIColor.black
     ]
     
+    let a0 = 27.5
+    var attack: Float!
+    var release: Float!
+    
     var keys: [KeyControl] = []
     
     var noteColorIndex: Int = 0
-    
-    let a0 = 27.5
     
     var chosenOctave: Int!
     var chosenNoteInterval: Int!
@@ -128,10 +130,10 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         lowPassFilter.dryWetMix = 100
         
         envelope = AKAmplitudeEnvelope(lowPassFilter)
-        envelope.attackDuration = 0.01
+        envelope.attackDuration = Double(attack)
         envelope.decayDuration = 0.1
         envelope.sustainLevel = 1.0
-        envelope.releaseDuration = 0.2
+        envelope.releaseDuration = Double(release)
         
         AudioKit.output = envelope
         AudioKit.start()
@@ -142,6 +144,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         oscillator.stop()
         AudioKit.stop()
     }
+    
     
     // Key Delegate
     

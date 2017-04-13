@@ -16,10 +16,13 @@ class BaseViewController: UIViewController {
     @IBOutlet weak var noteSelector: UISegmentedControl!
     @IBOutlet weak var octaveSlider: UISlider!
     @IBOutlet weak var rangeSlider: UISlider!
-    @IBOutlet weak var minFreqTextField: UITextField!
-    @IBOutlet weak var maxFreqTextField: UITextField!
+    @IBOutlet weak var attackSlider: UISlider!
+    @IBOutlet weak var releaseSlider: UISlider!
+
     @IBOutlet weak var octaveLabel: UILabel!
     @IBOutlet weak var rangeLabel: UILabel!
+    @IBOutlet weak var attackLabel: UILabel!
+    @IBOutlet weak var releaseLabel: UILabel!
     
     var octaveMultiplier: Int!
     
@@ -32,6 +35,13 @@ class BaseViewController: UIViewController {
         rangeLabel.text = String(Int(rangeSlider.value))
     }
     
+    @IBAction func attackSliderChanged(_ sender: Any) {
+        attackLabel.text = String(attackSlider.value)
+    }
+    
+    @IBAction func releaseSliderChanged(_ sender: Any) {
+        releaseLabel.text = String(releaseSlider.value)
+    }
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         super.viewWillTransition(to: size, with: coordinator)
@@ -70,8 +80,8 @@ class BaseViewController: UIViewController {
                                     self.keyboardVC.modalTransitionStyle = .crossDissolve
                                     self.keyboardVC.selectedIndex = self.waveformSelector.selectedSegmentIndex
                                     self.keyboardVC.numberOfKeys = Int(self.rangeSlider.value)
-                                    self.keyboardVC.maxCutoff = Double(self.maxFreqTextField.text!)
-                                    self.keyboardVC.minCutoff = Double(self.minFreqTextField.text!)
+                                    self.keyboardVC.attack = self.attackSlider.value
+                                    self.keyboardVC.release = self.releaseSlider.value
                                     
                                     self.present(self.keyboardVC, animated: true, completion: nil)
                                 }
@@ -83,8 +93,12 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        octaveMultiplier = 0
-        octaveLabel.text = String(Int(self.octaveSlider.value) * 8)
+        octaveMultiplier = Int(self.octaveSlider.value)
+        octaveLabel.text = String(Int(self.octaveSlider.value))
+        attackLabel.text = String(self.attackSlider.value)
+        releaseLabel.text = String(self.releaseSlider.value)
+        waveformSelector.selectedSegmentIndex = 3
+        noteSelector.selectedSegmentIndex = 5
     }
 
     override func didReceiveMemoryWarning() {
