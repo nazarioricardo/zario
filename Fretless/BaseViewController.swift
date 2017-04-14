@@ -103,6 +103,7 @@ class BaseViewController: UIViewController {
         releaseLabel.text = String(self.releaseSlider.value)
         waveformSelector.selectedSegmentIndex = 3
         noteSelector.selectedSegmentIndex = 5
+        Audiobus.start()
     }
 
     override func didReceiveMemoryWarning() {
