@@ -50,7 +50,7 @@
 		8C8494B41EA023AC00467D30 /* Fretless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fretless.entitlements; sourceTree = "<group>"; };
 		8C8494B51EA023AC00467D30 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8C8494B71EA033A700467D30 /* Fretless-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Fretless-BridgingHeader.h"; path = "Fretless/Fretless-BridgingHeader.h"; sourceTree = SOURCE_ROOT; };
-		8C8494B81EA033CC00467D30 /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audiobus.swift; sourceTree = "<group>"; };
+		8C8494B81EA033CC00467D30 /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Audiobus.swift; path = Fretless/Audiobus.swift; sourceTree = SOURCE_ROOT; };
 		8CC1214E1E5E1A2300D22345 /* Fretless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fretless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC121511E5E1A2300D22345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardViewController.swift; sourceTree = "<group>"; };
