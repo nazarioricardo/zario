@@ -44,8 +44,8 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     var waveform: AKTable!
     var oscillator: AKOscillator!
-    var envelope: AKAmplitudeEnvelope!
     var lowPassFilter: AKLowPassFilter!
+    var envelope: AKAmplitudeEnvelope!
     
     var lowestFrequency: Float {
         get {
@@ -122,31 +122,24 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         minCutoff = 0
         
         oscillator = AKOscillator(waveform: waveform)
-        oscillator.amplitude = 1.0
+        oscillator.amplitude = 0.7
         oscillator.frequency = 440
         
         oscillator.start()
-        
-        print("Osc set up")
-        
+    
         lowPassFilter = AKLowPassFilter(oscillator)
         lowPassFilter.cutoffFrequency = minCutoff
         lowPassFilter.dryWetMix = 100
         lowPassFilter.start()
-        
-        print("LowPass set up")
-        
+  
         envelope = AKAmplitudeEnvelope(lowPassFilter)
         envelope.attackDuration = Double(attack)
         envelope.decayDuration = 0.1
         envelope.sustainLevel = 1.0
         envelope.releaseDuration = Double(release)
-        
-        print("Env set up")
-        
+
         AudioKit.output = envelope
         AudioKit.start()
-        print("sound set up")
     }
     
     func endSound() {
