@@ -198,6 +198,7 @@
 				8CC1214C1E5E1A2300D22345 /* Resources */,
 				1A619EE73D6D2B51B6D77B5F /* [CP] Embed Pods Frameworks */,
 				30EF7DEAD7B91AD0CE4F7A85 /* [CP] Copy Pods Resources */,
+				8C6A6ABD1EA3003700C816F0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -425,6 +426,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		8C6A6ABD1EA3003700C816F0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$BUILT_PRODUCTS_DIR/$FRAMEWORKS_FOLDER_PATH/AudioKit.framework/fix-framework.sh";
 		};
 		AA28AD785E47489393C57766 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
