@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		1E7766921BFEF76FE421C091 /* Pods_FretlessUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21C031954720076777C9EA4 /* Pods_FretlessUITests.framework */; };
 		8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0324721E60E27C00062B8D /* BaseViewController.swift */; };
+		8C6A6ABF1EA3056500C816F0 /* Audiobus.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C6A6ABE1EA3056500C816F0 /* Audiobus.txt */; };
 		8C8494B61EA023AC00467D30 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8494B51EA023AC00467D30 /* AudioToolbox.framework */; };
 		8C8494B91EA033CC00467D30 /* Audiobus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8494B81EA033CC00467D30 /* Audiobus.swift */; };
-		8C8494BB1EA0340600467D30 /* Audiobus.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C8494BA1EA0340600467D30 /* Audiobus.txt */; };
 		8CC121521E5E1A2300D22345 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121511E5E1A2300D22345 /* AppDelegate.swift */; };
 		8CC121541E5E1A2300D22345 /* KeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */; };
 		8CC121571E5E1A2300D22345 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CC121551E5E1A2300D22345 /* Main.storyboard */; };
@@ -46,11 +46,11 @@
 		08CD9D501FCDC21BF7C628A8 /* Pods-FretlessTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretlessTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests.release.xcconfig"; sourceTree = "<group>"; };
 		58E3768759647ABA2F4D990A /* Pods-FretlessUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretlessUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretlessUITests/Pods-FretlessUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C0324721E60E27C00062B8D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8C6A6ABE1EA3056500C816F0 /* Audiobus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Audiobus.txt; path = Fretless/Audiobus.txt; sourceTree = SOURCE_ROOT; };
 		8C8494B41EA023AC00467D30 /* Fretless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fretless.entitlements; sourceTree = "<group>"; };
 		8C8494B51EA023AC00467D30 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		8C8494B71EA033A700467D30 /* Fretless-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fretless-BridgingHeader.h"; sourceTree = SOURCE_ROOT; };
+		8C8494B71EA033A700467D30 /* Fretless-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Fretless-BridgingHeader.h"; path = "Fretless/Fretless-BridgingHeader.h"; sourceTree = SOURCE_ROOT; };
 		8C8494B81EA033CC00467D30 /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audiobus.swift; sourceTree = "<group>"; };
-		8C8494BA1EA0340600467D30 /* Audiobus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Audiobus.txt; sourceTree = "<group>"; };
 		8CC1214E1E5E1A2300D22345 /* Fretless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fretless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC121511E5E1A2300D22345 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBoardViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 		8CC1216D1E5E1A2400D22345 /* FretlessUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FretlessUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CC121711E5E1A2400D22345 /* FretlessUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FretlessUITests.swift; sourceTree = "<group>"; };
 		8CC121731E5E1A2400D22345 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CC121811E5E1B1F00D22345 /* KeyControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyControl.swift; path = ../KeyControl.swift; sourceTree = "<group>"; };
+		8CC121811E5E1B1F00D22345 /* KeyControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyControl.swift; path = Fretless/KeyControl.swift; sourceTree = SOURCE_ROOT; };
 		A6F50B51704219466D6D0802 /* Pods-FretlessTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretlessTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B821C48701022281AC245A3C /* Pods-Fretless.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fretless.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fretless/Pods-Fretless.release.xcconfig"; sourceTree = "<group>"; };
 		C21C031954720076777C9EA4 /* Pods_FretlessUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FretlessUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,7 +154,7 @@
 				8C8494B41EA023AC00467D30 /* Fretless.entitlements */,
 				8C8494B81EA033CC00467D30 /* Audiobus.swift */,
 				8C8494B71EA033A700467D30 /* Fretless-BridgingHeader.h */,
-				8C8494BA1EA0340600467D30 /* Audiobus.txt */,
+				8C6A6ABE1EA3056500C816F0 /* Audiobus.txt */,
 				8CC121511E5E1A2300D22345 /* AppDelegate.swift */,
 				8C0324721E60E27C00062B8D /* BaseViewController.swift */,
 				8CC121531E5E1A2300D22345 /* KeyBoardViewController.swift */,
@@ -315,7 +315,7 @@
 			files = (
 				8CC1215C1E5E1A2300D22345 /* LaunchScreen.storyboard in Resources */,
 				8CC121591E5E1A2300D22345 /* Assets.xcassets in Resources */,
-				8C8494BB1EA0340600467D30 /* Audiobus.txt in Resources */,
+				8C6A6ABF1EA3056500C816F0 /* Audiobus.txt in Resources */,
 				8CC121571E5E1A2300D22345 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
