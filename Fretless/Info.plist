@@ -76,5 +76,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>App uses Audiokit but doesn&apos;t use microphone</string>
 </dict>
 </plist>
