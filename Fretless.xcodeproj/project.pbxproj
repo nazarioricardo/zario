@@ -659,7 +659,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fretless-BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fretless/Fretless-BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -679,7 +679,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fretless-BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Fretless/Fretless-BridgingHeader.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
