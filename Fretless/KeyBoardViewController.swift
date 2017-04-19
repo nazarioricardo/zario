@@ -44,7 +44,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     var waveform: AKTable!
     var oscillator: AKOscillator!
+    var compressor: AKCompressor!
     var lowPassFilter: AKLowPassFilter!
+    var highPassFilter: AKHighPassFilter!
     var envelope: AKAmplitudeEnvelope!
     
     var lowestFrequency: Float {
@@ -121,24 +123,52 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         maxCutoff = 880
         minCutoff = 0
         
+        let tableCount: Int = 32768 * 2
+                
+        switch selectedIndex {
+        case 0:
+            self.waveform = AKTable(.sine, phase: 0, count: tableCount)
+        case 1:
+            self.waveform = AKTable(.square, phase: 0, count: tableCount)
+        case 2:
+            self.waveform = AKTable(.triangle, phase: 0, count: tableCount)
+        case 3:
+            self.waveform = AKTable(.sawtooth, phase: 0, count: tableCount)
+        default:
+            self.waveform = AKTable(.sawtooth, phase: 0, count: tableCount)
+        }
+        
         oscillator = AKOscillator(waveform: waveform)
-        oscillator.amplitude = 0.7
+        oscillator.amplitude = 1
         oscillator.frequency = 440
         
         oscillator.start()
-    
+        
         lowPassFilter = AKLowPassFilter(oscillator)
         lowPassFilter.cutoffFrequency = minCutoff
         lowPassFilter.dryWetMix = 100
         lowPassFilter.start()
-  
-        envelope = AKAmplitudeEnvelope(lowPassFilter)
+        
+    
+        highPassFilter = AKHighPassFilter(lowPassFilter)
+        highPassFilter.cutoffFrequency = oscillator.frequency
+        highPassFilter.dryWetMix = 100
+        highPassFilter.start()
+        
+        envelope = AKAmplitudeEnvelope(highPassFilter)
         envelope.attackDuration = Double(attack)
         envelope.decayDuration = 0.1
         envelope.sustainLevel = 1.0
         envelope.releaseDuration = Double(release)
 
-        AudioKit.output = envelope
+        compressor = AKCompressor(envelope)
+        
+        compressor.threshold = -12
+        compressor.headRoom = 12
+        compressor.masterGain = -12
+        
+        AudioKit.output = compressor
+
         AudioKit.start()
     }
     
@@ -154,7 +184,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     func xAxis(keyFreq: Float, x: Float) {
         oscillator.frequency = Double(calculateFreq(root: keyFreq, halfSteps: x))
-        print("Frequency \(oscillator.frequency)")
+        highPassFilter.cutoffFrequency = oscillator.frequency - 50
         envelope.start()
     }
     
@@ -179,19 +209,6 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        switch selectedIndex {
-            case 0:
-                self.waveform = AKTable(.sine)
-            case 1:
-                self.waveform = AKTable(.square)
-            case 2:
-                self.waveform = AKTable(.triangle)
-            case 3:
-                self.waveform = AKTable(.sawtooth)
-            default:
-                self.waveform = AKTable(.sawtooth)
-        }
         
         switch chosenNoteInterval {
             case -9:

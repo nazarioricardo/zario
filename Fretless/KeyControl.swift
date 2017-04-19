@@ -52,9 +52,6 @@ class KeyControl: UIControl {
             yTouch = touch.location(in: self).y
         }
         
-        print(self.bounds.midX)
-        print(xTouch)
-        
         // Variable that calculates halfsteps
         let xMovement = xTouch/self.bounds.width
         
