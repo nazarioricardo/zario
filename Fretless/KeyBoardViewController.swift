@@ -45,7 +45,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     var waveform: AKTable!
     var oscillator: AKOscillator!
     var peakLimiter: AKPeakLimiter!
-    var lowPassFilter: AKLowPassFilter!
+    var lowPassFilter: AKKorgLowPassFilter!
     var highPassFilter: AKHighPassFilter!
     var envelope: AKAmplitudeEnvelope!
     
@@ -144,9 +144,9 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         
         oscillator.start()
         
-        lowPassFilter = AKLowPassFilter(oscillator)
+        lowPassFilter = AKKorgLowPassFilter(oscillator)
         lowPassFilter.cutoffFrequency = minCutoff
-        lowPassFilter.dryWetMix = 100
+//        lowPassFilter.dryWetMix = 100
         lowPassFilter.start()
         
     
