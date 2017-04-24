@@ -44,7 +44,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
     
     var waveform: AKTable!
     var oscillator: AKOscillator!
-    var compressor: AKCompressor!
+    var peakLimiter: AKPeakLimiter!
     var lowPassFilter: AKLowPassFilter!
     var highPassFilter: AKHighPassFilter!
     var envelope: AKAmplitudeEnvelope!
@@ -161,13 +161,13 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         envelope.sustainLevel = 1.0
         envelope.releaseDuration = Double(release)
 
-        compressor = AKCompressor(envelope)
+        peakLimiter = AKPeakLimiter(envelope)
         
-        compressor.threshold = -12
-        compressor.headRoom = 12
-        compressor.masterGain = -12
+        peakLimiter.attackTime = 0.001 // Secs
+        peakLimiter.decayTime = 0.01 // Secs
+         peakLimiter.preGain = -10 // dB
         
-        AudioKit.output = compressor
+        AudioKit.output = peakLimiter
 
         AudioKit.start()
     }
