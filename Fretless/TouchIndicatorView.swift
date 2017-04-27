@@ -25,7 +25,7 @@ class TouchIndicatorView: UIControl {
     }
 
     func setUpView() {
-        
+        self.backgroundColor = UIColor.lightGray
     }
     
     override init(frame: CGRect) {

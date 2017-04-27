@@ -30,7 +30,7 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     var attack: Float!
     var release: Float!
     
-    var keys: [KeyControl] = []
+    var keys: [KeyView] = []
     
     var noteColorIndex: Int = 0
     
@@ -86,20 +86,16 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
         let keyHeight = screenHeight
         var xOrigin: CGFloat = screenXOrigin
         
-        for keyIndex in Int(xOrigin)..<numberOfKeys {
+        for _ in Int(xOrigin)..<numberOfKeys {
             
             let color = keyColors[noteColorIndex % keyColors.count]
             
-            let keyControl = KeyControl(frame: CGRect(x: xOrigin, y: 0, width: keyWidth, height: keyHeight))
+            let keyView = KeyView(frame: CGRect(x: xOrigin, y: 0, width: keyWidth, height: keyHeight))
             
-            keyControl.keyIndex = keyIndex
-            keyControl.frequency = calculateFreq(root: lowestFrequency, halfSteps: Float(keyIndex))
-            keyControl.backgroundColor = color
-            keyControl.keyColor = color
+            keyView.backgroundColor = color
             
-            self.view.addSubview(keyControl)
-            keys.append(keyControl)
-//            keyControl.keyDelegate = self
+            self.view.addSubview(keyView)
+            keys.append(keyView)
             
             noteColorIndex += 1
             xOrigin += keyWidth

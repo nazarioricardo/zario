@@ -32,6 +32,7 @@ class KeyBoardView: UIControl {
         
         let touchViewCenter = CGPoint(x: touch.location(in: self).x, y: self.bounds.midY)
         createTouchIndicator(touchPoint: touchViewCenter)
+
         
         return true
     }
@@ -57,12 +58,11 @@ class KeyBoardView: UIControl {
     
     func createTouchIndicator(touchPoint: CGPoint) {
         touchViewIndicator = TouchIndicatorView.init(frame: CGRect(x: touchPoint.x - (touchViewWidth / 2), y: self.bounds.maxY, width: touchViewWidth, height: self.bounds.height))
-        touchViewIndicator.backgroundColor = UIColor.init(white: 1, alpha: 0.8)
         self.addSubview(touchViewIndicator)
     }
     
     func setUpView() {
-        self.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
+        self.backgroundColor = UIColor.clear
     }
     
     override init(frame: CGRect) {
