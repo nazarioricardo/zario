@@ -9,7 +9,7 @@
 import UIKit
 import AudioKit
 
-class KeyBoardViewController: UIViewController, KeyDelegate {
+class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     
     let keyColors: [UIColor] = [
         UIColor.white,
@@ -99,11 +99,16 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
             
             self.view.addSubview(keyControl)
             keys.append(keyControl)
-            keyControl.keyDelegate = self
+//            keyControl.keyDelegate = self
             
             noteColorIndex += 1
             xOrigin += keyWidth
         }
+        let keyBoardView = KeyBoardView.init(frame: self.view.frame)
+        keyBoardView.touchViewWidth = keyWidth
+        keyBoardView.frequency = lowestFrequency
+        self.view.addSubview(keyBoardView)
+        keyBoardView.delegate = self
         print("Views set up")
     }
     
@@ -186,6 +191,7 @@ class KeyBoardViewController: UIViewController, KeyDelegate {
         oscillator.frequency = Double(calculateFreq(root: keyFreq, halfSteps: x))
         highPassFilter.cutoffFrequency = oscillator.frequency - 50
         envelope.start()
+        print("Frequency: \(oscillator.frequency)")
     }
     
     func yAxis(y: Float) {

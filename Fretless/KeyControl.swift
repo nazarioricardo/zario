@@ -21,9 +21,7 @@ class KeyControl: UIControl {
     
     var frequency: Float = Float()
     var keyIndex: Int = Int()
-    
-    var twelfthRooth = Float(pow(2, 1/Float(12)))
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
         self.backgroundColor = UIColor.lightGray
@@ -63,14 +61,9 @@ class KeyControl: UIControl {
         self.backgroundColor = keyColor
         keyDelegate?.stoppedPlaying()
     }
-
-    func setUpView() {
-        self.layer.cornerRadius = 10
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpView()
     }
     
     required init?(coder aDecoder: NSCoder) {
