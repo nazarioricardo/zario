@@ -12,7 +12,7 @@ import AudioKit
 class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     
     let whiteKeyColor = UIColor.white
-    let blackKeyColor = UIColor.darkGray
+    let blackKeyColor = UIColor.lightGray
     
     let a0 = 27.5
     var attack: Float!

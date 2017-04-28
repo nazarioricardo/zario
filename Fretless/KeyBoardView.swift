@@ -28,6 +28,10 @@ class KeyBoardView: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
+        if (touchViewIndicator.superview != nil) {
+            touchViewIndicator.removeFromSuperview()
+        }
+        
         let xTouch = touch.location(in: self).x
         let yTouch = touch.location(in: self).y
 
@@ -113,8 +117,8 @@ class KeyBoardView: UIControl {
     func addGradient() {
         
         let gradient = CAGradientLayer()
-        let leftColor = UIColor.init(red: 166/255, green: 189/255, blue: 187/255, alpha: 0.2)
-        let rightColor = UIColor.init(red: 166/255, green: 189/255, blue: 187/255, alpha: 0.5)
+        let leftColor = UIColor.init(red: 136/255, green: 180/255, blue: 176/255, alpha: 0.7)
+        let rightColor = UIColor.init(red: 136/255, green: 180/255, blue: 176/255, alpha: 0.9)
         gradient.colors = [leftColor.cgColor, rightColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)

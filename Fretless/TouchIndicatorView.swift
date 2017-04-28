@@ -16,10 +16,6 @@ protocol IndicatorDelegate {
 
 class TouchIndicatorView: UIControl {
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.removeFromSuperview()
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -28,7 +24,7 @@ class TouchIndicatorView: UIControl {
 
     func setUpView() {
 //        self.backgroundColor = UIColor.lightGray
-        
+        self.isUserInteractionEnabled = false
         self.isOpaque = true
     
     }
