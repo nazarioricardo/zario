@@ -99,7 +99,7 @@ class KeyBoardView: UIControl {
         
         touchViewIndicator = TouchIndicatorView.init(frame: CGRect(x: x - (touchViewWidth / 2), y: self.bounds.minY - 200, width: touchViewWidth, height: y + 200))
         
-        touchViewIndicator.backgroundColor = UIColor(red: 255/255, green: 125/255, blue: 125/255, alpha: 1)
+        touchViewIndicator.backgroundColor = UIColor(red: 255/255, green: 100/255, blue: 100/255, alpha: 1)
         touchViewIndicator.alpha = 0
         touchViewIndicator.layer.cornerRadius = touchViewWidth/4
         
@@ -123,6 +123,8 @@ class KeyBoardView: UIControl {
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
         gradient.frame = self.bounds
+        
+        self.backgroundColor = leftColor
         
         self.layer.addSublayer(gradient)
     }
