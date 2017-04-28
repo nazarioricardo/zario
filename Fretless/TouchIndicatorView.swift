@@ -16,16 +16,21 @@ protocol IndicatorDelegate {
 
 class TouchIndicatorView: UIControl {
     
-    var thumbView = UIView()
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.removeFromSuperview()
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        thumbView.frame = CGRect(x: self.center.x, y: self.bounds.maxY, width: self.bounds.width, height: self.bounds.width)
     }
+    
 
     func setUpView() {
-        self.backgroundColor = UIColor.lightGray
+//        self.backgroundColor = UIColor.lightGray
+        
+        self.isOpaque = true
+    
     }
     
     override init(frame: CGRect) {

@@ -11,20 +11,8 @@ import AudioKit
 
 class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     
-    let keyColors: [UIColor] = [
-        UIColor.white,
-        UIColor.black,
-        UIColor.white,
-        UIColor.white,
-        UIColor.black,
-        UIColor.white,
-        UIColor.black,
-        UIColor.white,
-        UIColor.white,
-        UIColor.black,
-        UIColor.white,
-        UIColor.black
-    ]
+    let whiteKeyColor = UIColor.white
+    let blackKeyColor = UIColor.darkGray
     
     let a0 = 27.5
     var attack: Float!
@@ -77,6 +65,21 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     
     func setUpViews() {
         
+        let keyColors: [UIColor] = [
+            whiteKeyColor,
+            blackKeyColor,
+            whiteKeyColor,
+            whiteKeyColor,
+            blackKeyColor,
+            whiteKeyColor,
+            blackKeyColor,
+            whiteKeyColor,
+            whiteKeyColor,
+            blackKeyColor,
+            whiteKeyColor,
+            blackKeyColor
+        ]
+        
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
         let screenHeight = screenSize.height
@@ -86,26 +89,29 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
         let keyHeight = screenHeight
         var xOrigin: CGFloat = screenXOrigin
         
-        for _ in Int(xOrigin)..<numberOfKeys {
+        let keyBoardView = KeyBoardView.init(frame: self.view.frame)
+        
+        for keyIndex in Int(xOrigin)..<numberOfKeys {
             
             let color = keyColors[noteColorIndex % keyColors.count]
             
             let keyView = KeyView(frame: CGRect(x: xOrigin, y: 0, width: keyWidth, height: keyHeight))
             
+            keyView.keyIndex = keyIndex
             keyView.backgroundColor = color
             
             self.view.addSubview(keyView)
-            keys.append(keyView)
             
             noteColorIndex += 1
             xOrigin += keyWidth
         }
-        let keyBoardView = KeyBoardView.init(frame: self.view.frame)
+                
         keyBoardView.touchViewWidth = keyWidth
         keyBoardView.frequency = lowestFrequency
+        keyBoardView.attackTime = Double(attack)
+        keyBoardView.releaseTime = Double(release)
         self.view.addSubview(keyBoardView)
         keyBoardView.delegate = self
-        print("Views set up")
     }
     
     func calculateFreq(root: Float, halfSteps: Float) -> Float {
@@ -187,7 +193,6 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
         oscillator.frequency = Double(calculateFreq(root: keyFreq, halfSteps: x))
         highPassFilter.cutoffFrequency = oscillator.frequency - 50
         envelope.start()
-        print("Frequency: \(oscillator.frequency)")
     }
     
     func yAxis(y: Float) {

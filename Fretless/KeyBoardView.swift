@@ -23,6 +23,9 @@ class KeyBoardView: UIControl {
     var touchViewWidth: CGFloat!
     var touchViewIndicator = TouchIndicatorView()
     
+    var attackTime: Double!
+    var releaseTime: Double!
+    
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         
         let xTouch = touch.location(in: self).x
@@ -32,6 +35,16 @@ class KeyBoardView: UIControl {
         delegate?.yAxis(y: Float(touch.location(in: self).y))
         
         createTouchIndicator(x: xTouch, y: yTouch)
+        
+        self.touchViewIndicator.alpha = yTouch/self.bounds.maxY
+        
+        UIView.animate(withDuration: attackTime,
+                       delay: 0,
+                       options: .curveLinear,
+                       animations: {
+                        self.touchViewIndicator.alpha = yTouch/self.bounds.maxY
+        },
+                       completion: nil)
         
         return true
     }
@@ -44,33 +57,46 @@ class KeyBoardView: UIControl {
         delegate?.yAxis(y: Float(touch.location(in: self).y))
         
         let touchViewCenter = CGPoint(x: touch.location(in: self).x, y: self.bounds.midY)
-        touchViewIndicator.center.x = touchViewCenter.x
+    
+        self.touchViewIndicator.center.x = touchViewCenter.x
+        self.touchViewIndicator.frame.size.height = yTouch + 200
         
-        UIView.animate(withDuration: 0.01,
+        UIView.animate(withDuration: attackTime * 5,
+                       delay: 0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.5,
+                       options: .curveLinear,
                        animations: {
+                        
+                        self.touchViewIndicator.center.x = touchViewCenter.x
                         self.touchViewIndicator.frame.size.height = yTouch + 200
-                        self.touchViewIndicator.backgroundColor = UIColor(colorLiteralRed: 255/255, green: 125/255, blue: 125/255, alpha: Float(yTouch/1))
+                        self.touchViewIndicator.alpha = yTouch/self.bounds.maxY
         },
                        completion: nil)
-    
-        
-        
-        
+
         return true
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         delegate?.stoppedPlaying()
-        touchViewIndicator.removeFromSuperview()
+        
+        UIView.animate(withDuration: releaseTime * 5,
+                       delay: 0,
+                       options: .curveEaseOut,
+                       animations: {
+                        self.touchViewIndicator.alpha = 0
+        },
+                       completion: nil)
+        
+        
     }
     
     func createTouchIndicator(x: CGFloat, y: CGFloat) {
         
-        let touchPoint = CGPoint(x: x, y: y)
+        touchViewIndicator = TouchIndicatorView.init(frame: CGRect(x: x - (touchViewWidth / 2), y: self.bounds.minY - 200, width: touchViewWidth, height: y + 200))
         
-        touchViewIndicator = TouchIndicatorView.init(frame: CGRect(x: touchPoint.x - (touchViewWidth / 2), y: self.bounds.minY - 200, width: touchViewWidth, height: touchPoint.y + 200))
-        
-        touchViewIndicator.backgroundColor = UIColor.init(colorLiteralRed: 255/255, green: 125/255, blue: 125/255, alpha: 0.0)
+        touchViewIndicator.backgroundColor = UIColor(red: 255/255, green: 125/255, blue: 125/255, alpha: 1)
+        touchViewIndicator.alpha = 0
         touchViewIndicator.layer.cornerRadius = touchViewWidth/4
         
         self.addSubview(touchViewIndicator)
@@ -79,6 +105,22 @@ class KeyBoardView: UIControl {
     func setUpView() {
 //        createTouchIndicator(x: 0, y: 0)
         self.backgroundColor = UIColor.clear
+        
+        addGradient()
+        
+    }
+    
+    func addGradient() {
+        
+        let gradient = CAGradientLayer()
+        let leftColor = UIColor.init(red: 166/255, green: 189/255, blue: 187/255, alpha: 0.2)
+        let rightColor = UIColor.init(red: 166/255, green: 189/255, blue: 187/255, alpha: 0.5)
+        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
+        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        gradient.frame = self.bounds
+        
+        self.layer.addSublayer(gradient)
     }
     
     override init(frame: CGRect) {
