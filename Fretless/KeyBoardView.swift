@@ -65,10 +65,10 @@ class KeyBoardView: UIControl {
         self.touchViewIndicator.center.x = touchViewCenter.x
         self.touchViewIndicator.frame.size.height = yTouch + 200
         
-        UIView.animate(withDuration: attackTime * 5,
+        UIView.animate(withDuration: 0,
                        delay: 0,
-                       usingSpringWithDamping: 0.8,
-                       initialSpringVelocity: 0.5,
+                       usingSpringWithDamping: 0,
+                       initialSpringVelocity: 0,
                        options: .curveLinear,
                        animations: {
                         
@@ -99,9 +99,8 @@ class KeyBoardView: UIControl {
         
         touchViewIndicator = TouchIndicatorView.init(frame: CGRect(x: x - (touchViewWidth / 2), y: self.bounds.minY - 200, width: touchViewWidth, height: y + 200))
         
-        touchViewIndicator.backgroundColor = UIColor(red: 255/255, green: 100/255, blue: 100/255, alpha: 1)
+        touchViewIndicator.backgroundColor = UIColor(red: 0/255, green: 220/255, blue: 255/255, alpha: 1)
         touchViewIndicator.alpha = 0
-        touchViewIndicator.layer.cornerRadius = touchViewWidth/4
         
         self.addSubview(touchViewIndicator)
     }
@@ -117,8 +116,8 @@ class KeyBoardView: UIControl {
     func addGradient() {
         
         let gradient = CAGradientLayer()
-        let leftColor = UIColor.init(red: 136/255, green: 180/255, blue: 176/255, alpha: 0.7)
-        let rightColor = UIColor.init(red: 136/255, green: 180/255, blue: 176/255, alpha: 0.9)
+        let leftColor = UIColor.white.withAlphaComponent(0.4)
+        let rightColor = UIColor.white.withAlphaComponent(0.0)
         gradient.colors = [leftColor.cgColor, rightColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
         gradient.endPoint = CGPoint(x: 1.0, y: 0.5)

@@ -16,16 +16,24 @@ protocol IndicatorDelegate {
 
 class TouchIndicatorView: UIControl {
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func addGradient() {
         
+        let gradient = GradientView(frame: self.bounds)
+        
+        self.insertSubview(gradient, at: 0)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()        
+    }
 
     func setUpView() {
 //        self.backgroundColor = UIColor.lightGray
         self.isUserInteractionEnabled = false
         self.isOpaque = true
+        self.layer.cornerRadius = self.bounds.width/4
+        self.clipsToBounds = true
+        addGradient()
     
     }
     
