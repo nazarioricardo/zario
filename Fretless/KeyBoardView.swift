@@ -116,7 +116,7 @@ class KeyBoardView: UIControl {
     func addGradient() {
         
         let gradient = CAGradientLayer()
-        let leftColor = UIColor.white.withAlphaComponent(0.4)
+        let leftColor = UIColor.white.withAlphaComponent(0.3)
         let rightColor = UIColor.white.withAlphaComponent(0.0)
         gradient.colors = [leftColor.cgColor, rightColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 0.5)

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZkV-cu-yEm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZkV-cu-yEm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,7 +43,7 @@
                                     <segment title="B"/>
                                 </segments>
                             </segmentedControl>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="4" minValue="0.0" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-BR-XB5">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="8" translatesAutoresizingMaskIntoConstraints="NO" id="F1u-BR-XB5">
                                 <rect key="frame" x="14" y="183" width="347" height="31"/>
                                 <connections>
                                     <action selector="octaveSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="x4E-5k-SZk"/>
@@ -79,7 +79,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.02" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lqO-X1-l1Z">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lqO-X1-l1Z">
                                 <rect key="frame" x="14" y="341" width="347" height="31"/>
                                 <connections>
                                     <action selector="attackSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="QK0-tc-nll"/>
@@ -124,6 +124,12 @@
                                     <action selector="releaseSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="Qe2-dp-tsC"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate your device to show the board" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZy-WE-lJY">
+                                <rect key="frame" x="44" y="556" width="286" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -135,6 +141,7 @@
                             <constraint firstItem="xcE-VN-amJ" firstAttribute="top" secondItem="OY4-Tl-2jl" secondAttribute="bottom" constant="8" id="A4g-EK-nsL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NbM-yZ-H1b" secondAttribute="trailing" id="Cpq-3m-LjF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="vLn-gd-ogm" secondAttribute="trailing" id="Dpy-dM-y9i"/>
+                            <constraint firstItem="bZy-WE-lJY" firstAttribute="top" secondItem="NbM-yZ-H1b" secondAttribute="bottom" constant="106" id="FLF-AF-2JC"/>
                             <constraint firstItem="Mn1-FA-cLp" firstAttribute="centerX" secondItem="n2Z-Ck-UaU" secondAttribute="centerX" id="FpV-6i-919"/>
                             <constraint firstAttribute="leadingMargin" secondItem="n2Z-Ck-UaU" secondAttribute="leading" id="Hxn-6y-f4U"/>
                             <constraint firstAttribute="leadingMargin" secondItem="xcE-VN-amJ" secondAttribute="leading" id="Jc8-i4-Xd9"/>
@@ -161,6 +168,7 @@
                             <constraint firstItem="OP5-mK-N1X" firstAttribute="centerX" secondItem="lqO-X1-l1Z" secondAttribute="centerX" id="nl2-Wc-yPm"/>
                             <constraint firstItem="Mn1-FA-cLp" firstAttribute="top" secondItem="n2Z-Ck-UaU" secondAttribute="bottom" constant="20" id="qAS-7l-sYG"/>
                             <constraint firstItem="F1u-BR-XB5" firstAttribute="top" secondItem="Mn1-FA-cLp" secondAttribute="bottom" constant="8" id="r9f-bL-ee4"/>
+                            <constraint firstItem="bZy-WE-lJY" firstAttribute="centerX" secondItem="qF8-nc-0Wf" secondAttribute="centerX" id="u80-Nw-Eqp"/>
                             <constraint firstItem="OY4-Tl-2jl" firstAttribute="top" secondItem="F1u-BR-XB5" secondAttribute="bottom" constant="20" id="uLr-bD-vNl"/>
                             <constraint firstItem="OY4-Tl-2jl" firstAttribute="leading" secondItem="geh-Lu-jnw" secondAttribute="trailing" constant="4" id="zuH-eb-gwp"/>
                         </constraints>
