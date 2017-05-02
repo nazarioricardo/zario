@@ -49,8 +49,14 @@ class Audiobus {
         return AudioKit.engine.outputNode.audioUnit!
     }
     
+    
     init(apiKey: String) {
         self.controller = ABAudiobusController(apiKey: apiKey)
+        
+        let currentRoute = AVAudioSession.sharedInstance().currentRoute
+        print(currentRoute.outputs.count)
+        print(currentRoute.description)
+
 
         var myDict: NSDictionary?
         if let path = Bundle.main.path(forResource:"Info", ofType: "plist") {
