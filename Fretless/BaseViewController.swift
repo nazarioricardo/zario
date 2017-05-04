@@ -94,10 +94,28 @@ class BaseViewController: UIViewController {
             })
     }
     
+    func addGradient() {
+        
+        let gradient = CAGradientLayer()
+        
+        let leftColor = UIColor.white.withAlphaComponent(0.0)
+        let rightColor = UIColor.white.withAlphaComponent(0.2)
+        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
+        gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
+        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.frame = self.view.bounds
+        
+        self.view.layer.addSublayer(gradient)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor(red: 225/255, green: 240/255, blue: 239/255, alpha: 1)
+        // self.waveformSelector.backgroundColor = UIColor(red: 18/255, green: 65/255, blue: 62/255, alpha: 1)
+        addGradient()
+        
         octaveMultiplier = Int(self.octaveSlider.value)
         octaveLabel.text = String(Int(self.octaveSlider.value))
         attackLabel.text = String(self.attackSlider.value)
@@ -105,6 +123,7 @@ class BaseViewController: UIViewController {
         waveformSelector.selectedSegmentIndex = 3
         noteSelector.selectedSegmentIndex = 5
         Audiobus.start()
+        
     }
 
     override func didReceiveMemoryWarning() {
