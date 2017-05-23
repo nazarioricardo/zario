@@ -8,10 +8,10 @@
 
 import UIKit
 
-@IBDesignable class SegmentedController: UIControl {
+@IBDesignable class SegmentedController: UIControl, ThumbDelegate {
     
     private var labels = [UILabel]()
-    var thumbView = UIView()
+    var thumbView = ThumbView()
     
     public var items: [String] = ["Item 1", "Item 2", "Item 3"] {
         didSet {
@@ -64,6 +64,8 @@ import UIKit
             self.addSubview(label)
             labels.append(label)
         }
+        
+        thumbView.delegate = self
     }
     
     override func layoutSubviews() {
@@ -97,7 +99,6 @@ import UIKit
         for (index, item) in labels.enumerated() {
             
             if item.frame.contains(location) {
-                
                 calculatedIndex = index
             }
         }
@@ -107,7 +108,82 @@ import UIKit
             sendActions(for: .valueChanged)
         }
         
-        return false
+        return true
+    }
+    
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        let location = touch.location(in: self)
+        moveIndicatorTo(touchX: location.x)
+
+        return true
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        let location = touch?.location(in: superview)
+        var calculatedIndex: Int?
+        
+        for (index, item) in labels.enumerated() {
+            
+            if item.frame.contains(CGPoint(x: (location?.x)!, y: self.center.y)) {
+                calculatedIndex = index
+            }
+            
+            if calculatedIndex != nil {
+                selectedIndex = calculatedIndex!
+                sendActions(for: .valueChanged)
+            }
+        }
+    }
+    
+    func startedTouchingThumbView(location: CGFloat) {
+        var calculatedIndex: Int?
+        
+        for (index, item) in labels.enumerated() {
+            
+            if item.frame.contains(CGPoint(x: location, y: self.center.y)) {
+                calculatedIndex = index
+            }
+            
+            if calculatedIndex != nil {
+                selectedIndex = calculatedIndex!
+                sendActions(for: .valueChanged)
+            }
+        }
+    }
+    
+    func isTouchingThumbView(location: CGFloat) {
+        moveIndicatorTo(touchX: location)
+    }
+    
+    func didEndTouchInThumbView(location: CGFloat) {
+        var calculatedIndex: Int?
+        
+        for (index, item) in labels.enumerated() {
+            
+            if item.frame.contains(CGPoint(x: location, y: self.center.y)) {
+                calculatedIndex = index
+            }
+            
+            if calculatedIndex != nil {
+                selectedIndex = calculatedIndex!
+                sendActions(for: .valueChanged)
+            }
+        }
+    }
+    
+    func moveIndicatorTo(touchX: CGFloat) {
+        
+        UIView.animate(withDuration: 0.5,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.5,
+                       options: .allowAnimatedContent,
+                       animations: {
+                        
+                        self.thumbView.center.x = touchX
+        },
+                       completion: nil)
+        
     }
     
     func displayNewSelectedIndex() {
@@ -122,6 +198,7 @@ import UIKit
                        animations: {
                         
                         self.thumbView.frame = label.frame
+                        self.thumbView.center.x = label.center.x
         },
                        completion: nil)
         

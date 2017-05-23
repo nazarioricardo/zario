@@ -15,9 +15,8 @@ class BaseViewController: UIViewController {
     
     @IBOutlet weak var waveformPicker: SegmentedController!
     @IBOutlet weak var notePicker: SegmentedController!
-    @IBOutlet weak var waveformSelector: UISegmentedControl!
-    @IBOutlet weak var noteSelector: UISegmentedControl!
-    @IBOutlet weak var octaveSlider: UISlider!
+    @IBOutlet weak var octavePicker: SegmentedController!
+    
     @IBOutlet weak var rangeSlider: UISlider!
     @IBOutlet weak var attackSlider: UISlider!
     @IBOutlet weak var releaseSlider: UISlider!
@@ -30,8 +29,8 @@ class BaseViewController: UIViewController {
     var octaveMultiplier: Int!
     
     @IBAction func octaveSliderChanged(_ sender: Any) {
-        octaveMultiplier = Int(self.octaveSlider.value)
-        octaveLabel.text = String(Int(self.octaveSlider.value))
+        octaveMultiplier = Int(self.octavePicker.selectedIndex)
+        octaveLabel.text = String(Int(self.octavePicker.selectedIndex))
     }
     
     @IBAction func rangeSliderChanged(_ sender: Any) {
@@ -66,7 +65,7 @@ class BaseViewController: UIViewController {
                                     
                     self.keyboardVC.chosenOctave = self.octaveMultiplier
                                     
-                    switch self.noteSelector.selectedSegmentIndex {
+                    switch self.notePicker.selectedIndex {
                         case 0:
                             self.keyboardVC.chosenNoteInterval = -9
                         case 1:
@@ -86,7 +85,7 @@ class BaseViewController: UIViewController {
                     }
                     
                     self.keyboardVC.modalTransitionStyle = .crossDissolve
-                    self.keyboardVC.selectedIndex = self.waveformSelector.selectedSegmentIndex
+                    self.keyboardVC.selectedIndex = self.waveformPicker.selectedIndex
                     self.keyboardVC.numberOfKeys = Int(self.rangeSlider.value)
                     self.keyboardVC.attack = self.attackSlider.value
                     self.keyboardVC.release = self.releaseSlider.value
@@ -118,11 +117,12 @@ class BaseViewController: UIViewController {
         
         waveformPicker.items = ["Sine","Triangle","Square","Saw"]
         notePicker.items = ["C","D","E","F","G","A","B"]
+        octavePicker.items = ["0", "1", "2", "3", "4", "5"]
         // self.waveformSelector.backgroundColor = UIColor(red: 18/255, green: 65/255, blue: 62/255, alpha: 1)
         addGradient()
         
-        octaveMultiplier = Int(self.octaveSlider.value)
-        octaveLabel.text = String(Int(self.octaveSlider.value))
+        octaveMultiplier = Int(self.octavePicker.selectedIndex)
+        octaveLabel.text = String(Int(self.octavePicker.selectedIndex))
         attackLabel.text = String(self.attackSlider.value)
         releaseLabel.text = String(self.releaseSlider.value)
         //waveformSelector.selectedSegmentIndex = 3
