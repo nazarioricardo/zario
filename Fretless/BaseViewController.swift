@@ -99,14 +99,14 @@ class BaseViewController: UIViewController {
         
         let gradient = CAGradientLayer()
         
-        let leftColor = UIColor.white.withAlphaComponent(0.0)
-        let rightColor = UIColor.white.withAlphaComponent(0.2)
-        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
-        gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.frame = self.view.bounds
+        let topColor = UIColor.white.withAlphaComponent(0.0)
+        let botColor = UIColor.white.withAlphaComponent(0.3)
+        gradient.colors = [topColor.cgColor, botColor.cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0)
+        gradient.frame = CGRect(x: 0, y: 0, width: self.view.bounds.height, height: self.view.bounds.height)
         
-        self.view.layer.addSublayer(gradient)
+        self.view.layer.insertSublayer(gradient, above: self.view.layer.sublayers?.last)
     }
     
     override func viewDidLoad() {
@@ -118,16 +118,16 @@ class BaseViewController: UIViewController {
         waveformPicker.items = ["Sine","Triangle","Square","Saw"]
         notePicker.items = ["C","D","E","F","G","A","B"]
         octavePicker.items = ["0", "1", "2", "3", "4", "5"]
-        // self.waveformSelector.backgroundColor = UIColor(red: 18/255, green: 65/255, blue: 62/255, alpha: 1)
-        addGradient()
         
         octaveMultiplier = Int(self.octavePicker.selectedIndex)
         octaveLabel.text = String(Int(self.octavePicker.selectedIndex))
         attackLabel.text = String(self.attackSlider.value)
         releaseLabel.text = String(self.releaseSlider.value)
-        //waveformSelector.selectedSegmentIndex = 3
-        //noteSelector.selectedSegmentIndex = 5
+        waveformPicker.selectedIndex = 3
+        notePicker.selectedIndex = 5
+        octavePicker.selectedIndex = 3
         Audiobus.start()
+        addGradient()
         
     }
 

@@ -37,10 +37,13 @@ import UIKit
     
     func setupView() {
         
+        let borderColor = UIColor.init(red: 55/255, green: 84/255, blue: 84/255, alpha: 1.0)
+        let fillColor = UIColor.init(red: 64/255, green: 92/255, blue: 94/255, alpha: 1.0)
+        
         layer.cornerRadius = frame.height / 2
-        layer.borderColor = UIColor(white: 1.0, alpha: 0.5).cgColor
+        layer.borderColor = borderColor.cgColor
         layer.borderWidth = 1
-        backgroundColor = UIColor(white: 1.0, alpha: 0.3)
+        backgroundColor = fillColor
         insertSubview(thumbView, at: 0)
     }
     
@@ -56,7 +59,7 @@ import UIKit
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
             label.text = items[index - 1]
             label.textAlignment = .center
-            label.textColor = UIColor(white: 0.5, alpha: 1.0)
+            label.textColor = UIColor(white: 1.0, alpha: 1.0)
             label.font = label.font.withSize(15)
             self.addSubview(label)
             labels.append(label)
@@ -72,7 +75,7 @@ import UIKit
         let newWidth = CGFloat(selectFrame.width) / CGFloat(items.count)
         selectFrame.size.width = newWidth
         thumbView.frame = selectFrame
-        thumbView.backgroundColor = UIColor.white
+        thumbView.backgroundColor = UIColor.init(red: 22/255, green: 52/255, blue: 50/255, alpha: 1.0)
         thumbView.layer.cornerRadius = thumbView.frame.height / 2
         
         let labelHeight = self.bounds.height
@@ -218,9 +221,7 @@ import UIKit
                        initialSpringVelocity: 0.5,
                        options: .allowAnimatedContent,
                        animations: {
-                        
                         self.thumbView.frame = label.frame
-                        print("Display new selected index")
         },
                        completion: nil)
         

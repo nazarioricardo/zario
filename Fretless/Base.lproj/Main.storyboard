@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,117 +24,113 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mn1-FA-cLp">
                                 <rect key="frame" x="85.5" y="153" width="10.5" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
+                                <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geh-Lu-jnw">
+                                <rect key="frame" x="16" y="231" width="41" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="12" minValue="0.0" maxValue="24" translatesAutoresizingMaskIntoConstraints="NO" id="xcE-VN-amJ">
-                                <rect key="frame" x="14" y="259" width="347" height="31"/>
-                                <color key="backgroundColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.88235294119999996" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="minimumTrackTintColor" red="0.45098039220000002" green="0.89019607840000003" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="thumbTintColor" red="0.88235294119999996" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="14" y="267" width="347" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="minimumTrackTintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="0.43305384653469386" green="0.6319083883278912" blue="0.67646746201224484" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="rangeSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="cpq-M3-I0i"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Octave" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGN-BN-oiE">
-                                <rect key="frame" x="16" y="153" width="61.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OY4-Tl-2jl">
-                                <rect key="frame" x="177" y="231" width="20.5" height="20"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
-                                <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="geh-Lu-jnw">
-                                <rect key="frame" x="16" y="231" width="41" height="20"/>
+                                <rect key="frame" x="177" y="239" width="20.5" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.20000000000000001" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lqO-X1-l1Z">
-                                <rect key="frame" x="14" y="337" width="347" height="31"/>
-                                <color key="backgroundColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.45098039220000002" green="0.89019607840000003" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="minimumTrackTintColor" red="0.45098039220000002" green="0.89019607840000003" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="thumbTintColor" red="0.88235294119999996" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="14" y="345" width="347" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="minimumTrackTintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="0.31150835329999998" green="0.47834227439999999" blue="0.50608055730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="attackSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="QK0-tc-nll"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAu-eV-g50">
-                                <rect key="frame" x="16.5" y="309.5" width="158" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="158" id="I5G-0e-cw0"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="attack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAu-eV-g50">
+                                <rect key="frame" x="16" y="317" width="158" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cBE-2E-3yf">
-                                <rect key="frame" x="182.5" y="309" width="10.5" height="20"/>
+                                <rect key="frame" x="182" y="317" width="10.5" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OP5-mK-N1X">
-                                <rect key="frame" x="182.5" y="387" width="10.5" height="20"/>
+                                <rect key="frame" x="182" y="395" width="10.5" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Release" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqr-Xt-6Bh">
-                                <rect key="frame" x="16" y="387" width="158.5" height="20"/>
+                                <rect key="frame" x="16" y="395" width="158.5" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.02" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="NbM-yZ-H1b">
-                                <rect key="frame" x="14" y="415" width="347" height="31"/>
-                                <color key="backgroundColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="0.45098039220000002" green="0.89019607840000003" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="minimumTrackTintColor" red="0.45098039220000002" green="0.89019607840000003" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="thumbTintColor" red="0.88235294119999996" green="0.94117647059999998" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="14" y="423" width="347" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="minimumTrackTintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" red="0.31150835329999998" green="0.47834227439999999" blue="0.50608055730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="thumbTintColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="releaseSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="Qe2-dp-tsC"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotate your device to show the board" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZy-WE-lJY">
-                                <rect key="frame" x="25" y="551" width="325.5" height="17.5"/>
+                                <rect key="frame" x="25" y="559" width="325.5" height="17.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="15"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1bz-jY-8YS" customClass="SegmentedController" customModule="Fretless" customModuleProvider="target">
-                                <rect key="frame" x="16" y="20" width="343" height="49"/>
+                                <rect key="frame" x="16" y="28" width="343" height="49"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="cGT-MJ-ZCg"/>
-                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lowest Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw9-cR-yeg">
-                                <rect key="frame" x="16" y="77" width="113" height="20"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="range" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fw9-cR-yeg">
+                                <rect key="frame" x="16" y="85" width="52" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                 <color key="textColor" red="0.086274509799999996" green="0.20392156859999999" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="giM-1Y-gFk" customClass="SegmentedController" customModule="Fretless" customModuleProvider="target">
-                                <rect key="frame" x="16" y="105" width="343" height="40"/>
+                                <rect key="frame" x="16" y="113" width="343" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Unl-Ek-eVf"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bf5-xm-pQ1" customClass="SegmentedController" customModule="Fretless" customModuleProvider="target">
-                                <rect key="frame" x="16" y="181" width="343" height="40"/>
+                                <rect key="frame" x="16" y="189" width="343" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="pry-jr-dqC"/>
-                                </constraints>
                                 <connections>
                                     <action selector="octaveSliderChanged:" destination="ZkV-cu-yEm" eventType="valueChanged" id="9rW-5Q-Ims"/>
                                 </connections>
@@ -143,47 +138,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NGN-BN-oiE" firstAttribute="top" secondItem="giM-1Y-gFk" secondAttribute="bottom" constant="8" id="0JQ-aA-bMF"/>
-                            <constraint firstItem="giM-1Y-gFk" firstAttribute="top" secondItem="fw9-cR-yeg" secondAttribute="bottom" constant="8" id="1dc-ZU-8we"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="fw9-cR-yeg" secondAttribute="leading" id="56I-Dz-Szo"/>
-                            <constraint firstItem="cBE-2E-3yf" firstAttribute="top" secondItem="xcE-VN-amJ" secondAttribute="bottom" constant="20" id="76h-gb-vvW"/>
-                            <constraint firstItem="geh-Lu-jnw" firstAttribute="top" secondItem="Bf5-xm-pQ1" secondAttribute="bottom" constant="10" id="7uU-t9-JJP"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="Bf5-xm-pQ1" secondAttribute="leading" id="9IO-5g-tuI"/>
-                            <constraint firstItem="lqO-X1-l1Z" firstAttribute="top" secondItem="cBE-2E-3yf" secondAttribute="bottom" constant="8" id="9SN-tV-Jpf"/>
-                            <constraint firstItem="xcE-VN-amJ" firstAttribute="top" secondItem="OY4-Tl-2jl" secondAttribute="bottom" constant="8" id="A4g-EK-nsL"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="1bz-jY-8YS" secondAttribute="leading" id="AKB-p8-SXu"/>
-                            <constraint firstItem="OAu-eV-g50" firstAttribute="leading" secondItem="qF8-nc-0Wf" secondAttribute="leadingMargin" constant="0.5" id="CZp-e6-Bpi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="NbM-yZ-H1b" secondAttribute="trailing" id="Cpq-3m-LjF"/>
-                            <constraint firstItem="xcE-VN-amJ" firstAttribute="top" secondItem="geh-Lu-jnw" secondAttribute="bottom" constant="8" symbolic="YES" id="DeP-KU-Jgn"/>
-                            <constraint firstItem="OAu-eV-g50" firstAttribute="top" secondItem="xcE-VN-amJ" secondAttribute="bottom" constant="20.5" id="Dz3-2c-74D"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="1bz-jY-8YS" secondAttribute="trailing" id="FKY-Ay-VYI"/>
-                            <constraint firstItem="bZy-WE-lJY" firstAttribute="top" secondItem="NbM-yZ-H1b" secondAttribute="bottom" constant="106" id="FLF-AF-2JC"/>
-                            <constraint firstItem="OY4-Tl-2jl" firstAttribute="centerX" secondItem="qF8-nc-0Wf" secondAttribute="centerX" id="GQK-qe-5Wk"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="xcE-VN-amJ" secondAttribute="leading" id="Jc8-i4-Xd9"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lqO-X1-l1Z" secondAttribute="trailing" id="MAn-1T-unv"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="lqO-X1-l1Z" secondAttribute="leading" id="O40-fJ-4wa"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="giM-1Y-gFk" secondAttribute="leading" id="OEo-Dn-FrX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Bf5-xm-pQ1" secondAttribute="trailing" id="QIK-2w-fDm"/>
-                            <constraint firstItem="OP5-mK-N1X" firstAttribute="top" secondItem="lqO-X1-l1Z" secondAttribute="bottom" constant="20" id="RiY-Nv-CIW"/>
-                            <constraint firstItem="Bf5-xm-pQ1" firstAttribute="top" secondItem="NGN-BN-oiE" secondAttribute="bottom" constant="8" id="Tx8-1y-4FV"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="NbM-yZ-H1b" secondAttribute="leading" id="UDl-Wd-1RV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xcE-VN-amJ" secondAttribute="trailing" id="VRI-eq-Ffm"/>
-                            <constraint firstItem="fw9-cR-yeg" firstAttribute="top" secondItem="1bz-jY-8YS" secondAttribute="bottom" constant="8" id="bi7-Vu-BDJ"/>
-                            <constraint firstItem="geh-Lu-jnw" firstAttribute="leading" secondItem="xcE-VN-amJ" secondAttribute="leading" id="cGM-sF-gKq"/>
-                            <constraint firstItem="Mn1-FA-cLp" firstAttribute="leading" secondItem="NGN-BN-oiE" secondAttribute="trailing" constant="8" symbolic="YES" id="dfB-Ze-bu3"/>
-                            <constraint firstItem="geh-Lu-jnw" firstAttribute="firstBaseline" secondItem="OY4-Tl-2jl" secondAttribute="firstBaseline" id="fbB-Z9-2Yy"/>
-                            <constraint firstItem="Tqr-Xt-6Bh" firstAttribute="leading" secondItem="NbM-yZ-H1b" secondAttribute="leading" id="gOJ-1d-gKp"/>
-                            <constraint firstItem="NbM-yZ-H1b" firstAttribute="top" secondItem="OP5-mK-N1X" secondAttribute="bottom" constant="8" id="hjZ-gJ-f8u"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="NGN-BN-oiE" secondAttribute="leading" id="isI-BS-ghS"/>
-                            <constraint firstItem="cBE-2E-3yf" firstAttribute="centerX" secondItem="xcE-VN-amJ" secondAttribute="centerX" id="jaf-LY-0CN"/>
-                            <constraint firstItem="NGN-BN-oiE" firstAttribute="firstBaseline" secondItem="Mn1-FA-cLp" secondAttribute="firstBaseline" id="kTn-Q9-XoK"/>
-                            <constraint firstItem="OP5-mK-N1X" firstAttribute="centerX" secondItem="lqO-X1-l1Z" secondAttribute="centerX" id="nl2-Wc-yPm"/>
-                            <constraint firstItem="1bz-jY-8YS" firstAttribute="top" secondItem="BzK-Le-fDe" secondAttribute="bottom" id="oL8-xL-I8a"/>
-                            <constraint firstItem="NbM-yZ-H1b" firstAttribute="top" secondItem="Tqr-Xt-6Bh" secondAttribute="bottom" constant="8" symbolic="YES" id="oed-Zj-aOt"/>
-                            <constraint firstItem="bZy-WE-lJY" firstAttribute="centerX" secondItem="qF8-nc-0Wf" secondAttribute="centerX" id="u80-Nw-Eqp"/>
-                            <constraint firstItem="Tqr-Xt-6Bh" firstAttribute="firstBaseline" secondItem="OP5-mK-N1X" secondAttribute="firstBaseline" id="vQO-8L-RKD"/>
-                            <constraint firstItem="OP5-mK-N1X" firstAttribute="leading" secondItem="Tqr-Xt-6Bh" secondAttribute="trailing" constant="8" symbolic="YES" id="vfM-UX-LsG"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="giM-1Y-gFk" secondAttribute="trailing" id="wOT-cw-uoN"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="1bz-jY-8YS" secondAttribute="leading" id="2yg-1d-ER3"/>
+                            <constraint firstItem="1bz-jY-8YS" firstAttribute="centerX" secondItem="qF8-nc-0Wf" secondAttribute="centerX" id="3st-u8-HyR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1bz-jY-8YS" secondAttribute="trailing" id="929-z6-USi"/>
+                            <constraint firstItem="1bz-jY-8YS" firstAttribute="top" secondItem="BzK-Le-fDe" secondAttribute="bottom" constant="8" id="cqu-tt-V9t"/>
                         </constraints>
                     </view>
                     <connections>
