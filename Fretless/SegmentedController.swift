@@ -40,10 +40,7 @@ import UIKit
         layer.cornerRadius = frame.height / 2
         layer.borderColor = UIColor(white: 1.0, alpha: 0.5).cgColor
         layer.borderWidth = 1
-        
         backgroundColor = UIColor(white: 1.0, alpha: 0.3)
-        
-        setupLabels()
         insertSubview(thumbView, at: 0)
     }
     
@@ -113,18 +110,30 @@ import UIKit
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         let location = touch.location(in: self)
-        moveIndicatorTo(touchX: location.x)
+        var calculatedIndex: Int?
+        
+        for (index, item) in labels.enumerated() {
+            
+            if item.frame.contains(CGPoint(x: location.x, y: item.center.y)) {
+                calculatedIndex = index
+            }
+        }
+        
+        if calculatedIndex != nil {
+            selectedIndex = calculatedIndex!
+            sendActions(for: .valueChanged)
+        }
 
         return true
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        let location = touch?.location(in: superview)
+        let location = touch?.location(in: self)
         var calculatedIndex: Int?
         
         for (index, item) in labels.enumerated() {
             
-            if item.frame.contains(CGPoint(x: (location?.x)!, y: self.center.y)) {
+            if item.frame.contains(CGPoint(x: (location?.x)!, y: item.center.y)) {
                 calculatedIndex = index
             }
             
@@ -135,12 +144,12 @@ import UIKit
         }
     }
     
-    func startedTouchingThumbView(location: CGFloat) {
+    func startedTouchingThumbView(location: CGPoint) {
         var calculatedIndex: Int?
         
         for (index, item) in labels.enumerated() {
             
-            if item.frame.contains(CGPoint(x: location, y: self.center.y)) {
+            if item.frame.contains(CGPoint(x: location.x, y: item.center.y)) {
                 calculatedIndex = index
             }
             
@@ -151,16 +160,28 @@ import UIKit
         }
     }
     
-    func isTouchingThumbView(location: CGFloat) {
-        moveIndicatorTo(touchX: location)
-    }
-    
-    func didEndTouchInThumbView(location: CGFloat) {
+    func isTouchingThumbView(location: CGPoint) {
         var calculatedIndex: Int?
         
         for (index, item) in labels.enumerated() {
             
-            if item.frame.contains(CGPoint(x: location, y: self.center.y)) {
+            if item.frame.contains(CGPoint(x: location.x, y: item.center.y)) {
+                calculatedIndex = index
+            }
+            
+            if calculatedIndex != nil {
+                selectedIndex = calculatedIndex!
+                sendActions(for: .valueChanged)
+            }
+        }
+    }
+    
+    func didEndTouchInThumbView(location: CGPoint) {
+        var calculatedIndex: Int?
+        
+        for (index, item) in labels.enumerated() {
+            
+            if item.frame.contains(CGPoint(x: location.x, y: item.center.y)) {
                 calculatedIndex = index
             }
             
@@ -179,10 +200,11 @@ import UIKit
                        initialSpringVelocity: 0.5,
                        options: .allowAnimatedContent,
                        animations: {
-                        
                         self.thumbView.center.x = touchX
         },
-                       completion: nil)
+                       completion: nil
+        )
+        
         
     }
     
@@ -198,7 +220,7 @@ import UIKit
                        animations: {
                         
                         self.thumbView.frame = label.frame
-                        self.thumbView.center.x = label.center.x
+                        print("Display new selected index")
         },
                        completion: nil)
         

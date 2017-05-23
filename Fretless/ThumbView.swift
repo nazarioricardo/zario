@@ -9,9 +9,9 @@
 import UIKit
 
 protocol ThumbDelegate {
-    func startedTouchingThumbView(location: CGFloat)
-    func isTouchingThumbView(location: CGFloat)
-    func didEndTouchInThumbView(location: CGFloat)
+    func startedTouchingThumbView(location: CGPoint)
+    func isTouchingThumbView(location: CGPoint)
+    func didEndTouchInThumbView(location: CGPoint)
 }
 
 class ThumbView: UIControl {
@@ -28,18 +28,18 @@ class ThumbView: UIControl {
     
     override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
 //        self.center.x = touch.location(in: self).x
-        delegate?.startedTouchingThumbView(location: touch.location(in: superview).x)
+        delegate?.startedTouchingThumbView(location: (touch.location(in: superview)))
         return true
     }
     
     override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        delegate?.isTouchingThumbView(location: touch.location(in: superview).x)
+        delegate?.isTouchingThumbView(location: (touch.location(in: superview)))
         return true
     }
     
     override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         // Finished!
-        delegate?.didEndTouchInThumbView(location: (touch?.location(in: superview).x)!)
+        delegate?.didEndTouchInThumbView(location: (touch?.location(in: superview))!)
     }
 
     /*
