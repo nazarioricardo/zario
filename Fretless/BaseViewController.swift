@@ -13,27 +13,61 @@ class BaseViewController: UIViewController {
     
     var keyboardVC: KeyBoardViewController!
     
-    @IBOutlet weak var waveformSelector: UISegmentedControl!
-    @IBOutlet weak var noteSelector: UISegmentedControl!
-    @IBOutlet weak var octaveSlider: UISlider!
+    @IBOutlet weak var waveformPicker: SegmentedController!
+    @IBOutlet weak var notePicker: SegmentedController!
+    @IBOutlet weak var octavePicker: SegmentedController!
+    
     @IBOutlet weak var rangeSlider: UISlider!
     @IBOutlet weak var attackSlider: UISlider!
     @IBOutlet weak var releaseSlider: UISlider!
 
-    @IBOutlet weak var octaveLabel: UILabel!
     @IBOutlet weak var rangeLabel: UILabel!
+    @IBOutlet weak var rangeIndicatorLabel: UILabel!
     @IBOutlet weak var attackLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     
     var octaveMultiplier: Int!
+    var keys: Int {
+        get {
+            return Int(rangeSlider.value)
+        }
+    }
+    
+    var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    
+    var lowest: String {
+        get {
+            return notePicker.items[notePicker.selectedIndex]
+        }
+    }
+    var octave: String {
+        get {
+            return octavePicker.items[octavePicker.selectedIndex]
+        }
+    }
+    var highest: String {
+        get {
+            return notes[((notes.index(of: notePicker.items[notePicker.selectedIndex])! + (keys - 1)) % notes.count)]
+        }
+    }
+    var highOct: String {
+        get {
+            return String(octavePicker.selectedIndex + (keys/12) % notes.count)
+        }
+    }
+    
+    @IBAction func notePickerChanged(_ sender: Any) {
+        updateRangeIndicator()
+    }
     
     @IBAction func octaveSliderChanged(_ sender: Any) {
-        octaveMultiplier = Int(self.octaveSlider.value)
-        octaveLabel.text = String(Int(self.octaveSlider.value))
+        octaveMultiplier = Int(self.octavePicker.selectedIndex)
+        updateRangeIndicator()
     }
     
     @IBAction func rangeSliderChanged(_ sender: Any) {
-        rangeLabel.text = String(Int(rangeSlider.value))
+        rangeLabel.text = String(keys)
+        updateRangeIndicator()
     }
     
     @IBAction func attackSliderChanged(_ sender: Any) {
@@ -42,6 +76,11 @@ class BaseViewController: UIViewController {
     
     @IBAction func releaseSliderChanged(_ sender: Any) {
         releaseLabel.text = String(releaseSlider.value)
+    }
+    
+    func updateRangeIndicator() {
+        
+        rangeIndicatorLabel.text = "\(lowest)\(octave) - \(highest)\(highOct)"
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -64,7 +103,7 @@ class BaseViewController: UIViewController {
                                     
                     self.keyboardVC.chosenOctave = self.octaveMultiplier
                                     
-                    switch self.noteSelector.selectedSegmentIndex {
+                    switch self.notePicker.selectedIndex {
                         case 0:
                             self.keyboardVC.chosenNoteInterval = -9
                         case 1:
@@ -84,7 +123,7 @@ class BaseViewController: UIViewController {
                     }
                     
                     self.keyboardVC.modalTransitionStyle = .crossDissolve
-                    self.keyboardVC.selectedIndex = self.waveformSelector.selectedSegmentIndex
+                    self.keyboardVC.selectedIndex = self.waveformPicker.selectedIndex
                     self.keyboardVC.numberOfKeys = Int(self.rangeSlider.value)
                     self.keyboardVC.attack = self.attackSlider.value
                     self.keyboardVC.release = self.releaseSlider.value
@@ -98,14 +137,14 @@ class BaseViewController: UIViewController {
         
         let gradient = CAGradientLayer()
         
-        let leftColor = UIColor.white.withAlphaComponent(0.0)
-        let rightColor = UIColor.white.withAlphaComponent(0.2)
-        gradient.colors = [leftColor.cgColor, rightColor.cgColor]
-        gradient.startPoint = CGPoint(x: 1.0, y: 0.0)
-        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
-        gradient.frame = self.view.bounds
+        let topColor = UIColor.white.withAlphaComponent(0.0)
+        let botColor = UIColor.white.withAlphaComponent(0.3)
+        gradient.colors = [topColor.cgColor, botColor.cgColor]
+        gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.5, y: 0)
+        gradient.frame = CGRect(x: 0, y: 0, width: self.view.bounds.height, height: self.view.bounds.height)
         
-        self.view.layer.addSublayer(gradient)
+        self.view.layer.insertSublayer(gradient, above: self.view.layer.sublayers?.last)
     }
     
     override func viewDidLoad() {
@@ -113,16 +152,23 @@ class BaseViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(red: 225/255, green: 240/255, blue: 239/255, alpha: 1)
-        // self.waveformSelector.backgroundColor = UIColor(red: 18/255, green: 65/255, blue: 62/255, alpha: 1)
-        addGradient()
         
-        octaveMultiplier = Int(self.octaveSlider.value)
-        octaveLabel.text = String(Int(self.octaveSlider.value))
+        waveformPicker.items = ["Sine","Triangle","Square","Saw"]
+        notePicker.items = ["C","D","E","F","G","A","B"]
+        octavePicker.items = ["0", "1", "2", "3", "4", "5"]
+        
+        rangeIndicatorLabel.clipsToBounds = true
+        rangeIndicatorLabel.layer.cornerRadius = rangeIndicatorLabel.frame.height / 2
+        
+        octaveMultiplier = Int(self.octavePicker.selectedIndex)
         attackLabel.text = String(self.attackSlider.value)
         releaseLabel.text = String(self.releaseSlider.value)
-        waveformSelector.selectedSegmentIndex = 3
-        noteSelector.selectedSegmentIndex = 5
+        waveformPicker.selectedIndex = 3
+        notePicker.selectedIndex = 5
+        octavePicker.selectedIndex = 3
         Audiobus.start()
+        addGradient()
+        updateRangeIndicator()
         
     }
 
