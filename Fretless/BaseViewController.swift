@@ -21,20 +21,53 @@ class BaseViewController: UIViewController {
     @IBOutlet weak var attackSlider: UISlider!
     @IBOutlet weak var releaseSlider: UISlider!
 
-    @IBOutlet weak var octaveLabel: UILabel!
     @IBOutlet weak var rangeLabel: UILabel!
+    @IBOutlet weak var rangeIndicatorLabel: UILabel!
     @IBOutlet weak var attackLabel: UILabel!
     @IBOutlet weak var releaseLabel: UILabel!
     
     var octaveMultiplier: Int!
+    var keys: Int {
+        get {
+            return Int(rangeSlider.value)
+        }
+    }
+    
+    var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    
+    var lowest: String {
+        get {
+            return notePicker.items[notePicker.selectedIndex]
+        }
+    }
+    var octave: String {
+        get {
+            return octavePicker.items[octavePicker.selectedIndex]
+        }
+    }
+    var highest: String {
+        get {
+            return notes[((notes.index(of: notePicker.items[notePicker.selectedIndex])! + (keys - 1)) % notes.count)]
+        }
+    }
+    var highOct: String {
+        get {
+            return String(octavePicker.selectedIndex + (keys/12) % notes.count)
+        }
+    }
+    
+    @IBAction func notePickerChanged(_ sender: Any) {
+        updateRangeIndicator()
+    }
     
     @IBAction func octaveSliderChanged(_ sender: Any) {
         octaveMultiplier = Int(self.octavePicker.selectedIndex)
-        octaveLabel.text = String(Int(self.octavePicker.selectedIndex))
+        updateRangeIndicator()
     }
     
     @IBAction func rangeSliderChanged(_ sender: Any) {
-        rangeLabel.text = String(Int(rangeSlider.value))
+        rangeLabel.text = String(keys)
+        updateRangeIndicator()
     }
     
     @IBAction func attackSliderChanged(_ sender: Any) {
@@ -43,6 +76,11 @@ class BaseViewController: UIViewController {
     
     @IBAction func releaseSliderChanged(_ sender: Any) {
         releaseLabel.text = String(releaseSlider.value)
+    }
+    
+    func updateRangeIndicator() {
+        
+        rangeIndicatorLabel.text = "\(lowest)\(octave) - \(highest)\(highOct)"
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -119,8 +157,10 @@ class BaseViewController: UIViewController {
         notePicker.items = ["C","D","E","F","G","A","B"]
         octavePicker.items = ["0", "1", "2", "3", "4", "5"]
         
+        rangeIndicatorLabel.clipsToBounds = true
+        rangeIndicatorLabel.layer.cornerRadius = rangeIndicatorLabel.frame.height / 2
+        
         octaveMultiplier = Int(self.octavePicker.selectedIndex)
-        octaveLabel.text = String(Int(self.octavePicker.selectedIndex))
         attackLabel.text = String(self.attackSlider.value)
         releaseLabel.text = String(self.releaseSlider.value)
         waveformPicker.selectedIndex = 3
@@ -128,6 +168,7 @@ class BaseViewController: UIViewController {
         octavePicker.selectedIndex = 3
         Audiobus.start()
         addGradient()
+        updateRangeIndicator()
         
     }
 

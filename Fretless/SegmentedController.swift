@@ -25,6 +25,8 @@ import UIKit
         }
     }
     
+    public var currentValue: String!
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -214,6 +216,7 @@ import UIKit
     func displayNewSelectedIndex() {
         
         let label = labels[selectedIndex]
+        self.currentValue = self.items[selectedIndex]
         
         UIView.animate(withDuration: 0.7,
                        delay: 0.0,
