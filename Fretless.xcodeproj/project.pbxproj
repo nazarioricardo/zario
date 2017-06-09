@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		1E7766921BFEF76FE421C091 /* Pods_FretlessUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C21C031954720076777C9EA4 /* Pods_FretlessUITests.framework */; };
 		8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C0324721E60E27C00062B8D /* BaseViewController.swift */; };
+		8C3A3D8B1EEA391E00FB8B20 /* Audiobus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3A3D8A1EEA391E00FB8B20 /* Audiobus.swift */; };
 		8C6A6ABF1EA3056500C816F0 /* Audiobus.txt in Resources */ = {isa = PBXBuildFile; fileRef = 8C6A6ABE1EA3056500C816F0 /* Audiobus.txt */; };
 		8C8494B61EA023AC00467D30 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8494B51EA023AC00467D30 /* AudioToolbox.framework */; };
-		8C8494B91EA033CC00467D30 /* Audiobus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8494B81EA033CC00467D30 /* Audiobus.swift */; };
 		8C881D671EBABC99001F378A /* SegmentedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C881D661EBABC99001F378A /* SegmentedController.swift */; };
 		8CB2F4161EB24DAE0096E541 /* KeyBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2F4151EB24DAE0096E541 /* KeyBoardView.swift */; };
 		8CB2F4181EB250230096E541 /* TouchIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB2F4171EB250230096E541 /* TouchIndicatorView.swift */; };
@@ -51,11 +51,11 @@
 		08CD9D501FCDC21BF7C628A8 /* Pods-FretlessTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretlessTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretlessTests/Pods-FretlessTests.release.xcconfig"; sourceTree = "<group>"; };
 		58E3768759647ABA2F4D990A /* Pods-FretlessUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FretlessUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FretlessUITests/Pods-FretlessUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8C0324721E60E27C00062B8D /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8C3A3D8A1EEA391E00FB8B20 /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audiobus.swift; sourceTree = "<group>"; };
 		8C6A6ABE1EA3056500C816F0 /* Audiobus.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Audiobus.txt; path = Fretless/Audiobus.txt; sourceTree = SOURCE_ROOT; };
 		8C8494B41EA023AC00467D30 /* Fretless.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fretless.entitlements; sourceTree = "<group>"; };
 		8C8494B51EA023AC00467D30 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		8C8494B71EA033A700467D30 /* Fretless-BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Fretless-BridgingHeader.h"; path = "Fretless/Fretless-BridgingHeader.h"; sourceTree = SOURCE_ROOT; };
-		8C8494B81EA033CC00467D30 /* Audiobus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Audiobus.swift; path = Fretless/Audiobus.swift; sourceTree = SOURCE_ROOT; };
 		8C881D661EBABC99001F378A /* SegmentedController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedController.swift; sourceTree = "<group>"; };
 		8CB2F4151EB24DAE0096E541 /* KeyBoardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBoardView.swift; sourceTree = "<group>"; };
 		8CB2F4171EB250230096E541 /* TouchIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchIndicatorView.swift; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		8C881D621EBAAD33001F378A /* Audiobus */ = {
 			isa = PBXGroup;
 			children = (
-				8C8494B81EA033CC00467D30 /* Audiobus.swift */,
+				8C3A3D8A1EEA391E00FB8B20 /* Audiobus.swift */,
 				8C8494B71EA033A700467D30 /* Fretless-BridgingHeader.h */,
 				8C6A6ABE1EA3056500C816F0 /* Audiobus.txt */,
 			);
@@ -539,12 +539,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C8494B91EA033CC00467D30 /* Audiobus.swift in Sources */,
 				8CC121541E5E1A2300D22345 /* KeyBoardViewController.swift in Sources */,
 				8C0324731E60E27C00062B8D /* BaseViewController.swift in Sources */,
 				8CB2F4161EB24DAE0096E541 /* KeyBoardView.swift in Sources */,
 				8CC121821E5E1B1F00D22345 /* KeyView.swift in Sources */,
 				8CB2F4181EB250230096E541 /* TouchIndicatorView.swift in Sources */,
+				8C3A3D8B1EEA391E00FB8B20 /* Audiobus.swift in Sources */,
 				8CF4D1131EB423A000C5AE2C /* GradientView.swift in Sources */,
 				8CC121521E5E1A2300D22345 /* AppDelegate.swift in Sources */,
 				8C881D671EBABC99001F378A /* SegmentedController.swift in Sources */,
