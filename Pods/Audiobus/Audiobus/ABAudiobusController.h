@@ -12,7 +12,11 @@ extern "C" {
 
 #import <Foundation/Foundation.h>
 #import "ABCommon.h"
-#import "ABFilterPort.h"
+#import "ABAudioFilterPort.h"
+
+@class ABMIDISenderPort;
+@class ABMIDIReceiverPort;    
+@class ABMIDIFilterPort;
 
 #pragma mark Notifications
 /** @name Notifications */
@@ -67,6 +71,7 @@ extern NSString * const ABConnectedNotification;
  */
 extern NSString * const ABDisconnectedNotification;
     
+    
 /*!
  * Peer attributes changed
  *
@@ -90,7 +95,15 @@ extern NSString * const ABConnectionPanelShownNotification;
  */
 extern NSString * const ABConnectionPanelHiddenNotification;
 
-   
+/*!
+ * Application is about to terminate
+ *
+ *  When Audiobus isn't able to instantiate a remote Audio Unit, then it will
+ *  send an exit request to this app. Before executing exit this notification
+ *  will be sent out.
+ */
+extern NSString * const ABApplicationWillTerminateNotification;
+    
 
 
 #pragma mark State IO Protocol
@@ -174,9 +187,9 @@ extern NSString * const ABStateDictionaryPresetNameKey;
  */
 extern NSString * const ABPeerKey;
 
-@class ABReceiverPort;
-@class ABSenderPort;
-@class ABFilterPort;
+@class ABAudioReceiverPort;
+@class ABAudioSenderPort;
+@class ABAudioFilterPort;
 @class ABPeer;
 @class ABPort;
 @class ABTrigger;
@@ -274,10 +287,27 @@ extern NSString * const ABPeerKey;
  */
 - (void)removeTrigger:(ABTrigger*)trigger;
 
+#pragma mark - All ports
+
+/*!
+ * Returns the port with a given unique ID or Nil when not found.
+ */
+- (ABPort*) portWithUniqueID:(uint32_t)uniqueID;
+
+
+/*!
+ * Returns the port with a given name or Nil when not found.
+ */
+- (ABPort*) portWithName:(NSString*)name;
+
+/*!
+ * Returns an array of objects of type ABPort*.
+ */
+- (NSArray*) allPorts;
 
 
 ///@}
-#pragma mark - Audio ports
+#pragma mark - Audio sender ports
 /** @name Audio ports */
 ///@{
 
@@ -294,7 +324,12 @@ extern NSString * const ABPeerKey;
  *
  * @param port The port to add
  */
-- (void)addSenderPort:(ABSenderPort*)port;
+- (void)addAudioSenderPort:(ABAudioSenderPort*)port;
+
+/*!
+ * Deprecated. Use addAudioSenderPort instead.
+ */
+- (void)addSenderPort:(ABAudioSenderPort*)port __deprecated_msg("Use addAudioSenderPort instead");
 
 /*!
  * Access a sender port
@@ -307,7 +342,12 @@ extern NSString * const ABPeerKey;
  * @param name Name of port
  * @return Sender port
  */
-- (ABSenderPort*)senderPortNamed:(NSString*)name;
+- (ABAudioSenderPort*)audioSenderPortNamed:(NSString*)name;
+
+/*!
+ * Deprecated. Use addAudioSenderPort instead.
+ */
+- (ABAudioSenderPort*)senderPortNamed:(NSString*)name __deprecated_msg("Use audioSenderPortNamed instead");
 
 /*!
  * Remove a sender port
@@ -316,7 +356,12 @@ extern NSString * const ABPeerKey;
  *
  * @param port The port to remove
  */
-- (void)removeSenderPort:(ABSenderPort*)port;
+- (void)removeAudioSenderPort:(ABAudioSenderPort*)port;
+
+/*!
+ * Deprecated. Use addAudioSenderPort instead.
+ */
+- (void)removeSenderPort:(ABAudioSenderPort*)port __deprecated_msg("Use removeAudioSenderPort instead");
 
 /*!
  * Sort the sender ports
@@ -326,14 +371,115 @@ extern NSString * const ABPeerKey;
  *
  * @param cmptr Comparitor block used to provide the order
  */
-- (void)sortSenderPortsUsingComparitor:(NSComparator)cmptr;
+- (void)sortAudioSenderPortsUsingComparitor:(NSComparator)cmptr;
+
+/*!
+ * Deprecated. Use sortAudioSenderPortsUsingComparitor instead.
+ */
+- (void)sortSenderPortsUsingComparitor:(NSComparator)cmptr __deprecated_msg("Use sortAudioSenderPortsUsingComparitor instead");
+
+
+/*!
+ * Currently defined sender ports
+ *
+ *  The sender ports you have registered with @link addSenderPort: @endlink, as an
+ *  array of ABAudioSenderPort.
+ */
+@property (nonatomic, readonly) NSArray *audioSenderPorts;
+
+/*!
+ * Deprecated. Use audioSenderPorts instead.
+ */
+@property (nonatomic, readonly) NSArray *senderPorts __deprecated_msg("Use audioSenderPorts instead!");
+
+
+#pragma mark - Audio filter ports
+
+/*!
+ * Add a filter port
+ *
+ *  Filter ports expose audio processing functionality to the Audiobus ecosystem, allowing users to use your
+ *  app as an audio filtering node.
+ *
+ *  When you create a filter port, you pass in a block to be used to process the audio as it comes in.
+ *
+ * @param port The filter port
+ */
+- (void)addAudioFilterPort:(ABAudioFilterPort*)port;
+
+/*!
+ * Deprecated. Use addAudioFilterPort instead.
+ */
+- (void)addFilterPort:(ABAudioFilterPort*)port __deprecated_msg("Use addAudioFilterPort instead");
+
+/*!
+ * Get the filter port
+ *
+ *  This is used to access the attributes of the connected ports. Note that the actual process of
+ *  receiving and sending audio is handled automatically.
+ *
+ * @param name The name of the filter port
+ * @return Filter port
+ */
+- (ABAudioFilterPort*)audioFilterPortNamed:(NSString*)name;
+
+/*!
+ * Deprecated. Use audioFilterPortNamed instead.
+ */
+- (ABAudioFilterPort*)filterPortNamed:(NSString*)name __deprecated_msg("Use audioFilterPortNamed instead");
+
+/*!
+ * Remove a filter port
+ *
+ * @param port The port to remove
+ */
+- (void)removeAudioFilterPort:(ABAudioFilterPort*)port;
+
+/*!
+ * Deprecated. Use removeAudioFilterPort instead.
+ */
+- (void)removeFilterPort:(ABAudioFilterPort*)port __deprecated_msg("Use removeAudioFilterPort instead");
+
+/*!
+ * Sort the filter ports
+ *
+ *  This method allows you to assign an order to the fiter ports. This is the
+ *  order in which the ports will appear within Audiobus.
+ *
+ * @param cmptr Comparitor block used to provide the order
+ */
+- (void)sortAudioFilterPortsUsingComparitor:(NSComparator)cmptr;
+
+/*!
+ * Deprecated. Use sortAudioFilterPortsUsingComparitor instead.
+ */
+- (void)sortFilterPortsUsingComparitor:(NSComparator)cmptr __deprecated_msg("Use sortAudioFilterPortsUsingComparitor instead");
+
+
+/*!
+ * Currently defined filter ports
+ *
+ *  The filter ports you have registered with @link addFilterPort: @endlink, as an
+ *  array of ABAudioFilterPort.
+ */
+@property (nonatomic, readonly) NSArray *audioFilterPorts;
+
+
+/*!
+ * Deprecated. Use audioFilterPorts instead.
+ */
+@property (nonatomic, readonly) NSArray *filterPorts __deprecated_msg("Use audioFilterPorts instead!");
+
+
+
+#pragma mark - Audio receiver ports
 
 /*!
  * Add a receiver port
  *
  *  Receiver ports allow your app to receive audio from other apps.
  *
- *  Note that any receiver port can receive inputs from any number of sources. You do not need to
+ *  MIDI that any receiver port can receive inputs from any number of sources. You do not need to
  *  create additional receiver ports to receive audio from multiple sources.
  *
  *  Ideally, the first port you create should perform some sensible default behaviour: This will be the port
@@ -341,7 +487,12 @@ extern NSString * const ABPeerKey;
  *
  * @param port The receiver port
  */
-- (void)addReceiverPort:(ABReceiverPort*)port;
+- (void)addAudioReceiverPort:(ABAudioReceiverPort*)port;
+
+/*!
+ * Deprecated. Use addAudioReceiverPort instead.
+ */
+- (void)addReceiverPort:(ABAudioReceiverPort*)port __deprecated_msg("Use addAudioReceiverPort instead");
 
 /*!
  * Access a receiver port
@@ -354,7 +505,13 @@ extern NSString * const ABPeerKey;
  * @param name Name of port.
  * @return Receiver port
  */
-- (ABReceiverPort*)receiverPortNamed:(NSString*)name;
+- (ABAudioReceiverPort*)audioReceiverPortNamed:(NSString*)name;
+
+/*!
+ * Deprecated. Use audioReceiverPortNamed instead.
+ */
+- (ABAudioReceiverPort*)receiverPortNamed:(NSString*)name __deprecated_msg("Use audioReceiverPortNamed instead");
+
 
 /*!
  * Remove a receiver port
@@ -363,7 +520,13 @@ extern NSString * const ABPeerKey;
  *
  * @param port The port to remove
  */
-- (void)removeReceiverPort:(ABReceiverPort*)port;
+- (void)removeAudioReceiverPort:(ABAudioReceiverPort*)port;
+
+/*!
+ * Deprecated. Use removeAudioReceiverPort instead.
+ */
+- (void)removeReceiverPort:(ABAudioReceiverPort*)port __deprecated_msg("Use removeAudioReceiverPort instead");
+
 
 /*!
  * Sort the receiver ports
@@ -373,72 +536,194 @@ extern NSString * const ABPeerKey;
  *
  * @param cmptr Comparitor block used to provide the order
  */
-- (void)sortReceiverPortsUsingComparitor:(NSComparator)cmptr;
+- (void)sortAudioReceiverPortsUsingComparitor:(NSComparator)cmptr;
 
 /*!
- * Add a filter port
- *
- *  Filter ports expose audio processing functionality to the Audiobus ecosystem, allowing users to use your
- *  app as an audio filtering node.
- *
- *  When you create a filter port, you pass in a block to be used to process the audio as it comes in.
- *
- * @param port The filter port
+ * Deprecated. Use sortAudioReceiverPortsUsingComparitor instead.
  */
-- (void)addFilterPort:(ABFilterPort*)port;
+- (void)sortReceiverPortsUsingComparitor:(NSComparator)cmptr __deprecated_msg("Use sortAudioReceiverPortsUsingComparitor instead");
 
-/*!
- * Get the filter port
- *
- *  This is used to access the attributes of the connected ports. Note that the actual process of
- *  receiving and sending audio is handled automatically.
- *
- * @param name The name of the filter port
- * @return Filter port
- */
-- (ABFilterPort*)filterPortNamed:(NSString*)name;
-
-/*!
- * Remove a filter port
- *
- * @param port The port to remove
- */
-- (void)removeFilterPort:(ABFilterPort*)port;
-
-/*!
- * Sort the filter ports
- *
- *  This method allows you to assign an order to the fiter ports. This is the
- *  order in which the ports will appear within Audiobus.
- *
- * @param cmptr Comparitor block used to provide the order
- */
-- (void)sortFilterPortsUsingComparitor:(NSComparator)cmptr;
-
-
-/*!
- * Currently defined sender ports
- *
- *  The sender ports you have registered with @link addSenderPort: @endlink, as an
- *  array of ABSenderPort.
- */
-@property (nonatomic, readonly) NSArray *senderPorts;
 
 /*!
  * Currently defined receiver ports
  *
  *  The receiver ports you have registered with @link addReceiverPort: @endlink, as an
- *  array of ABReceiverPort.
+ *  array of ABAudioReceiverPort.
  */
-@property (nonatomic, readonly) NSArray *receiverPorts;
+@property (nonatomic, readonly) NSArray *audioReceiverPorts;
 
 /*!
- * Currently defined filter ports
- *
- *  The filter ports you have registered with @link addFilterPort: @endlink, as an
- *  array of ABFilterPort.
+ * Deprecated. Use audioReceiverPorts instead.
  */
-@property (nonatomic, readonly) NSArray *filterPorts;
+@property (nonatomic, readonly) NSArray *receiverPorts __deprecated_msg("Use audioReceiverPorts instead!");
+
+
+
+
+
+#pragma mark - MIDI sender ports
+
+
+/*!
+ * Add a MIDI port
+ *
+ *  Sender ports let your app send MIDI to other apps.
+ *
+ * You can create several MIDI ports to offer several separate MIDI streams.
+ * For example, a multi-track MIDI sequencer could define additional MIDI ports
+ * for each track, so each track can be routed to a different place.
+ *
+ * @param port The port to add
+ */
+- (void)addMIDISenderPort:(ABMIDISenderPort*)port;
+
+/*!
+ * Remove a MIDI port
+ *
+ *  It is your responsibility to make sure you stop accessing the port prior to calling this method.
+ *
+ * @param port The port to remove
+ */
+-(void)removeMIDISenderPort:(ABMIDISenderPort*)port;
+
+/*!
+ * Sort the MIDI ports
+ *
+ *  This method allows you to assign an order to the sender ports. This is the
+ *  order in which the MIDI ports will appear within Audiobus.
+ *
+ * @param cmptr Comparitor block used to provide the order
+ */
+-(void)sortMIDISenderPortsUsingComparitor:(NSComparator)cmptr;
+
+/*!
+ * Get the MIDI Port
+ *
+ *  This is used to access the attributes of the connected ports.
+ *
+ * @param name The name of the MIDI port
+ * @return MIDI port.
+ */
+-(ABMIDISenderPort *)MIDISenderPortNamed:(NSString *)name;
+
+
+/*!
+ * Currently defined MIDI ports
+ *
+ * The sender ports you have registered with @link addMIDISenderPort: @endlink,
+ * as an array of ABMIDISenderPorts.
+ */
+@property (nonatomic, readonly) NSArray *MIDISenderPorts;
+
+#pragma mark - MIDI Filter ports
+
+/*!
+ * Add a MIDI Filter port
+ *
+ *  Filter ports let your app transform MIDI received from other apps.
+ *
+ * You can create several MIDI Filter ports to process several separate MIDI streams.
+ * For example, a multi-track MIDI arpeggiator could define additional MIDI Filter ports
+ * for each track, so each track can be routed to a different place.
+ *
+ * @param port The port to add
+ */
+- (void)addMIDIFilterPort:(ABMIDIFilterPort*)port;
+
+/*!
+ * Remove a MIDI Filter port
+ *
+ *  It is your responsibility to make sure you stop accessing the port prior to calling this method.
+ *
+ * @param port The port to remove
+ */
+-(void)removeMIDIFilterPort:(ABMIDIFilterPort*)port;
+
+/*!
+ * Sort the MIDI Filter ports
+ *
+ *  This method allows you to assign an order to the filter ports. This is the
+ *  order in which the MIDI ports will appear within Audiobus.
+ *
+ * @param cmptr Comparitor block used to provide the order
+ */
+-(void)sortMIDIFilterPortsUsingComparitor:(NSComparator)cmptr;
+
+/*!
+ * Get the MIDI Filter port
+ *
+ *  This is used to access the attributes of the connected ports.
+ *
+ * @param name The name of the MIDI Filter port
+ * @return MIDI Filter port.
+ */
+-(ABMIDIFilterPort *)MIDIFilterPortNamed:(NSString *)name;
+
+
+/*!
+ * Currently defined MIDI Filter ports
+ *
+ * The filter ports you have registered with @link addMIDIFilterPort: @endlink,
+ * as an array of ABMIDIFilterPorts.
+ */
+@property (nonatomic, readonly) NSArray *MIDIFilterPorts;
+
+
+
+#pragma mark - MIDI Receiver ports
+
+/*!
+ * Add a MIDI Receiver port
+ *
+ *  Filter ports let your app receive MIDI from other apps.
+ *
+ * You can create several MIDI Receiver ports to process several separate MIDI streams.
+ * For example, a multi-track MIDI recorder could define additional MIDI Filter ports
+ * for each track, so each track can be routed to a different place.
+ *
+ * @param port The port to add
+ */
+- (void)addMIDIReceiverPort:(ABMIDIReceiverPort*)port;
+
+/*!
+ * Remove a MIDI Receiver port
+ *
+ *  It is your responsibility to make sure you stop accessing the port prior to calling this method.
+ *
+ * @param port The port to remove
+ */
+-(void)removeMIDIReceiverPort:(ABMIDIReceiverPort*)port;
+
+/*!
+ * Sort the MIDI Receiver ports
+ *
+ *  This method allows you to assign an order to the filter ports. This is the
+ *  order in which the MIDI ports will appear within Audiobus.
+ *
+ * @param cmptr Comparitor block used to provide the order
+ */
+-(void)sortMIDIReceiverPortsUsingComparitor:(NSComparator)cmptr;
+
+/*!
+ * Get the MIDI Receiver port
+ *
+ *  This is used to access the attributes of the connected ports.
+ *
+ * @param name The name of the MIDI Receiver port
+ * @return MIDI Receiver port.
+ */
+-(ABMIDIReceiverPort *)MIDIReceiverPortNamed:(NSString *)name;
+
+
+/*!
+ * Currently defined MIDI Receiver ports
+ *
+ * The filter ports you have registered with @link addMIDIReceiverPort: @endlink,
+ * as an array of ABMIDIReceiverPorts.
+ */
+@property (nonatomic, readonly) NSArray *MIDIReceiverPorts;
+
+
 
 ///@}
 #pragma mark - Properties
@@ -502,6 +787,23 @@ extern NSString * const ABPeerKey;
  */
 @property (nonatomic, readonly) BOOL audiobusConnected;
 
+
+/*!
+ * Whether your app is connected to anything via Audiobus 2 specifically (not Inter-App Audio)
+ *
+ * Same as audiobusConnected but with the difference that the property becomes
+ * only true when your app is connected to Audiobus 2.
+ */
+@property (nonatomic, readonly) BOOL audiobus2Connected;
+
+/*!
+ * Whether your app is connected to anything via Audiobus 3 specifically (not Inter-App Audio)
+ *
+ * Same as audiobusConnected but with the difference that the property becomes
+ * only true when your app is connected to Audiobus 3.
+ */
+@property (nonatomic, readonly) BOOL audiobus3AndHigherConnected;
+
 /*!
  * Whether the port is connected via Inter-App Audio
  *
@@ -514,6 +816,16 @@ extern NSString * const ABPeerKey;
  *  changes to YES, or vice versa.
  */
 @property (nonatomic, readonly) BOOL interAppAudioConnected;
+
+
+/*!
+ * Whether the MIDI port is connected to Audiobus.
+ *
+ *  When your app provides at least one MIDI port this property reflects
+ *  wether this port is connected to some other inter app audio instrument. 
+ *
+ */
+@property (nonatomic, readonly) BOOL audiobusMIDIPortConnected;
 
 /*!
  * Whether the app is part of an active Audiobus session
@@ -557,7 +869,43 @@ extern NSString * const ABPeerKey;
  */
 - (void) setNeedsStatusBarAppearanceUpdate;
 
+#pragma mark - Switch between Audiobus and other Technologies
 
+/*!
+ * Set this block to be informed wether your app should show or hide its 
+ * Inter-App audio transport panel.
+ *
+ * When your app is connected to Audiobus the Inter-App audio transport panel 
+ * needs to be hidden. Set a block here which shows / hides the panel depending
+ * on the parameter "hidePanel".
+ */
+@property (nonatomic, copy) void(^showInterAppAudioTransportPanelBlock)(BOOL showPanel) ;
+
+
+
+/*!
+ * For apps with MIDI Receiver ports: Set this block to prevent receiving Core 
+ * MIDI events twice.
+ *
+ * Audiobus will collect Core MIDI events and route it to your synth app.
+ * Thus your app might not want to receive these Core MIDI events directly
+ * from Core MIDI sources.
+ * Assign a block to this property which enables or disables Core MIDI receiving
+ * depending on the parameter "receivingEnabled".
+ */
+@property (nonatomic, copy) void(^enableReceivingCoreMIDIBlock)(BOOL receivingEnabled);
+
+
+/*!
+ * For Apps with MIDI sender ports: Set this block to prevent double MIDI routings
+ *
+ * Assign a block to this property which enables or disables Core MIDI
+ * receiving depending on the parameter "sendingEnabled". Audiobus will call
+ * this block if it starts and stops receiving MIDI from your app. Thus we 
+ * will prevent that apps connected to Audiobus receive MIDI twice from 
+ * your MIDI controller: One time from via Audiobus and a second time directly.
+ */
+@property (nonatomic, copy) void(^enableSendingCoreMIDIBlock)(BOOL sendingEnabled);
 
 @end
 

@@ -17,6 +17,7 @@ class BaseViewController: UIViewController {
     @IBOutlet weak var notePicker: SegmentedController!
     @IBOutlet weak var octavePicker: SegmentedController!
     
+    @IBOutlet weak var rangeSubView: UIView!
     @IBOutlet weak var rangeSlider: UISlider!
     @IBOutlet weak var attackSlider: UISlider!
     @IBOutlet weak var releaseSlider: UISlider!
@@ -27,14 +28,15 @@ class BaseViewController: UIViewController {
     @IBOutlet weak var releaseLabel: UILabel!
     
     var octaveMultiplier: Int!
+    var selectedNoteOn13: Int!
+    
+    var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    
     var keys: Int {
         get {
             return Int(rangeSlider.value)
         }
     }
-    
-    var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    
     var lowest: String {
         get {
             return notePicker.items[notePicker.selectedIndex]
@@ -52,7 +54,7 @@ class BaseViewController: UIViewController {
     }
     var highOct: String {
         get {
-            return String(octavePicker.selectedIndex + (keys/12) % notes.count)
+            return String((octavePicker.selectedIndex + ((selectedNoteOn13 + keys - 1) / 12)))
         }
     }
     
@@ -79,7 +81,24 @@ class BaseViewController: UIViewController {
     }
     
     func updateRangeIndicator() {
-        
+        switch notePicker.selectedIndex {
+        case 0:
+            selectedNoteOn13 = 0
+        case 1:
+            selectedNoteOn13 = 2
+        case 2:
+            selectedNoteOn13 = 4
+        case 3:
+            selectedNoteOn13 = 5
+        case 4:
+            selectedNoteOn13 = 7
+        case 5:
+            selectedNoteOn13 = 9
+        case 6:
+            selectedNoteOn13 = 11
+        default:
+            selectedNoteOn13 = 0
+        }
         rangeIndicatorLabel.text = "\(lowest)\(octave) - \(highest)\(highOct)"
     }
     
@@ -142,7 +161,7 @@ class BaseViewController: UIViewController {
         gradient.colors = [topColor.cgColor, botColor.cgColor]
         gradient.startPoint = CGPoint(x: 0.5, y: 1.0)
         gradient.endPoint = CGPoint(x: 0.5, y: 0)
-        gradient.frame = CGRect(x: 0, y: 0, width: self.view.bounds.height, height: self.view.bounds.height)
+        gradient.frame = CGRect(x: 0, y: 0, width: self.view.bounds.height * 4, height: self.view.bounds.height)
         
         self.view.layer.insertSublayer(gradient, above: self.view.layer.sublayers?.last)
     }
@@ -153,6 +172,9 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor(red: 225/255, green: 240/255, blue: 239/255, alpha: 1)
         
+        rangeSubView.clipsToBounds = true
+        rangeSubView.layer.cornerRadius = 30
+        
         waveformPicker.items = ["Sine","Triangle","Square","Saw"]
         notePicker.items = ["C","D","E","F","G","A","B"]
         octavePicker.items = ["0", "1", "2", "3", "4", "5"]
@@ -160,16 +182,23 @@ class BaseViewController: UIViewController {
         rangeIndicatorLabel.clipsToBounds = true
         rangeIndicatorLabel.layer.cornerRadius = rangeIndicatorLabel.frame.height / 2
         
-        octaveMultiplier = Int(self.octavePicker.selectedIndex)
-        attackLabel.text = String(self.attackSlider.value)
-        releaseLabel.text = String(self.releaseSlider.value)
         waveformPicker.selectedIndex = 3
         notePicker.selectedIndex = 5
         octavePicker.selectedIndex = 3
+        
+        octaveMultiplier = Int(self.octavePicker.selectedIndex)
+        attackLabel.text = String(self.attackSlider.value)
+        releaseLabel.text = String(self.releaseSlider.value)
+        
         Audiobus.start()
         addGradient()
         updateRangeIndicator()
+    
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
+
     }
 
     override func didReceiveMemoryWarning() {

@@ -1,5 +1,5 @@
-Audiobus SDK -- Version 2.3.3 -- February 3rd 2017
-==================================================
+Audiobus SDK -- Version 3.0.0 -- May 17th 2017
+==============================================
 
 Thanks for downloading the Audiobus distribution!
 
@@ -17,12 +17,39 @@ https://audiob.us
 Changes
 =======
 
-2.3.3
----
- - Changed deployment target back to iOS 7.0
+
+3.0.0
+-----
+
+Important:
+
+ - For developers already using the Audiobus 2 SDK, please read the [2.0 to 3.0 Migration Guide]( https://developer.audiob.us/doc/_migration-_guide.html)
+ - Audiobus compatible apps now need to link `libz.tbd`
+
+Features:
+
+ - MIDI support!
+     - The Audiobus SDK now supports the creation of MIDI Sender, MIDI Filter and MIDI Receiver ports.
+     - See the AB Sender sample app (included within SDK distribution) to see MIDI Receiver ports and MIDI Sender ports in action.
+     - See AB MIDI Filter sample app to see MIDI Filter ports in action.
+ - Reworked Audio Unit Management to facilitate robust background launching.
+ - Connection Panel shows Audio Unit Extensions like ordinary apps, and allows
+   switching to Audio Unit Extension instances: Tapping an Audio Unit Extension
+   launch button opens Audiobus and reveals the corresponding instance.
+ - Improved API Key validator. Many errors are detected and reported in the console.
+ - Introduced various `ABPort` properties to retrieve information about sources,
+   assigned pipelines, etc.
+
+Fixes:
+
+ - Apps that offer Inter-App Audio instrument ports are treated as MIDI receiver ports.
+ - Fixes issues with `ABAudioReceiverPort` in Audiobus 3
+ - Fixes sporadic crash in `ABAudioReceiverPort` when changing client format
+ - Fixed SDK crash when using interleaved stereo format
 
 2.3.2
----
+-----
+
  - Fixed Connection Panel positioning problems in split screen mode.
  - Fixed potential crashes with privately used ABLogger
  - Added UIControlEventTouchCancel to list of supported control events for
@@ -30,21 +57,19 @@ Changes
  - Moved NSNetService and NSNetServiceBrowser discovery/monitoring to a secondary
    thread. This should fix situations where connection trigger state
    updates were delayed for multiple seconds.
- - Added a workaround in ABFilterPort for iOS bug that results in a buffer size mismatch,
+ - Added code that will help to terminate zombie processes in future.
+ - Added a workaround in ABAudioFilterPort for iOS bug that results in a buffer size mismatch,
    causing crashes in apps using a filter port with a process block (rather than an audio unit),
    when used on a device with a hardware sample rate different to the app sample rate, such as the
    iPhone 6S Plus.
- - Update sample rate of hosted IAA nodes when setting clientFormat property of ABReceiverPort. This
+ - Update sample rate of hosted IAA nodes when setting clientFormat property of ABAudioReceiverPort. This
    avoids some unnecessary sample rate conversion in certain circumstances.
- - Reworked Audio Unit Management to facilitate background launching and
-   launching via Inter-App Audio URLs for future versions.
- - Fixed a status bar issue
- - Added "setNeedsStatusBarAppearanceUpdate" to ABAudiobusController.
- - Fixed connection issues when launching the app in background.
- - Added sample code to AB Sender that shows how to show / hide the inter-app
-   audio transport panel due to Audiobus / Inter-App audio connection.
-
-
+ - Sometimes output apps do not show the right icons.
+ - If your app shows names and icons of other apps, please do the following:
+ - Replace calls of "port.peer.name" by "port.pipelineTitle".
+ - Replace calls of "port.peer.icon" by "port.pipelineIcon".
+ - Observe property port.pipelineTitle and port.pipelineIcon. If it changes update you UI.
+ - All of this new requirements are implemented in the sample app "AB Multitrack".
 
 
 2.3.1
@@ -96,7 +121,7 @@ Changes
  - Addressed iOS 9 problems with Connection Panel
  - Added new ABConnectionPanelPositionTop Connection Panel position.
  - Fixed problems with using kAudioUnitType_RemoteMusicEffect audio component type.
- - Added registerAdditionalAudioComponentDescription: utility to ABFilterPort.
+ - Added registerAdditionalAudioComponentDescription: utility to ABAudioFilterPort.
 
 2.1.6.1
 -------
@@ -107,7 +132,7 @@ Changes
 -----
 
  - Added public init methods for triggers, to allow subclassing
- - Added registerAdditionalAudioComponentDescription: method to ABSenderPort,
+ - Added registerAdditionalAudioComponentDescription: method to ABAudioSenderPort,
    allowing use of secondary AudioComponentDescriptions with the same port.
  - Tweaked connection panel hide/show; don't re-show after user has hidden
  - Fixed some issues with ABAudioUnitFader
@@ -138,8 +163,8 @@ Changes
  - Added 'memberOfActiveAudiobusSession' property to ABAudiobusController which replaces
    'audiobusAppRunning' property in determining whether an app should remain active in the
    background.
- - Fixed an issue with ABSenderPort when created with user audio unit and connected to self
- - Adjusted buffering in ABSenderPortSend to allow for non-hardware buffer duration
+ - Fixed an issue with ABAudioSenderPort when created with user audio unit and connected to self
+ - Adjusted buffering in ABAudioSenderPortSend to allow for non-hardware buffer duration
    enqueue lengths
  - Improvements to internal buffering mechanisms
  - Addressed issue when setting a sender or filter port's audioUnit property to NULL
@@ -169,7 +194,7 @@ Changes
 -----
 
  - Fixed an assertion problem during state restoring ("must have completionBlock")
- - Fixed an audio conversion issue with ABReceiverPort with receiveMixedAudio = NO
+ - Fixed an audio conversion issue with ABAudioReceiverPort with receiveMixedAudio = NO
  - Added some extra Info.plist sanity checks
 
 2.1

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2EB47897C13D108C68CA39550AB702F6030A39CE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2EB47897C13D108C68CA39550AB702F6030A39CE" : 9223372036854775807,
+    "689E86FFB79DEB5D97D19DDA11ADB644D9BD247E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "583BD87B-D54E-4BF7-B4DA-4D1B38D7AC35",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2EB47897C13D108C68CA39550AB702F6030A39CE" : "fretless\/",
+    "689E86FFB79DEB5D97D19DDA11ADB644D9BD247E" : "fretless\/Fretless\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Fretless",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Fretless.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nazarioricardo\/fretless.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2EB47897C13D108C68CA39550AB702F6030A39CE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nazarioricardo\/fretless",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "689E86FFB79DEB5D97D19DDA11ADB644D9BD247E"
+    }
+  ]
+}
