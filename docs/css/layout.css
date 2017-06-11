@@ -1,0 +1,98 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+#header {
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    max-height: 400px;
+    position: absolute;
+    padding-top: 65px;
+}
+
+#audio-toggle {
+    font-size: 14px;
+    padding-top: 10px;
+}
+
+#video {
+    position: relative;
+}
+
+#video-container {
+    width: 100%;
+    max-height: 400px;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    right: 0;
+    z-index: -100;
+}
+
+#video-background {
+    position: relative;
+    display: block;
+    top: 0;
+    width: 100%;
+    height: auto;
+    min-width: 100%; 
+    max-height: 400px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+#content {
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-top: 30px;
+}
+
+#nav-container {
+    text-align: center;
+    position: relative;
+    width:  100%;
+    top: 0;
+    left: 0;
+}
+
+#nav {
+    margin: 0;
+    height: 50px;
+}
+
+ul#nav {
+    padding: 0;
+    margin: 0;
+    height: 50px;
+}
+
+#nav li {
+    font-size: 20px;
+    display: inline-block;
+    margin: 0;
+    width: 30%;
+    text-align: center;
+    cursor: pointer;
+    line-height: 50px;
+    transition: all .2s ease-in-out
+}
+
+.content-section {
+    min-height: 100vh;
+}
+
+.content-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+#email {
+    font-size: 14px;
+}
