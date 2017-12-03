@@ -262,7 +262,7 @@ extern NSString * const ABPeerKey;
  * Add a grid matrix of triggers for Audiobus Remote
  *
  *  Triggers added by this method appear within Audiobus Remote as a grid of buttons.
- *  We recommend using this facility when a matrix layout is important to the user 
+ *  We recommend using this facility when a matrix layout is important to the user
  *  experience, such as with drum sample pads.
  *
  *  Please use this facility only if your button layout needs an explicit
@@ -272,10 +272,18 @@ extern NSString * const ABPeerKey;
  * @param triggers An array of triggers. Size of the array must be rows * cols.
  * @param rows Number of rows; limited to 6 rows maximum.
  * @param cols Number of columns; limited to 6 cols maximum.
+ * @param transposable If transposable is true the matrix is transposed if 
+ * space can be saved.
  */
 - (void)addRemoteTriggerMatrix:(NSArray*) triggers
                           rows:(NSUInteger) rows
-                          cols:(NSUInteger) cols;
+                          cols:(NSUInteger) cols
+                  transposable:(BOOL) transposable;
+
+
+- (void)addRemoteTriggerMatrix:(NSArray*) triggers
+                          rows:(NSUInteger) rows
+                          cols:(NSUInteger) cols __attribute__((deprecated("Use 'addRemoteTriggerMatrix:rows:cols:transposable' instead")));
 
 
 /*!
@@ -731,11 +739,23 @@ extern NSString * const ABPeerKey;
 ///@{
 
 /*!
- * Whether to allow multiple instances of this app in one Audiobus connection graph
+ * Whether to allow this app to connect its input to its own output
  *
- *  If you set this to YES, then Audiobus will allow users to add more than one
- *  instance of your app within one Audiobus setup, such as in the input and the output
- *  positions simultaneously.
+ *  If you set this to YES, then Audiobus will allow users to add your app in the input
+ *  and output positions simultaneously, allowing the app's output to be piped back into
+ *  its input.
+ *
+ *  If you wish to support this functionality, you must either (a) pass NULL for the audioUnit
+ *  parameter of ABAudioSenderPort's initialiser, which will cause the port to create its own
+ *  separate audio unit for the connection, and explicitly use
+ *  @link ABAudioSenderPort::ABAudioSenderPortSend ABAudioSenderPortSend @endlink to send audio,
+ *  or (b) ensure the audioUnit parameter is distinct from your app's main audio unit (the one
+ *  from which you call ABAudioReceiverPortReceive.
+ *
+ *  If you do not do this, your app's audio system will stop running once a connection to self
+ *  is established, due to a loop in the audio unit connections. Note that this requirement has
+ *  been newly introduced with Audiobus 3, for technical reasons. See the AB Receiver sample app
+ *  for a demonstration of this functionality.
  *
  *  By default, this is disabled, as some apps may not function properly if their
  *  audio pipeline is traversed multiple times in the same time step.

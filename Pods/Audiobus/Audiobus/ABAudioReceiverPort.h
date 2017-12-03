@@ -153,7 +153,7 @@ void ABAudioReceiverPortReceiveAQ(ABAudioReceiverPort *receiverPort, ABPort *sou
  */
 BOOL ABAudioReceiverPortIsConnected(ABAudioReceiverPort *receiverPort);
 
-/*
+/*!
  * Whether the port is connected to another port from the same app
  *
  *  This returns YES when the receiver port is connected to a sender port also belonging to your app.
@@ -166,8 +166,8 @@ BOOL ABAudioReceiverPortIsConnected(ABAudioReceiverPort *receiverPort);
  *  Primarily, this means not sending output derived from the input through the sender port.
  *
  *  You can use @link ABAudioReceiverPortIsConnectedToSelf @endlink and the equivalent ABAudioSenderPort function,
- *  @link ABAudioSenderPortIsConnectedToSelf @endlink to determine this state from the Core Audio realtime
- *  thread, and perform muting/etc as appropriate.
+ *  @link ABAudioSenderPort::ABAudioSenderPortIsConnectedToSelf ABAudioSenderPortIsConnectedToSelf @endlink 
+ *  to determine this state from the Core Audio realtime thread, and perform muting/etc as appropriate.
  *
  * @param receiverPort The receiver port.
  * @return YES if one of this port's sources belongs to this app

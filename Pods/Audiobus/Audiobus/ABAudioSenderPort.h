@@ -29,6 +29,11 @@ extern "C" {
 extern NSString * const ABAudioSenderPortConnectionsChangedNotification;
 
 /*!
+ * Flag to suppress the warning when adding an audio sender port which allows connections to self and has an audio unit
+ */
+extern BOOL ABAudioSenderPortSuppressConnectionToSelfWarning;
+
+/*!
  * Sender port
  *
  *  This class is used to transmit audio.
@@ -119,7 +124,7 @@ void ABAudioSenderPortSend(ABAudioSenderPort* senderPort, const AudioBufferList 
  */
 BOOL ABAudioSenderPortIsConnected(ABAudioSenderPort* senderPort);
 
-/*
+/*!
  * Whether the port is connected to another port from the same app
  *
  *  This returns YES when the sender port is connected to a receiver port also belonging to your app.
@@ -132,8 +137,8 @@ BOOL ABAudioSenderPortIsConnected(ABAudioSenderPort* senderPort);
  *  Primarily, this means not sending output derived from the input through the sender port.
  *
  *  You can use @link ABAudioSenderPortIsConnectedToSelf @endlink and the equivalent ABAudioReceiverPort function,
- *  @link ABAudioReceiverPortIsConnectedToSelf @endlink to determine this state from the Core Audio realtime
- *  thread, and perform muting/etc as appropriate.
+ *  @link ABAudioReceiverPort::ABAudioReceiverPortIsConnectedToSelf ABAudioReceiverPortIsConnectedToSelf @endlink 
+ *  to determine this state from the Core Audio realtime thread, and perform muting/etc as appropriate.
  *
  * @param senderPort        Sender port.
  * @return YES if one of this port's destinations belongs to this app

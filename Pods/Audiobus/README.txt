@@ -1,5 +1,5 @@
-Audiobus SDK -- Version 3.0.0 -- May 17th 2017
-==============================================
+Audiobus SDK -- Version 3.0.3  -- November 7 2017
+=====================================================
 
 Thanks for downloading the Audiobus distribution!
 
@@ -17,17 +17,73 @@ https://audiob.us
 Changes
 =======
 
+3.0.3
+-----
+
+### Fixes:
+- Added support for the iPhone X
+- Fixed a bug that resulted in incorrect reporting of connected ports (via the properties destinationsRecursive,
+  MIDIPipelineIDs, etc) when MIDI filters are used.
+- Fixed destinationsRecursive/sourcesRecursive values for MIDI filter ports when multiple MIDI filters present in pipeline
+- Fixed a sample rate issue with automatic monitoring in ABAudioReceiverPort
+- Replaced assertion when allowsConnectionToSelf is YES and ABAudioSenderPort used with an audio unit with a warning instead
+- Fixed a bug causing glitches when audio sources were muted
+- Removed incorrect console error message when connecting to outputs
+- Fixed crash when ABAudioReceiverPortReceive used with client formats other than float
+- Fixed issue where receiver apps were not able to connect to Audiobus after accepted telephone call or Siri session interruption
+
+3.0.2
+-----
+
+### Features:
+ - You can now declare small trigger button matrices without wasting much
+   space in Audiobus Remote. When calling ABAudiobusController:addRemoteTriggerMatrix:rows:cols:transposable
+   set transposable to YES and Audiobus Remote will transpose your button matrix
+   if this saves space.
+ - Added ABMIDIPortIsConnected which allows to check port connection from a
+   realtime context.
+ - Ensure when using allowsConnectionsToSelf that no user audio unit provided to ABAudioSenderPort initializer
+
+
+### Documentation:
+ - Added chapter "Don't use MIDI Channels" to documentation
+ - Updated doc chapter "Add the Audiobus SDK to Your Project"
+ - Added doc chapter "Don't show private MIDI ports"
+ - Implemented doc chapter "Mute your internal sound engine" in AB Sender
+ - Added doc chapter "Receiver ports: Differences between Audiobus 2 and Audiobus 3"
+ - Added doc chapter "Developer Mode and Automatic App Termination"
+
+
+### Fixes:
+ - Fixed: Stuck notes in AB Sender sample app
+ - Fixed: A peer icon bug in the connection panel
+ - Fixed: Apps sitting in audio input crashed when filter apps were added to
+   the pipeline and the filter apps had both, an audio receiver port as well
+   an audio sender port. This crash affects all apps having the Audiobus 3 SDK.
+ - Fixed a bug that caused some latency
+ - Fixed an assertion crash on recreation of ports.
+ - Fixed potential crash bug.
+ - Fixed: Launch Triggers of Audio Unit Extensions were not shown in Connection Panel
+ - Fixed: State restore mechanism was broken from time to time
+ - Fixed: An assertion crash on recreation of ports reported by Frederik. Thanks!
+ - Fixed: Issues with apps having many triggers and many sender ports.
+   Thanks to Marinus who provided me with an excellent sample project helping
+   me to find out whats going wrong.
+ - Fixed (possibly): Wrong trigger FWD/RW trigger button order
+ - Fixed: Sporadic connection issues when apps add many triggers or many ports
+ - Fixed: Developer mode setting was transmitted to peers correctly at the beginning
+ - Fixed an issue with ABAudioReceiverPort's connectedToSelf property not returning correct value
+ - Fixed an API Key validator issue for apps having both: AUX and AB Audio Sender ports
 
 3.0.0
 -----
 
-Important:
-
+### Important:
  - For developers already using the Audiobus 2 SDK, please read the [2.0 to 3.0 Migration Guide]( https://developer.audiob.us/doc/_migration-_guide.html)
  - Audiobus compatible apps now need to link `libz.tbd`
 
-Features:
 
+### Features:
  - MIDI support!
      - The Audiobus SDK now supports the creation of MIDI Sender, MIDI Filter and MIDI Receiver ports.
      - See the AB Sender sample app (included within SDK distribution) to see MIDI Receiver ports and MIDI Sender ports in action.
@@ -40,8 +96,8 @@ Features:
  - Introduced various `ABPort` properties to retrieve information about sources,
    assigned pipelines, etc.
 
-Fixes:
 
+### Fixes:
  - Apps that offer Inter-App Audio instrument ports are treated as MIDI receiver ports.
  - Fixes issues with `ABAudioReceiverPort` in Audiobus 3
  - Fixes sporadic crash in `ABAudioReceiverPort` when changing client format

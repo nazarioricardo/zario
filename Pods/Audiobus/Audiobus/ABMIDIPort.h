@@ -58,6 +58,12 @@ void ABMIDIPortSendPacketList(__unsafe_unretained ABMIDIPort *  _Nonnull MIDIPor
 @property (nonatomic, readonly) BOOL connected;
 
 /*!
+ * Like property connected, but for usage in realtime context.
+ */
+BOOL ABMIDIPortIsConnected(__unsafe_unretained ABMIDIPort * _Nonnull port);
+
+
+/*!
  * This is the buffer size reserved for output MIDI Packet lists. This value
  * defaults to 16 kBytes. Increase this value when you need more or less.
  */

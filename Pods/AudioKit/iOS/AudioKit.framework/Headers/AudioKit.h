@@ -39,6 +39,7 @@ FOUNDATION_EXPORT const unsigned char AudioKitVersionString[];
 
 // Effects / Dynamics
 #import "AKDynamicRangeCompressorAudioUnit.h"
+#import "AKDynaRageCompressorAudioUnit.h"
 
 // Effects / Envelopes
 #import "AKAmplitudeEnvelopeAudioUnit.h"
@@ -66,6 +67,9 @@ FOUNDATION_EXPORT const unsigned char AudioKitVersionString[];
 #import "AKThreePoleLowpassFilterAudioUnit.h"
 #import "AKToneComplementFilterAudioUnit.h"
 #import "AKToneFilterAudioUnit.h"
+
+// Effects / Guitar Processors
+#import "AKRhinoGuitarProcessorAudioUnit.h"
 
 // Effects / Phaser
 #import "AKPhaserAudioUnit.h"
@@ -110,20 +114,47 @@ FOUNDATION_EXPORT const unsigned char AudioKitVersionString[];
 #import "AKRhodesPianoAudioUnit.h"
 #import "AKShakerAudioUnit.h"
 #import "AKTubularBellsAudioUnit.h"
+#import "AKVocalTractAudioUnit.h"
 
 // Mixing
 #import "AKBalancerAudioUnit.h"
 #import "AKBoosterAudioUnit.h"
+#import "GainEffectDsp.hpp"
 #import "AKPannerAudioUnit.h"
 #import "AKStereoFieldLimiterAudioUnit.h"
 
 // Playback
 #import "AKPhaseLockedVocoderAudioUnit.h"
 #import "AKSamplePlayerAudioUnit.h"
+#import "AKPresetManager.h"
 
 // Testing
-#import "AKOfflineRenderer.h"
 #import "AKTesterAudioUnit.h"
 
-// Plots
+// EZAudio
 #import "EZAudio.h"
+
+// Offline
+#import "AKOfflineRenderAudioUnit.h"
+
+// Taps
+#import "AKRenderTap.h"
+#import "AKLazyTap.h"
+#import "AKTimelineTap.h"
+
+// Utilities
+#import "TPCircularBuffer.h"
+#import "TPCircularBuffer+Unit.h"
+#import "TPCircularBuffer+AudioBufferList.h"
+#import "AKTimeline.h"
+
+// Sequencer
+#import "AKSamplerMetronome.h"
+
+#ifdef JAZZY_HACK
+// Hack to get jazzy to see the UI classes, please ignore
+#import "EZPlot.h"
+#import "EZAudioDisplayLink.h"
+#import "EZAudioPlot.h"
+#import "EZAudioPlotGL.h"
+#endif

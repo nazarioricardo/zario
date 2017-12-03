@@ -3,7 +3,7 @@
 //  Audiobus
 //
 //  Created by Michael Tyson on 10/12/2011.
-//  Copyright (c) 2011-2016 Audiobus. All rights reserved.
+//  Copyright (c) 2011-2017 Audiobus. All rights reserved.
 //
 
 #import "ABCommon.h"
@@ -31,7 +31,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <Accelerate/Accelerate.h>
 
-#define ABSDKVersionString @"3.0.0"
+#define ABSDKVersionString @"3.0.3"
 
 /*!
 @mainpage
@@ -253,12 +253,14 @@ General Design Principles                                  {#General-Principles}
  
  The easiest way to add Audiobus to your project is using [CocoaPods](https://cocoapods.org):
  
- 1. Add "pod 'Audiobus'" to your Podfile, or, if you don't have one: at the top level of your project
-    folder, create a file called "Podfile" with the following content:
-   @code
-    pod 'Audiobus'
-   @endcode
- 2. Then, in the terminal and in the same folder, type:
+ 1. If you don't have a Podfile at the top level of your project, create a file called "Podfile".
+ 2. Open your Podfile and add the following code, replacing `testTarget` with the name of your target:
+ @code
+ target 'testTarget' do
+   pod 'Audiobus'
+ end
+ @endcode
+ 3. In the terminal and in the same folder, type:
    @code
     pod install
    @endcode
@@ -622,6 +624,9 @@ General Design Principles                                  {#General-Principles}
  This is a limitation enforced by security changes since iOS 9 that prohibit Audiobus from detecting installed apps
  unless they provide sender or filter ports.
  </blockquote>
+ 
+ > If you are using the Audio Queue API in your app, unfortunately there is no convenient way to support sending
+ > audio via Audiobus. You can, however, support [receiving from Audiobus](@ref Audio-Queue-Input).
  
  
  Audio Sender Port                                              {#Create-Audio-Sender-Port}
@@ -1415,20 +1420,20 @@ You're Done!        {#Youre-Done}
  For example:
  
  @code
- _audiobusController.enableReceivingCoreMIDIBlock = ^(BOOL enableReceivingMIDI) {
- if ( enableReceivingMIDI ) {
- // TODO: Core MIDI RECEIVING needs to be enabled
- } else {
- // TODO: Core MIDI RECEIVING needs to be disabled
- }
+ _audiobusController.enableReceivingCoreMIDIBlock = ^(BOOL receivingEnabled) {
+     if ( receivingEnabled ) {
+         // TODO: Core MIDI RECEIVING needs to be enabled
+     } else {
+         // TODO: Core MIDI RECEIVING needs to be disabled
+     }
  };
  
- _audiobusController.enableReceivingCoreMIDIBlock = ^(BOOL enableReceivingMIDI) {
- if ( enableReceivingMIDI ) {
- // TODO: Core MIDI SENDING needs to be enabled
- } else {
- // TODO: Core MIDI SENDING needs to be disabled
- }
+ _audiobusController.enableSendingCoreMIDIBlock = ^(BOOL sendingEnabled) {
+     if ( sendingEnabled ) {
+         // TODO: Core MIDI SENDING needs to be enabled
+     } else {
+         // TODO: Core MIDI SENDING needs to be disabled
+     }
  };
  @endcode
  
@@ -1569,12 +1574,12 @@ You're Done!        {#Youre-Done}
  to AB MIDI Filter. From there the events are sent to Animoog. In this scenario, AB Sender is a 
  pure MIDI controller, and must not generate any of its own audio.
  
- To allow your app to mute when appropriate, ABMIDISenderPort provides a property called
- [muted](@ref ABMIDISenderPort::muted). When the value of this property is YES, your app should
+ To allow your app to mute when appropriate, ABAudioSenderPort provides a property called
+ [muted](@ref ABAudioSenderPort::muted). When the value of this property is YES, your app should
  avoid producing any audio output. When NO, your app should behave as usual.
  
  To respond to changes to the `muted` property, observe the property of your
- ABMIDISenderPort instance and respond appropriately when changes occur:
+ ABAudioSenderPort instance and respond appropriately when changes occur:
  
  @code
  void *kSenderPortMutedChanged = &kSenderPortMutedChanged;
@@ -1614,6 +1619,69 @@ You're Done!        {#Youre-Done}
  > make your app stop processing audio. So in the case that no audio is audible
  > you should make sure that your sound engine does not process audio.
  > This will save CPU resources as well as battery power.
+ 
+ 
+ 
+ Don't use MIDI channels                               {#Dont-use-MIDI-channels}
+ -----------------------
+ 
+ Audiobus-compatible apps should not use the MIDI Channel information contained
+ within MIDI packets. As Audiobus uses ports (instances of `ABMIDIReceiverPort`, `ABMIDIFilterPort` and `ABMIDISenderPort`)
+ for routing of MIDI, the MIDI Channel data is not required and using it can cause unexpected behaviour.
+ 
+ - If possible, let your app only send on MIDI channel 0.
+ - Do not evaluate MIDI channels. It should make no difference for your app if a message has MIDI channel 1, 2, etc.
+ - If your app is a multitimbral synth and must therefore receive on multiple
+   MIDI channels, create separate instances of `ABMIDIReceiverPort` for each timbre you want to use. The app SoundPrism
+   creates one MIDI port for the bass sound, one for the chord sound and one for the melody sound, for example.
+ - If your app is a complex MIDI controller, please create an instance
+   of `ABMIDISenderPort` for each MIDI channel you want to use. The app Fugue Machine creates one instance of 
+   `ABMIDISenderPort` for each playhead, for example.
+ 
+ By using Audiobus MIDI ports instead of MIDI Channel information, your app allows Audiobus to correctly display
+ MIDI sources and destinations to the user.
+ 
+ 
+ Don't show private MIDI ports                     {#Dont-use-private-MIDI-ports}
+ -----------------------------
+ 
+ Audiobus uses private Virtual Core MIDI Sources and Destinations to route MIDI from app to app. Normally, private
+ MIDI ports should never appear within other apps. Unfortunately there is currently a bug in iOS making these
+ ports visible from time to time.
+ 
+ To prevent your app's Core MIDI sources and destinations list from showing tons of Audiobus MIDI ports, please check
+ if a port is private before displaying it to the user. Use this code to find out if a MIDI endpoint is private or not:
+ 
+ @code
+ BOOL isPrivateMIDIEndpoint(MIDIEndpointRef endpoint){
+    OSStatus result;
+    SInt32 isPrivate;
+    
+    result = MIDIObjectGetIntegerProperty (endpoint, kMIDIPropertyPrivate, &isPrivate);
+    if (result == noErr)
+        return isPrivate != 0;
+    else
+        return NO;
+}
+ @endcode
+ 
+ Ideally, you should perform this check some milliseconds after a port has been appeared, to allow the owning app to
+ set this flag on the other end.
+
+ 
+ Developer Mode and Automatic App Termination  {#Dev-mode-and-automatic-app-termination}
+ --------------------------------------------
+ 
+ There is currently a bug in iOS which breaks receiving from Core MIDI when an app is relaunched
+ into the background. To work around this bug we have added a mechanism within the Audiobus SDK that allows
+ us to terminate and restart your app while it is in background. We only use this system if the aforementioned bug
+ is observed. Currently only apps having one or more ports of type `ABMIDIReceiverPort` and `ABMIDIFilterPort` are 
+ affected by this bug.
+ 
+ If your app provides one of these ports you might want to observe [ABApplicationWillTerminateNotification](@ref ABApplicationWillTerminateNotification).
+ This notification will be sent out shortly before Audiobus will terminate and relaunch your app.
+ 
+ To disable this functionality during debugging, enable "Developer Mode" in the preferences of the Audiobus App.
  
 
 @page Migration-Guide 2.x-3.x Migration Guide
@@ -1702,15 +1770,22 @@ You're Done!        {#Youre-Done}
  @ref Show-and-hide-Inter-App-Audio-Transport-Panel "Show and hide Inter-App Audio Transport Panel" 
  in the audio integration guide for more info.
  
- 6. Hosts, do not show Audiobus' hidden sender ports
+ 6. Inter-App Audio Hosts: Do not show Audiobus' hidden sender ports  {#Migration-Guide-Dont-show-hidden-sender-ports}
  ==================================================
 
  Audiobus provides a number of hidden intermediate sender ports. These ports are
- only used internally by the Audiobus SDK. If your app is an Host you should
- hide these ports in the list of available Inter-App audio nodes. For more 
- information read the chapter
- @ref Dont-show-Audiobus-hidden-sender-ports "Hosts, do not show Audiobus' hidden sender ports"
+ only used internally by the Audiobus SDK. If your app is an Inter-App Audio host you should
+ hide these ports in the list of available Inter-App Audio nodes. For more
+ information read the section entitled
+ @ref Dont-show-Audiobus-hidden-sender-ports "If your app is an IAA host, do not show Audiobus' hidden sender ports"
  in the audio integration guide.
+ 
+ 7. Hosts, Audiobus 2 and Audiobus 3 behave differently {#Migration-Guide-AB2-and-AB3-behave-differently}
+ ======================================================
+ 
+ There are some important differences between the way inputs and filters are 
+ connected to outputs. If your app offers an ABAudioReceiverPort, please read
+ the chapter @ref Differences-between-audiobus-2-and-audiobus-3 "Differences between Audiobus 2 and Audiobus 3".
  
 @page Recipes Common Recipes
 
@@ -2085,12 +2160,12 @@ You're Done!        {#Youre-Done}
  
  <blockquote>
  The way you obtain access to sources has changed in Audiobus 3. Audiobus 3
- inserts intermediate routings. Thus the sources obtained by ABPort:sources 
- are not the source you are seeing in the Audiobus UI. Using ABPort:sources 
- and ABPort:destinations you will get the physically connected sources and 
+ inserts intermediate routings. Thus the sources obtained by ABPort::sources
+ are not the source you are seeing in the Audiobus UI. Using ABPort::sources
+ and ABPort::destinations you will get the physically connected sources and
  destinations. To represent sources and destinations in the user inteface of your app
- we recomment to use the new function ABPort:sourcesRecursive and 
- ABPort:destinationsRecursive.
+ we recomment to use the new function ABPort::sourcesRecursive and
+ ABPort::destinationsRecursive.
  </blockquote>
  
  To get the physically connected sources iterate the sources property of your
@@ -2430,6 +2505,89 @@ Receiving Separate Streams        {#Receiving-Separate-Streams}
     ([ABMultiStreamBufferEnqueue](@ref ABMultiStreamBuffer::ABMultiStreamBufferEnqueue)).
  3. You then dequeue each source from ABMultiStreamBuffer ([ABMultiStreamBufferDequeueSingleSource](@ref ABMultiStreamBuffer::ABMultiStreamBufferDequeueSingleSource)).
     Audio will be buffered and synchronised via the timestamps of the enqueued audio.
+ 
+ 
+ Differences between Audiobus 2 and Audiobus 3        {#Differences-between-audiobus-2-and-audiobus-3}
+ =============================================
+
+ There are some important differences between Audiobus 2 and Audiobus 3 once 
+ receiver ports come into play. The following table lists the most important 
+ differences:
+ 
+ 
+ &nbsp;                      | Audiobus 2               | Audiobus 3
+ --------------------------- | ------------------------ | -------------
+ Hosting inputs and filters  | The app in the output    | Audiobus itself.
+ Receiving multiple streams  | One stream per source    | One stream per pipeline
+ Assigning streams to tracks | Unique ID of the source  | Pipeline ID
+ 
+ > All of the proposed changes below are backward compatible with Audiobus 2.
+ > So don't worry about breaking Audiobus 2 compatibility by implementing it.
+ 
+ 
+ Intermediate Routings
+ ---------------------
+ 
+ Audiobus 3 introduces so called intermediate routings. Imagine the following 
+ input-filter-output connection chain:
+ 
+ @code
+   Animoog -> Bias -> Cubasis
+ @endcode
+ 
+ In Audiobus 2 Cubasis would host and connect Animoog and Bias. Because only
+ hosts can launch other apps in background we needed to make Audiobus 3 hosting 
+ Animoog and Bias. We did this by inserting a so called intermediate routing 
+ just before the output. Thus the connection graph internally looks like this:
+ 
+
+ @code
+   Animoog -> Bias -> ABIRIn - ABIROut -> Cubasis
+ @endcode
+ 
+  - <code>ABIRIn</code> is an audio receiver port within Audiobus.
+  - <code>ABIROut</code> is an audio sender port within Audiobus.
+  - The chain <code>ABIRIn - ABIROut</code> is the intermediate routing.
+  - Instead of being directly connected to Cubasis, Bias is now connected to ABIRIn
+    and therefore hosted by Audiobus.
+  - Cubasis is connected to ABIROut. Thus instead of hosting Animoog and Bias
+    Cubasis only hosts Audiobus' sender port ABIROut.
+ 
+ Internally Audiobus manages a set of sixteen intermediate routings which are
+ dynamically assigned.
+ 
+ 
+ Access sources connected to audio receiver ports
+ ------------------------------------------------
+ Due to the introduction of the intermediate routing between Cubasis and Bias
+ Cubasis is not able access the name of connected sources by iterating
+ the sources connected to an audio receiver port.
+ 
+ Much more you need now to read the property ABPort::sourcesRecursive.
+ Instead of returning the physically connected source which is Audiobus'
+ intermediate sender port, this property will return the logically connected
+ sources which are Animoog and Bias. Additionally ABPort provides the selectors
+ ABPort::sourcesIcon and ABPort::sourcesTitle.
+ 
+
+ Multitrack Audio Recorders: Assigning sources to tracks
+ -------------------------------------------------------
+ In Audiobus 2 multitrack records were able to record one track per source. 
+ To reassign a source to the right track, the unique ID of the source could 
+ be used. Because of the introduction of dynamic intermediate routings this is not
+ possible anymore. 
+ 
+ To solve this issue, Audiobus 3 introduces a new ABPort property called ABPort::pipelineIDs.
+ This property returns an array containing the IDs of all pipelines the port
+ is belonging too. Audio sender and audio filter ports can only be assigned to 
+ one pipeline. So by reading the first pipeline ID of a source connected to 
+ your audio receiver port you can estimate to which track this source belongs.
+ 
+ The pipeline ID of a source is stored within Audiobus preset. So you can make
+ sure that after loading a presets all assignements can be restored.
+ 
+ 
+ 
 
 @page Triggers Triggers
 
