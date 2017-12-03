@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable class SegmentedController: UIControl, ThumbDelegate {
     
     private var labels = [UILabel]()
-    var thumbView = ThumbView()
+    @objc var thumbView = ThumbView()
     
-    public var items: [String] = ["Item 1", "Item 2", "Item 3"] {
+    @objc public var items: [String] = ["Item 1", "Item 2", "Item 3"] {
         didSet {
             setupLabels()
         }
@@ -25,7 +25,7 @@ import UIKit
         }
     }
     
-    public var currentValue: String!
+    @objc public var currentValue: String!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +37,7 @@ import UIKit
         setupView()
     }
     
-    func setupView() {
+    @objc func setupView() {
         
         let borderColor = UIColor.init(red: 55/255, green: 84/255, blue: 84/255, alpha: 1.0)
         let fillColor = UIColor.init(red: 64/255, green: 92/255, blue: 94/255, alpha: 1.0)
@@ -49,7 +49,7 @@ import UIKit
         insertSubview(thumbView, at: 0)
     }
     
-    func setupLabels() {
+    @objc func setupLabels() {
         
         for label in labels {
             label.removeFromSuperview()
@@ -149,7 +149,7 @@ import UIKit
         }
     }
     
-    func startedTouchingThumbView(location: CGPoint) {
+    @objc func startedTouchingThumbView(location: CGPoint) {
         var calculatedIndex: Int?
         
         for (index, item) in labels.enumerated() {
@@ -165,7 +165,7 @@ import UIKit
         }
     }
     
-    func isTouchingThumbView(location: CGPoint) {
+    @objc func isTouchingThumbView(location: CGPoint) {
         var calculatedIndex: Int?
         
         for (index, item) in labels.enumerated() {
@@ -181,7 +181,7 @@ import UIKit
         }
     }
     
-    func didEndTouchInThumbView(location: CGPoint) {
+    @objc func didEndTouchInThumbView(location: CGPoint) {
         var calculatedIndex: Int?
         
         for (index, item) in labels.enumerated() {
@@ -197,7 +197,7 @@ import UIKit
         }
     }
     
-    func moveIndicatorTo(touchX: CGFloat) {
+    @objc func moveIndicatorTo(touchX: CGFloat) {
         
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
@@ -213,7 +213,7 @@ import UIKit
         
     }
     
-    func displayNewSelectedIndex() {
+    @objc func displayNewSelectedIndex() {
         
         let label = labels[selectedIndex]
         self.currentValue = self.items[selectedIndex]

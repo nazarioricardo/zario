@@ -16,7 +16,7 @@ protocol IndicatorDelegate {
 
 class TouchIndicatorView: UIControl {
     
-    func addGradient() {
+    @objc func addGradient() {
         
         let gradient = GradientView(frame: self.bounds)
         
@@ -27,7 +27,7 @@ class TouchIndicatorView: UIControl {
         super.layoutSubviews()        
     }
 
-    func setUpView() {
+    @objc func setUpView() {
 //        self.backgroundColor = UIColor.lightGray
         self.isUserInteractionEnabled = false
         self.isOpaque = true
