@@ -11,39 +11,39 @@ import AudioKit
 
 class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     
-    @objc let whiteKeyColor = UIColor(red: 225/255, green: 240/255, blue: 239/255, alpha: 1)
-    @objc let blackKeyColor = UIColor(red: 18/255, green: 65/255, blue: 62/255, alpha: 1)
+    let whiteKeyColor = UIColor(red: 225/255, green: 240/255, blue: 239/255, alpha: 1)
+    let blackKeyColor = UIColor(red: 18/255, green: 65/255, blue: 62/255, alpha: 1)
     
-    @objc let a0 = 27.5
+    let a0 = 27.5
     var attack: Float!
     var release: Float!
     
-    @objc var keys: [KeyView] = []
+    var keys: [KeyView] = []
     
-    @objc var noteColorIndex: Int = 0
+    var noteColorIndex: Int = 0
     
-    @objc var chosenOctave: Int = 1
-    @objc var chosenNoteInterval: Int = 12
+    var chosenOctave: Int = 1
+    var chosenNoteInterval: Int = 12
     
     var selectedIndex: Int!
     var numberOfKeys: Int!
     var maxCutoff: Double!
     var minCutoff: Double!
     
-    @objc var waveform: AKTable!
-    @objc var oscillator: AKOscillator!
-    @objc var peakLimiter: AKPeakLimiter!
-    @objc var lowPassFilter: AKKorgLowPassFilter!
-    @objc var highPassFilter: AKHighPassFilter!
-    @objc var envelope: AKAmplitudeEnvelope!
+    var waveform: AKTable!
+    var oscillator: AKOscillator!
+    var peakLimiter: AKPeakLimiter!
+    var lowPassFilter: AKKorgLowPassFilter!
+    var highPassFilter: AKHighPassFilter!
+    var envelope: AKAmplitudeEnvelope!
     
-    @objc var lowestFrequency: Float {
+    var lowestFrequency: Float {
         get {
             return calculateFreq(root: Float(a0) * calculateOctave(octave: chosenOctave), halfSteps: Float(chosenNoteInterval))
         }
     }
     
-    @objc var keyBoardHeight: CGFloat {
+    var keyBoardHeight: CGFloat {
         get {
             return self.view.bounds.height
         }
@@ -63,7 +63,7 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
 
     // Private
     
-    @objc func setUpViews() {
+    func setUpViews() {
         
         let keyColors: [UIColor] = [
             whiteKeyColor,
@@ -114,18 +114,18 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
         keyBoardView.delegate = self
     }
     
-    @objc func calculateFreq(root: Float, halfSteps: Float) -> Float {
+    func calculateFreq(root: Float, halfSteps: Float) -> Float {
         let twelfth = Float(pow(2, 1/Float(12)))
         return root * pow(twelfth, halfSteps)
     }
     
-    @objc func calculateOctave(octave: Int) -> Float {
+    func calculateOctave(octave: Int) -> Float {
         return Float(pow(Double(2), Double(octave)))
     }
     
     // AudioKit Setup
     
-    @objc func setUpSound() {
+    func setUpSound() {
         
         maxCutoff = 880
         minCutoff = 0
@@ -180,7 +180,7 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
         AudioKit.start()
     }
     
-    @objc func endSound() {
+    func endSound() {
         lowPassFilter.stop()
         oscillator.stop()
         AudioKit.stop()
@@ -190,13 +190,13 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
     
     // Key Delegate
     
-    @objc func xAxis(keyFreq: Float, x: Float) {
+    func xAxis(keyFreq: Float, x: Float) {
         oscillator.frequency = Double(calculateFreq(root: keyFreq, halfSteps: x))
         highPassFilter.cutoffFrequency = oscillator.frequency - 50
         envelope.start()
     }
     
-    @objc func yAxis(y: Float) {
+    func yAxis(y: Float) {
         if y > Float(midZoneHeight) {
             lowPassFilter.cutoffFrequency = maxCutoff
         } else {
@@ -204,7 +204,7 @@ class KeyBoardViewController: UIViewController, KeyBoardDelegate {
         }
     }
     
-    @objc func stoppedPlaying() {
+    func stoppedPlaying() {
         envelope.stop()
     }
     

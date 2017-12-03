@@ -10,8 +10,8 @@ import UIKit
 
 class KeyView: UIView {
     
-    @objc var keyColor: UIColor!
-    @objc var keyIndex = 0
+    var keyColor: UIColor!
+    var keyIndex = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)

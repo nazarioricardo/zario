@@ -11,7 +11,7 @@ import AudioKit
 
 class BaseViewController: UIViewController {
     
-    @objc var keyboardVC: KeyBoardViewController!
+    var keyboardVC: KeyBoardViewController!
     
     @IBOutlet weak var waveformPicker: SegmentedController!
     @IBOutlet weak var notePicker: SegmentedController!
@@ -30,29 +30,29 @@ class BaseViewController: UIViewController {
     var octaveMultiplier: Int!
     var selectedNoteOn13: Int!
     
-    @objc var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    var notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
     
-    @objc var keys: Int {
+    var keys: Int {
         get {
             return Int(rangeSlider.value)
         }
     }
-    @objc var lowest: String {
+    var lowest: String {
         get {
             return notePicker.items[notePicker.selectedIndex]
         }
     }
-    @objc var octave: String {
+    var octave: String {
         get {
             return octavePicker.items[octavePicker.selectedIndex]
         }
     }
-    @objc var highest: String {
+    var highest: String {
         get {
             return notes[((notes.index(of: notePicker.items[notePicker.selectedIndex])! + (keys - 1)) % notes.count)]
         }
     }
-    @objc var highOct: String {
+    var highOct: String {
         get {
             return String((octavePicker.selectedIndex + ((selectedNoteOn13 + keys - 1) / 12)))
         }
@@ -80,7 +80,7 @@ class BaseViewController: UIViewController {
         releaseLabel.text = String(releaseSlider.value)
     }
     
-    @objc func updateRangeIndicator() {
+    func updateRangeIndicator() {
         switch notePicker.selectedIndex {
         case 0:
             selectedNoteOn13 = 0
@@ -152,7 +152,7 @@ class BaseViewController: UIViewController {
             })
     }
     
-    @objc func addGradient() {
+    func addGradient() {
         
         let gradient = CAGradientLayer()
         

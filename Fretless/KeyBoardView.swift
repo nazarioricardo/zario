@@ -18,10 +18,10 @@ class KeyBoardView: UIControl {
     
     var delegate: KeyBoardDelegate?
     
-    @objc var frequency: Float = Float()
+    var frequency: Float = Float()
     
     var touchViewWidth: CGFloat!
-    @objc var touchViewIndicator = TouchIndicatorView()
+    var touchViewIndicator = TouchIndicatorView()
     
     var attackTime: Double!
     var releaseTime: Double!
@@ -95,7 +95,7 @@ class KeyBoardView: UIControl {
         
     }
     
-    @objc func createTouchIndicator(x: CGFloat, y: CGFloat) {
+    func createTouchIndicator(x: CGFloat, y: CGFloat) {
         
         touchViewIndicator = TouchIndicatorView.init(frame: CGRect(x: x - (touchViewWidth / 2), y: self.bounds.minY - 200, width: touchViewWidth, height: y + 200))
         
@@ -105,7 +105,7 @@ class KeyBoardView: UIControl {
         self.addSubview(touchViewIndicator)
     }
     
-    @objc func setUpView() {
+    func setUpView() {
 //        createTouchIndicator(x: 0, y: 0)
         self.backgroundColor = UIColor.clear
         
@@ -113,7 +113,7 @@ class KeyBoardView: UIControl {
         
     }
     
-    @objc func addGradient() {
+    func addGradient() {
         
         let gradient = CAGradientLayer()
         let leftColor = UIColor.white.withAlphaComponent(0.3)
